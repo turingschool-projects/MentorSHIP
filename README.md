@@ -1,28 +1,30 @@
-== README
+# Mentor-ship-frontend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the back end api for the Turing MentorSHIP project. It is written in Rails 5
 
-Things you may want to cover:
+![mentorship](https://s3.amazonaws.com/f.cl.ly/items/1o2y3w262I2b0A2G1a3B/Screen%20Shot%202016-07-20%20at%209.11.26%20PM.png?v=d5da8526)
 
-* Ruby version
+## Prerequisites
 
-* System dependencies
+You will need the following things properly installed on your computer.
 
-* Configuration
+* [Git](http://git-scm.com/)
+* [Node.js](http://nodejs.org/) (with NPM)
+* [Bower](http://bower.io/)
+* [Ember CLI](http://ember-cli.com/)
+* [PhantomJS](http://phantomjs.org/)
 
-* Database creation
+## Installation
 
-* Database initialization
+* `git clone git@github.com:turingMentorSHIP/MentorSHIP-API.git`
+* cd MentorSHIP-API
+* `bundle exec rake db:create db:migrate db:seed`
 
-* How to run the test suite
+## Running / Development
 
-* Services (job queues, cache servers, search engines, etc.)
+* `rails s`
+* Visit your app at [http://localhost:3000](http://localhost:3000).
 
-* Deployment instructions
+### Production
 
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* The Production Version will live here: http://turing-mentorship-api.herokuapp.com/
