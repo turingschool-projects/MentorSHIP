@@ -9,3 +9,4 @@ FactoryGirl.define do
     phone_number "555-555-5555"
     slack_username "@user"
   end
+end
