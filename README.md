@@ -25,4 +25,58 @@ This is the back end api for the Turing MentorSHIP project. It is written in Rai
 
 ### Endpoints
 
-##### Students
+#### Students
+
+###### Get all students with completed profiles
+
+**Example Request:**
+```
+  /api/v1/students
+```
+
+**Example Response:**
+```
+{
+  "students": [
+    {
+      "id": 1,
+      "github_avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
+      "name": "student 0",
+      "email": "student0@turing.io",
+      "phone_number": "555-555-5555",
+      "slack_username": "student0",
+      "cohort": 1602
+    },
+    {
+      "id": 2,
+      "github_avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
+      "name": "student 1",
+      "email": "student1@turing.io",
+      "phone_number": "555-555-5555",
+      "slack_username": "student1",
+      "cohort": 1602
+    }
+  ]
+}
+```
+
+###### Get a single student by ID
+
+**Example Request:**
+```
+  /api/v1/students/1
+```
+
+**Example Response:**
+```
+{
+  "student": {
+    "id": 1,
+    "github_avatar":  "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
+    "name": "student 0",
+    "email": "student0@turing.io",
+    "phone_number": "555-555-5555",
+    "slack_username": "student0",
+    "cohort": 1602
+  }
+}
