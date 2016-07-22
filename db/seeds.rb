@@ -14,7 +14,8 @@ cohort_1602 = Cohort.create(number: 1602)
     name: "student #{n}",
     email: "student#{n}@turing.io",
     phone_number: "555-555-5555",
-    slack_username: "student#{n}"
+    slack_username: "student#{n}",
+    github_avatar_url: "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460"
   )
   student.user = user
   result = student.save

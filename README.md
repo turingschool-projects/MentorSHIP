@@ -17,3 +17,12 @@ This is the back end api for the Turing MentorSHIP project. It is written in Rai
 ### Production
 
 * The Production Version will live here: http://turing-mentorship-api.herokuapp.com/
+
+### Testing
+
+* To run the tests:
+* `bundle exec rspec`
+
+### Endpoints
+
+##### Students

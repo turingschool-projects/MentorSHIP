@@ -13,6 +13,7 @@ RSpec.describe "GET /api/v1/students" do
     expect(recieved_students.count).to eq(3)
 
     expect(recieved_students.first["id"]).to eq(student.id)
+    expect(recieved_students.first["github_avatar"]).to eq(student.user.github_avatar_url)
     expect(recieved_students.first["name"]).to eq(student.user.name)
     expect(recieved_students.first["email"]).to eq(student.user.email)
     expect(recieved_students.first["phone_number"]).to eq(student.user.phone_number)

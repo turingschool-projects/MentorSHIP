@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722003706) do
+ActiveRecord::Schema.define(version: 20160722005916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,8 +36,9 @@ ActiveRecord::Schema.define(version: 20160722003706) do
     t.string   "email"
     t.string   "phone_number"
     t.string   "slack_username"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "github_avatar_url"
   end
 
   add_foreign_key "students", "cohorts"
