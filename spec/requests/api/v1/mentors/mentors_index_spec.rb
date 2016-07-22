@@ -18,7 +18,7 @@ RSpec.describe "GET /api/v1/mentors" do
     expect(recieved_mentors.first["email"]).to eq(mentor.user.email)
     expect(recieved_mentors.first["phone_number"]).to eq(mentor.user.phone_number)
     expect(recieved_mentors.first["slack_username"]).to eq(mentor.user.slack_username)
-    expect(recieved_mentors.first["timezone"]).to eq(mentor.timezone.zone)
+    expect(recieved_mentors.first["timezone"]).to eq(mentor.mentor_timezone.name)
     expect(recieved_mentors.first["location"]).to eq(mentor.location)
     expect(recieved_mentors.first["bio"]).to eq(mentor.bio)
   end

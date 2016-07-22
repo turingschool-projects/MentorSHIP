@@ -6,6 +6,6 @@ json.mentor do
   json.phone_number @mentor.user.phone_number
   json.slack_username @mentor.user.slack_username
   json.location @mentor.location
-  json.timezone @mentor.timezone.zone
+  json.timezone @mentor.mentor_timezone.name
   json.bio @mentor.bio
 end

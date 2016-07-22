@@ -2,6 +2,6 @@ FactoryGirl.define do
   factory :mentor do
     user
     location "MyString"
-    timezone
+    mentor_timezone
   end
 end

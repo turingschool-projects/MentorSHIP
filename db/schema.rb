@@ -21,15 +21,21 @@ ActiveRecord::Schema.define(version: 20160722015014) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "mentor_timezones", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "mentors", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "location"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.text     "bio"
-    t.integer  "timezone_id"
-    t.boolean  "profile_completed", default: false
-    t.index ["timezone_id"], name: "index_mentors_on_timezone_id", using: :btree
+    t.integer  "mentor_timezone_id"
+    t.boolean  "profile_completed",  default: false
+    t.index ["mentor_timezone_id"], name: "index_mentors_on_mentor_timezone_id", using: :btree
     t.index ["user_id"], name: "index_mentors_on_user_id", using: :btree
   end
 
@@ -43,12 +49,6 @@ ActiveRecord::Schema.define(version: 20160722015014) do
     t.index ["user_id"], name: "index_students_on_user_id", using: :btree
   end
 
-  create_table "timezones", force: :cascade do |t|
-    t.string   "zone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20160722015014) do
     t.string   "github_avatar_url"
   end
 
-  add_foreign_key "mentors", "timezones"
+  add_foreign_key "mentors", "mentor_timezones"
   add_foreign_key "mentors", "users"
   add_foreign_key "students", "cohorts"
   add_foreign_key "students", "users"

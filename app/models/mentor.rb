@@ -1,6 +1,6 @@
 class Mentor < ApplicationRecord
   belongs_to :user
-  belongs_to :timezone
+  belongs_to :mentor_timezone
 
-  validates :timezone, presence: true
+  validates :mentor_timezone, presence: true
 end
