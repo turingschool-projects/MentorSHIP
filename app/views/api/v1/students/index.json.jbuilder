@@ -1,4 +1,5 @@
 json.students @students do |student|
+  json.id student.id
   json.name student.user.name
   json.email student.user.email
   json.phone_number student.user.phone_number
