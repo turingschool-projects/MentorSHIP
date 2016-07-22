@@ -23,7 +23,7 @@ RSpec.describe "GET /api/v1/mentors" do
     expect(recieved_mentors.first["bio"]).to eq(mentor.bio)
   end
 
-  xit "only returns mentors with completed profiles" do
+  it "only returns mentors with completed profiles" do
     create(:mentor, profile_completed: true)
     create(:mentor, profile_completed: false)
 
