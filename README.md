@@ -29,12 +29,12 @@ This is the back end api for the Turing MentorSHIP project. It is written in Rai
 
 #### Get all students with completed profiles
 
-**Example Request:**
+Example Request:
 ```
   /api/v1/students
 ```
 
-**Example Response:**
+Example Response:
 ```
 {
   "students": [
@@ -62,12 +62,12 @@ This is the back end api for the Turing MentorSHIP project. It is written in Rai
 
 #### Get a single student by ID
 
-**Example Request:**
+Example Request:
 ```
   /api/v1/students/1
 ```
 
-**Example Response:**
+Example Response:
 ```
 {
   "student": {
