@@ -1,6 +1,6 @@
 class Api::V1::StudentsController < Api::V1::BaseController
   def index
-    @students = Student.all
+    @students = Student.where(profile_completed: true)
   end
 
   def show
