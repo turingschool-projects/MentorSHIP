@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722014228) do
+ActiveRecord::Schema.define(version: 20160722015014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,10 +24,11 @@ ActiveRecord::Schema.define(version: 20160722014228) do
   create_table "mentors", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "location"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.text     "bio"
     t.integer  "timezone_id"
+    t.boolean  "profile_completed", default: false
     t.index ["timezone_id"], name: "index_mentors_on_timezone_id", using: :btree
     t.index ["user_id"], name: "index_mentors_on_user_id", using: :btree
   end
