@@ -23,11 +23,11 @@ This is the back end api for the Turing MentorSHIP project. It is written in Rai
 * To run the tests:
 * `bundle exec rspec`
 
-### Endpoints
+## Endpoints
 
-#### Students
+### Students
 
-###### Get all students with completed profiles
+#### Get all students with completed profiles
 
 **Example Request:**
 ```
@@ -60,7 +60,7 @@ This is the back end api for the Turing MentorSHIP project. It is written in Rai
 }
 ```
 
-###### Get a single student by ID
+#### Get a single student by ID
 
 **Example Request:**
 ```
