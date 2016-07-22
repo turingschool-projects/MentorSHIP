@@ -1,3 +1,3 @@
 class Cohort < ApplicationRecord
-  validate :number, presence: true
+  validates :number, presence: true
 end
