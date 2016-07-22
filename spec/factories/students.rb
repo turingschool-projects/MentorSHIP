@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :student do
-    user nil
-    cohort nil
+    user
+    cohort 
   end
 end
