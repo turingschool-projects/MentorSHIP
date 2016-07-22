@@ -97,24 +97,28 @@ Example Request:
 Example Response:
 ```
 {
-  "students": [
+  "mentors": [
     {
       "id": 1,
       "github_avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
-      "name": "student 0",
-      "email": "student0@turing.io",
+      "name": "mentor 0",
+      "email": "mentor0@turing.io",
       "phone_number": "555-555-5555",
-      "slack_username": "student0",
-      "cohort": 1602
+      "slack_username": "mentor0",
+      "location": "Denver",
+      "timezone": "MT",
+      "bio": "Former Student, current mentor!"
     },
     {
       "id": 2,
       "github_avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
-      "name": "student 1",
-      "email": "student1@turing.io",
+      "name": "mentor 1",
+      "email": "mentor1@turing.io",
       "phone_number": "555-555-5555",
-      "slack_username": "student1",
-      "cohort": 1602
+      "slack_username": "mentor1",
+      "location": "Denver",
+      "timezone": "MT",
+      "bio": "Former Student, current mentor!"
     }
   ]
 }
@@ -124,20 +128,22 @@ Example Response:
 
 Example Request:
 ```
-  /api/v1/students/1
+  /api/v1/mentors/1
 ```
 
 Example Response:
 ```
 {
-  "student": {
+  "mentor": {
     "id": 1,
-    "github_avatar":  "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
-    "name": "student 0",
-    "email": "student0@turing.io",
+    "github_avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
+    "name": "mentor 0",
+    "email": "mentor0@turing.io",
     "phone_number": "555-555-5555",
-    "slack_username": "student0",
-    "cohort": 1602
+    "slack_username": "mentor0",
+    "location": "Denver",
+    "timezone": "MT",
+    "bio": "Former Student, current mentor!"
   }
 }
 ```
