@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :mentor do
-    user nil
+    user
     location "MyString"
-    timezone nil
+    timezone
   end
 end
