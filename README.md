@@ -124,7 +124,7 @@ Example Response:
 }
 ```
 
-#### Get a single student by ID
+#### Get a single mentor by ID
 
 Example Request:
 ```
