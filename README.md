@@ -25,6 +25,9 @@ This is the back end api for the Turing MentorSHIP project. It is written in Rai
 
 ## Endpoints
 
+### Current Schema
+![schema](https://s3.amazonaws.com/mentorship-api/MentorshipSchema.jpg)
+
 ### Students
 
 #### Get all students with completed profiles
