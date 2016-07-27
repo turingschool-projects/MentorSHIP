@@ -6,4 +6,6 @@ Rails.application.routes.draw do
       resources :mentors, only: [:index, :show]
     end
   end
+  get "/auth/github", as: :github_login
+  get "/auth/github/callback", to: "sessions#new"
 end
