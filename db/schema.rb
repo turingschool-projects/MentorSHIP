@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20160727161642) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.string   "github_avatar_url"
+    t.string   "token"
     t.string   "github_url"
   end
 
