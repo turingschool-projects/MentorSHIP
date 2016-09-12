@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :students, only: [:index, :show]
       resources :mentors, only: [:index, :show]
+      get '/session_id', to: 'sessions#session_id'
+      get '/user_name', to: 'sessions#user_name'
     end
   end
   get "/auth/github", as: :github_login
