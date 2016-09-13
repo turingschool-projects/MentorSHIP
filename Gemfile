@@ -22,7 +22,9 @@ gem "puma"
 # gem 'capistrano-rails', group: :development
 gem "responders"
 gem "figaro"
+gem 'omniauth'
 gem 'omniauth-github'
+gem 'awesome_print'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
