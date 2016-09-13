@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  validates :name, presence: :true
   validates :email, presence: :true
 
   def self.from_omniauth(auth_info)
