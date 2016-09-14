@@ -2,12 +2,13 @@ class SessionsController < ApplicationController
   def create
     if @user = User.from_omniauth(request.env["omniauth.auth"])
       session[:user_id] = @user.id
-    end
-    if session
-      session_params = {session_id: session[:session_id], name: @user.name}
+      cookies[:session_id] = session[:session_id]
+      cookies[:token] = @user.token
+      cookies[:email] = @user.email
     else
-      session_params = {session_id: "", name: nil}
+      cookies[:token] = ''
     end
-    redirect_to "http://localhost:4200/welcome", params: session_params
+      # redirect_to "http://localhost:4200/welcome"(session_id: 1, name: "Fred")
+      redirect_to "http://localhost:4200/welcome"
   end
 end
