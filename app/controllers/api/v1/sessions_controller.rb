@@ -9,14 +9,6 @@ class Api::V1::SessionsController < Api::V1::BaseController
     render json: user, status: :created
   end
 
-  def session_id
-    @session_id = current_session
-  end
-
-  def user_name
-    @user_name = current_name
-  end
-
   private
 
   def github_auth_code
