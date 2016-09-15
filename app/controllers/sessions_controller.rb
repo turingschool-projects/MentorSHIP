@@ -5,15 +5,24 @@ class SessionsController < ApplicationController
       cookies[:session_id] = session[:session_id]
       cookies[:token] = @user.token
       cookies[:email] = @user.email
-      cookies[:authenticated] = false;
+      cookies[:authenticated] = true;
+      redirect_to "http://localhost:4200/welcome"
     else
       session.clear
-      cookies[:session_id] = ""
-      cookies[:token] = ""
-      cookies[:email] = ""
-      cookies[:authenticated] = false;
+      cookies.delete :session_id
+      cookies.delete :token
+      cookies.delete :email
+      cookies.delete :authenticated
+      redirect_to "http://localhost:4200/"
     end
-      # redirect_to "http://localhost:4200/welcome"(session_id: 1, name: "Fred")
-      redirect_to "http://localhost:4200/welcome"
+  end
+
+  def destroy
+    session.clear
+    cookies.delete :session_id
+    cookies.delete :token
+    cookies.delete :email
+    cookies.delete :authenticated
+    redirect_to "http://localhost:4200/"
   end
 end
