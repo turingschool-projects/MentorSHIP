@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
       cookies[:token] = ''
     end
       # redirect_to "http://localhost:4200/welcome"(session_id: 1, name: "Fred")
+      
       redirect_to "http://localhost:4200/welcome"
   end
 end
