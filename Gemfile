@@ -22,6 +22,7 @@ gem "puma"
 # gem 'capistrano-rails', group: :development
 gem "responders"
 gem "figaro"
+gem 'omniauth'
 gem 'omniauth-github'
 
 group :development, :test do
