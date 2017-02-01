@@ -1,5 +1,5 @@
 # Mentor-ship-backend
-This is the back end api for the Turing MentorSHIP project. It is written in Rails 5
+This is the back end api for the Turing MentorSHIP project. It is written in Rails 5.
 
 ![mentorship](https://s3.amazonaws.com/f.cl.ly/items/1o2y3w262I2b0A2G1a3B/Screen%20Shot%202016-07-20%20at%209.11.26%20PM.png?v=d5da8526)
 
