@@ -25,7 +25,7 @@ This is the back end api for the Turing MentorSHIP project. It is written in Rai
 
 ## Endpoints
 
-### Current Schema
+### Current Schema - to be updated
 ![schema](https://s3.amazonaws.com/mentorship-api/MentorshipSchema2.jpg)
 
 ### Students
@@ -37,7 +37,7 @@ Example Request:
   /api/v1/students
 ```
 
-Example Response:
+Example Response - response needs to be updated per specs:
 ```
 {
   "students": [
@@ -70,7 +70,7 @@ Example Request:
   /api/v1/students/1
 ```
 
-Example Response:
+Example Response - also needs to be updated per spec:
 ```
 {
   "student": {
