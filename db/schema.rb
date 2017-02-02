@@ -10,16 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202182140) do
+ActiveRecord::Schema.define(version: 20170202192107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "cohorts", force: :cascade do |t|
-    t.integer  "number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "mentor_timezones", force: :cascade do |t|
     t.string   "name"
@@ -39,9 +33,10 @@ ActiveRecord::Schema.define(version: 20170202182140) do
     t.string   "company"
     t.string   "position"
     t.datetime "last_active"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "mentor_timezone_id"
+    t.boolean  "profile_completed",  default: false
     t.index ["mentor_timezone_id"], name: "index_mentors_on_mentor_timezone_id", using: :btree
   end
 
@@ -53,8 +48,9 @@ ActiveRecord::Schema.define(version: 20170202182140) do
     t.string   "slack_username"
     t.string   "bio"
     t.datetime "last_active"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.boolean  "profile_completed", default: false
   end
 
   create_table "students_mentors", force: :cascade do |t|
