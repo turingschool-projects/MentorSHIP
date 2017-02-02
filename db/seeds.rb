@@ -30,8 +30,8 @@ class Seed
   end
 
   def create_mentors
+    times = [1,2,3,4]
     50.times do |n|
-      times = [1,2,3,4]
       mentor = Mentor.create!(
         avatar: 'http://feverclan.com/forums/customavatars/avatar56958_1.gif',
         name: Faker::Name.name,
@@ -44,7 +44,8 @@ class Seed
         expertise: "All things Rails.",
         company: "That one company",
         position: "The most senior jounior dev.",
-        last_active: DateTime.now
+        last_active: DateTime.now,
+        profile_completed: true
       )
       puts "Created mentor: #{mentor.name}!"
     end
