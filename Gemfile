@@ -15,6 +15,7 @@ gem "responders"
 gem "figaro"
 gem 'omniauth'
 gem 'awesome_print'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug'
