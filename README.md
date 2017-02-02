@@ -23,6 +23,11 @@ This is the back end api for the Turing MentorSHIP project. It is written in Rai
 * To run the tests:
 * `bundle exec rspec`
 
+### Issues
+
+* Github Oauth does not work on master branch, broken link. To be addressed.
+
+
 ## Endpoints
 
 ### Current Schema - to be updated
