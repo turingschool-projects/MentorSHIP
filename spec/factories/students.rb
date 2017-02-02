@@ -10,7 +10,7 @@ FactoryGirl.define do
   end
 
   sequence :slack_username do |n|
-    "student#{n}"
+    "@person#{n}"
   end
 
   sequence :phone_number do |n|
