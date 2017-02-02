@@ -43,21 +43,25 @@ Example Response - response needs to be updated per specs:
   "students": [
     {
       "id": 1,
-      "github_avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
+      "avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
       "name": "student 0",
       "email": "student0@turing.io",
       "phone_number": "555-555-5555",
       "slack_username": "student0",
+      "bio": "Backend Student Bio",
       "cohort": 1602
+      "last_active": "2 days ago"
     },
     {
       "id": 2,
-      "github_avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
+      "avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
       "name": "student 1",
       "email": "student1@turing.io",
       "phone_number": "555-555-5555",
       "slack_username": "student1",
-      "cohort": 1602
+      "bio": "Backend Student Bio",
+      "cohort": 1602,
+      "last_active": "2 days ago"
     }
   ]
 }
@@ -75,12 +79,14 @@ Example Response - also needs to be updated per spec:
 {
   "student": {
     "id": 1,
-    "github_avatar":  "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
+    "github":  "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
     "name": "student 0",
     "email": "student0@turing.io",
     "phone_number": "555-555-5555",
     "slack_username": "student0",
-    "cohort": 1602
+    "bio": "Backend Student Bio",
+    "cohort": 1602,
+    "last_active": "2 days ago"
   }
 }
 ```
@@ -100,14 +106,18 @@ Example Response:
   "mentors": [
     {
       "id": 1,
-      "github_avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
+      "avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
       "name": "mentor 0",
       "email": "mentor0@turing.io",
       "phone_number": "555-555-5555",
       "slack_username": "mentor0",
       "location": "Denver",
       "timezone": "MT",
-      "bio": "Former Student, current mentor!"
+      "bio": "Former Student, current mentor!",
+      "expertise": "Rails, Javascript, Postgres",
+      "company": "Turing",
+      "position": "Senior Developer",
+      "last_active": "2 days ago"
     },
     {
       "id": 2,
@@ -119,6 +129,10 @@ Example Response:
       "location": "Denver",
       "timezone": "MT",
       "bio": "Former Student, current mentor!"
+      "expertise": "Rails, Javascript, Postgres",
+      "company": "Turing",
+      "position": "Senior Developer",
+      "last_active": "2 days ago"
     }
   ]
 }
@@ -143,7 +157,11 @@ Example Response:
     "slack_username": "mentor0",
     "location": "Denver",
     "timezone": "MT",
-    "bio": "Former Student, current mentor!"
+    "bio": "Former Student, current mentor!",
+    "expertise": "Rails, Javascript, Postgres",
+    "Company": "Turing",
+    "Position": "Senior Developer",
+    "last_active": "2 days ago"
   }
 }
 ```
