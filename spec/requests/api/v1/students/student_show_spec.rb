@@ -2,20 +2,23 @@ require "rails_helper"
 
 RSpec.describe "GET /api/v1/students/:id" do
   it "returns a single student by id" do
-    student = create(:student)
+    raw_student = create(:student)
 
-    get "/api/v1/students/#{student.id}"
-    parsed_json = JSON.parse(response.body)
-    recieved_student = parsed_json["student"]
+    get "/api/v1/students/#{raw_student.id}"
+
+    recieved_student = JSON.parse(response.body)
 
     expect(response.status).to eq(200)
 
-    expect(recieved_student["id"]).to eq(student.id)
-    expect(recieved_student["github_avatar"]).to eq(student.user.github_avatar_url)
-    expect(recieved_student["name"]).to eq(student.user.name)
-    expect(recieved_student["email"]).to eq(student.user.email)
-    expect(recieved_student["phone_number"]).to eq(student.user.phone_number)
-    expect(recieved_student["slack_username"]).to eq(student.user.slack_username)
-    expect(recieved_student["cohort"]).to eq(student.cohort.number)
+    readable_time = raw_student.last_active.strftime("%A %d %b %Y %l:%M %p")
+
+    expect(recieved_student["id"]).to eq(raw_student.id)
+    expect(recieved_student["avatar"]).to eq(raw_student.avatar)
+    expect(recieved_student["name"]).to eq(raw_student.name)
+    expect(recieved_student["email"]).to eq(raw_student.email)
+    expect(recieved_student["phone_number"]).to eq(raw_student.phone_number)
+    expect(recieved_student["slack_username"]).to eq(raw_student.slack_username)
+    expect(recieved_student["bio"]).to eq(raw_student.bio)
+    expect(recieved_student["last_active"]).to eq(readable_time)
   end
 end

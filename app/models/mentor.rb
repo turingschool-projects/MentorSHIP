@@ -21,4 +21,6 @@ class Mentor < ApplicationRecord
   has_many :students, through: :students_mentor
   
 
+  belongs_to :mentor_timezone
+
 end
