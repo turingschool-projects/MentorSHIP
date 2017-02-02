@@ -25,7 +25,7 @@ This is the back end api for the Turing MentorSHIP project. It is written in Rai
 
 ## Issues
 
-Github Oauth does not work on master branch, broken link. To be addressed.
+Github Oauth will be replaced with Census Oauth. To be addressed.
 
 
 ## Endpoints
