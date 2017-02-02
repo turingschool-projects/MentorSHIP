@@ -1,4 +1,4 @@
 class StudentsMentor < ApplicationRecord
-  belongs_to :students
-  belongs_to :mentors
+  belongs_to :student
+  belongs_to :mentor
 end

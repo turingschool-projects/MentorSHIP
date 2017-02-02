@@ -12,5 +12,6 @@ class Student < ApplicationRecord
             :slack_username,
             uniqueness: true
 
-  has_many :mentors, through: :students_mentors
+  has_many :students_mentor
+  has_many :mentors, through: :students_mentor
 end

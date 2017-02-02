@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202180315) do
+ActiveRecord::Schema.define(version: 20170202182140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,15 +58,15 @@ ActiveRecord::Schema.define(version: 20170202180315) do
   end
 
   create_table "students_mentors", force: :cascade do |t|
-    t.integer  "students_id"
-    t.integer  "mentors_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["mentors_id"], name: "index_students_mentors_on_mentors_id", using: :btree
-    t.index ["students_id"], name: "index_students_mentors_on_students_id", using: :btree
+    t.integer  "student_id"
+    t.integer  "mentor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mentor_id"], name: "index_students_mentors_on_mentor_id", using: :btree
+    t.index ["student_id"], name: "index_students_mentors_on_student_id", using: :btree
   end
 
   add_foreign_key "mentors", "mentor_timezones"
-  add_foreign_key "students_mentors", "mentors", column: "mentors_id"
-  add_foreign_key "students_mentors", "students", column: "students_id"
+  add_foreign_key "students_mentors", "mentors"
+  add_foreign_key "students_mentors", "students"
 end
