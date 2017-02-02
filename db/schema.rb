@@ -10,16 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727161642) do
+ActiveRecord::Schema.define(version: 20170202192107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "cohorts", force: :cascade do |t|
-    t.integer  "number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "mentor_timezones", force: :cascade do |t|
     t.string   "name"
@@ -28,41 +22,47 @@ ActiveRecord::Schema.define(version: 20160727161642) do
   end
 
   create_table "mentors", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "location"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.text     "bio"
-    t.integer  "mentor_timezone_id"
-    t.boolean  "profile_completed",  default: false
-    t.index ["mentor_timezone_id"], name: "index_mentors_on_mentor_timezone_id", using: :btree
-    t.index ["user_id"], name: "index_mentors_on_user_id", using: :btree
-  end
-
-  create_table "students", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.integer  "cohort_id"
-    t.boolean  "profile_completed", default: false
-    t.index ["cohort_id"], name: "index_students_on_cohort_id", using: :btree
-    t.index ["user_id"], name: "index_students_on_user_id", using: :btree
-  end
-
-  create_table "users", force: :cascade do |t|
+    t.string   "avatar"
     t.string   "name"
     t.string   "email"
     t.string   "phone_number"
     t.string   "slack_username"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.string   "github_avatar_url"
-    t.string   "token"
-    t.string   "github_url"
+    t.string   "location"
+    t.string   "bio"
+    t.string   "expertise"
+    t.string   "company"
+    t.string   "position"
+    t.datetime "last_active"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "mentor_timezone_id"
+    t.boolean  "profile_completed",  default: false
+    t.index ["mentor_timezone_id"], name: "index_mentors_on_mentor_timezone_id", using: :btree
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string   "avatar"
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone_number"
+    t.string   "slack_username"
+    t.string   "bio"
+    t.datetime "last_active"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.boolean  "profile_completed", default: false
+  end
+
+  create_table "students_mentors", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "mentor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mentor_id"], name: "index_students_mentors_on_mentor_id", using: :btree
+    t.index ["student_id"], name: "index_students_mentors_on_student_id", using: :btree
   end
 
   add_foreign_key "mentors", "mentor_timezones"
-  add_foreign_key "mentors", "users"
-  add_foreign_key "students", "cohorts"
-  add_foreign_key "students", "users"
+  add_foreign_key "students_mentors", "mentors"
+  add_foreign_key "students_mentors", "students"
 end
