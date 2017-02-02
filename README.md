@@ -30,7 +30,7 @@ Github Oauth will be replaced with Census Oauth. To be addressed.
 
 ## Endpoints
 
-### Current Schema - to be updated
+### Current Schema
 ![schema](https://s3-us-west-2.amazonaws.com/turingmentorship/Screen+Shot+2017-02-02+at+1.55.44+PM.png)
 
 ### Students
