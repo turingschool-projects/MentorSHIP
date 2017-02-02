@@ -19,5 +19,6 @@ class Mentor < ApplicationRecord
 
   has_many :students_mentor
   has_many :students, through: :students_mentor
+  
 
 end

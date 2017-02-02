@@ -30,7 +30,6 @@ class Seed
   end
 
   def create_mentors
-    times = [1,2,3,4]
     50.times do |n|
       mentor = Mentor.create!(
         avatar: 'http://feverclan.com/forums/customavatars/avatar56958_1.gif',
@@ -39,7 +38,7 @@ class Seed
         phone_number: Faker::PhoneNumber.phone_number,
         slack_username: "@mentor#{n}",
         location: "Denver",
-        mentor_timezone_id: times.sample,
+        mentor_timezone_id: MentorTimezone.find(Random.new.rand(1..4)).id,
         bio: 'This is my mentor bio.',
         expertise: "All things Rails.",
         company: "That one company",
