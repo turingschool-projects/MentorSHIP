@@ -7,7 +7,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'rack-cors'
-
+gem 'react-rails'
 gem "puma"
 
 gem 'active_model_serializers', '~> 0.10.0'
