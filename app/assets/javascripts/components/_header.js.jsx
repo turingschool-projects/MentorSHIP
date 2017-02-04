@@ -2,7 +2,7 @@ var Header = React.createClass({
   render() {
     return (
       <div>
-        <h1>Mentors Index</h1>
+        <h1>Explore Mentors</h1>
       </div>
     )
   }

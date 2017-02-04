@@ -15,5 +15,17 @@
  */
 
 h3 {
-  font-size: 1.1em;
+  font-size: 22px;
+  color: #05c2d1;
+}
+
+h1 {
+  text-align: center;
+  color: #05c2d1;
+  font-size: 40px;
+  font-weight: 400;
+  padding-left: 100px;
+}
+
+.mentor-picture {
 }

@@ -10,20 +10,18 @@ var Mentor = React.createClass({
                                    : <h3>{this.props.mentor.name}</h3>
 
     return (
-      <div>
         <div className="col s4">
-          <div className='mentor-picture'>
-              <p> {this.props.mentor.avatar}</p>
-          </div>
+          <span className='mentor-picture'>
+           <img src={this.props.mentor.avatar} />
+          </span>
           {name}
-          <div className='mentor-company'>
-              <p><strong>Company:</strong> {this.props.mentor.company}</p>
-          </div>
-          <div className='mentor-position'>
-              <p>Position:{this.props.mentor.position}</p>
-          </div>
+          <span className='mentor-company'>
+              <p><strong>Company: </strong>{this.props.mentor.company}</p>
+          </span>
+          <span className='mentor-position'>
+              <p><strong>Position:  </strong>{this.props.mentor.position}</p>
+          </span>
         </div>
-      </div>
     )
   }
 });

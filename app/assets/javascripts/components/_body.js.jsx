@@ -9,8 +9,13 @@ var Body = React.createClass({
 
   render() {
     return (
-      <div>
-        <AllMentors mentors={this.state.mentors} />
+      <div className="row">
+        <div className="col s10 push-s2">
+          <AllMentors mentors={this.state.mentors} />
+        </div>
+        <div className="col s2 pull-s10">
+          <SearchMentors />
+        </div>
       </div>
     )
   }
