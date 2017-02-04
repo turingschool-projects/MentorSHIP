@@ -25,10 +25,7 @@ RSpec.describe Mentor, type: :model do
   context "Relationships" do
     it { should have_many(:students_mentor) }
     it { should have_many(:students).through(:students_mentor) }
+    it { should belong_to(:mentor_timezone) }
   end
 
 end
-
-# context "Relationships" do
-#   it { should have_many(:comments) }
-# end
