@@ -12,7 +12,7 @@ var Body = React.createClass({
     let mentors = this.state.allMentors.filter((mentor) => {
       return mentor.name.includes(query) || mentor.location.includes(query) || mentor.expertise.includes(query) || mentor.company.includes(query)
     });
-      this.setState({mentors: mentors})
+    this.setState({mentors: mentors})
   },
 
   render() {

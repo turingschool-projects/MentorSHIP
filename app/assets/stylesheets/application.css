@@ -38,6 +38,11 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
-.filter-input {
-  
+nav {
+  background-color: grey;
+}
+
+.left-logo {
+  color: red;
+  text-shadow: 2px 2px 10px #000
 }
