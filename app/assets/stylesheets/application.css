@@ -22,10 +22,22 @@ h3 {
 h1 {
   text-align: center;
   color: #05c2d1;
-  font-size: 40px;
+  text-shadow: 2px 2px 2px #000;
+  font-size: 45px;
   font-weight: 400;
   padding-left: 100px;
 }
 
-.mentor-picture {
+.filter-mentors {
+  font-size: 15px;
+  color: #7c8c8e;
+  text-shadow: 1px 1px 1px #05c2d1;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+.filter-input {
+  
 }
