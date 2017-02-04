@@ -11,19 +11,19 @@ var Mentor = React.createClass({
 
     return (
       <div>
-        {name}
-        <div className='mentor-company'>
-            <p><strong>Company:</strong> {this.props.mentor.company}</p>
-        </div>
+          <div className='mentor-picture'>
+              <p> {this.props.mentor.avatar}</p>
+          </div>
 
-        <div className='mentor-position'>
-            <p>Position:{this.props.mentor.position}</p>
-        </div>
+          {name}
 
-        <div className='mentor-picture'>
-            <p><strong>Picture:</strong> {this.props.mentor.avatar}</p>
-        </div>
+          <div className='mentor-company'>
+              <p><strong>Company:</strong> {this.props.mentor.company}</p>
+          </div>
 
+          <div className='mentor-position'>
+              <p>Position:{this.props.mentor.position}</p>
+          </div>
       </div>
     )
   }
