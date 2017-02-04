@@ -8,4 +8,7 @@ Rails.application.routes.draw do
       get '/user_name', to: 'sessions#user_name'
     end
   end
+
+  resources :mentors, only: [:index]
+  root to: 'site#index'
 end
