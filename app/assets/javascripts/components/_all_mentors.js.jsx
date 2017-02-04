@@ -1,11 +1,5 @@
 var AllMentors = React.createClass({
 
-  removeMentorFromDOM(id) {
-     let newMentors = this.props.mentors.filter((mentor) => {
-       return mentor.id != id;
-     });
-   },
-
   render() {
     let mentors = this.props.mentors.map((mentor, index) => {
       return (
