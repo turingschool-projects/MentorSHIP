@@ -1,8 +1,14 @@
 var SearchMentors = React.createClass({
-  render() {
-    return (
+
+  handleSearch(event) {
+    this.props.searchIdeas(event.target.value)
+  },
+
+  render (){
+    return(
       <div>
-        <h5>Search Mentors:</h5>
+      <label>Search</label>
+        <input type="text" onKeyUp={this.handleSearch.bind(this)}/>
       </div>
     )
   }
