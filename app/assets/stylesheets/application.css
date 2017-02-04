@@ -14,7 +14,6 @@
  *= require_self
  */
 
-* {
-  font-family: Helvetica;
-  font-weight: lighter;
+h3 {
+  font-size: 1.1em;
 }

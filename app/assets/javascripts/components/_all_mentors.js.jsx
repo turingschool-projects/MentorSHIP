@@ -11,7 +11,9 @@ var AllMentors = React.createClass({
 
     return (
       <div>
+        <div className="row">
         {mentors}
+        </div>
       </div>
     )
   }
