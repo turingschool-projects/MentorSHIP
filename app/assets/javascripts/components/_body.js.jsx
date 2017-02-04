@@ -5,24 +5,24 @@ var Body = React.createClass({
   },
 
   componentDidMount() {
-    $.getJSON('/api/v1/mentors.json', (response) => { this.setState({ mentors: response }) });
+    $.getJSON('/api/v1/mentors.json', (response) => { this.setState({ mentors: response, allMentors: response }) });
   },
 
-  searchIdeas(query){
-     let mentors = this.props.mentors.filter((mentors) => {
-       return mentor.name.includes(query) || mentor.company.includes(query)
-     });
-     console.log(mentors)
-   },
+  searchMentors(query){
+    let mentors = this.state.allMentors.filter((mentor) => {
+      return mentor.name.includes(query)
+    });
+      this.setState({mentors: mentors})
+  },
 
   render() {
     return (
       <div className="row">
         <div className="col s10 push-s2">
-          <AllMentors mentors={this.state.filteredMentors || this.state.mentors} />
+          <AllMentors mentors={this.state.mentors} />
         </div>
         <div className="col s2 pull-s10">
-          <SearchMentors searchIdeas={this.searchIdeas.bind(this)}/>
+          <SearchMentors searchMentors={this.searchMentors.bind(this)}/>
         </div>
       </div>
     )

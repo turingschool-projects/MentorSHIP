@@ -1,7 +1,7 @@
 var SearchMentors = React.createClass({
 
   handleSearch(event) {
-    this.props.searchIdeas(event.target.value)
+    this.props.searchMentors(event.target.value)
   },
 
   render (){
