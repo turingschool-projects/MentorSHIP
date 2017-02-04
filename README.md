@@ -1,5 +1,5 @@
 # Mentor-ship-backend
-This is the back end api for the Turing MentorSHIP project. It is written in Rails 5
+This is the back end api for the Turing MentorSHIP project. It is written in Rails 5.
 
 ![mentorship](https://s3.amazonaws.com/f.cl.ly/items/1o2y3w262I2b0A2G1a3B/Screen%20Shot%202016-07-20%20at%209.11.26%20PM.png?v=d5da8526)
 
@@ -23,9 +23,14 @@ This is the back end api for the Turing MentorSHIP project. It is written in Rai
 * To run the tests:
 * `bundle exec rspec`
 
+## Issues
+
+Github Oauth will be replaced with Census Oauth. To be addressed.
+
+
 ## Endpoints
 
-### Current Schema
+### Current Schema - to be updated
 ![schema](https://s3.amazonaws.com/mentorship-api/MentorshipSchema2.jpg)
 
 ### Students
@@ -37,27 +42,31 @@ Example Request:
   /api/v1/students
 ```
 
-Example Response:
+Example Response - response needs to be updated per specs:
 ```
 {
   "students": [
     {
       "id": 1,
-      "github_avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
+      "avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
       "name": "student 0",
       "email": "student0@turing.io",
       "phone_number": "555-555-5555",
       "slack_username": "student0",
+      "bio": "Backend Student Bio",
       "cohort": 1602
+      "last_active": "2 days ago"
     },
     {
       "id": 2,
-      "github_avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
+      "avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
       "name": "student 1",
       "email": "student1@turing.io",
       "phone_number": "555-555-5555",
       "slack_username": "student1",
-      "cohort": 1602
+      "bio": "Backend Student Bio",
+      "cohort": 1602,
+      "last_active": "2 days ago"
     }
   ]
 }
@@ -70,17 +79,19 @@ Example Request:
   /api/v1/students/1
 ```
 
-Example Response:
+Example Response - also needs to be updated per spec:
 ```
 {
   "student": {
     "id": 1,
-    "github_avatar":  "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
+    "github":  "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
     "name": "student 0",
     "email": "student0@turing.io",
     "phone_number": "555-555-5555",
     "slack_username": "student0",
-    "cohort": 1602
+    "bio": "Backend Student Bio",
+    "cohort": 1602,
+    "last_active": "2 days ago"
   }
 }
 ```
@@ -100,14 +111,18 @@ Example Response:
   "mentors": [
     {
       "id": 1,
-      "github_avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
+      "avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
       "name": "mentor 0",
       "email": "mentor0@turing.io",
       "phone_number": "555-555-5555",
       "slack_username": "mentor0",
       "location": "Denver",
       "timezone": "MT",
-      "bio": "Former Student, current mentor!"
+      "bio": "Former Student, current mentor!",
+      "expertise": "Rails, Javascript, Postgres",
+      "company": "Turing",
+      "position": "Senior Developer",
+      "last_active": "2 days ago"
     },
     {
       "id": 2,
@@ -119,6 +134,10 @@ Example Response:
       "location": "Denver",
       "timezone": "MT",
       "bio": "Former Student, current mentor!"
+      "expertise": "Rails, Javascript, Postgres",
+      "company": "Turing",
+      "position": "Senior Developer",
+      "last_active": "2 days ago"
     }
   ]
 }
@@ -143,7 +162,11 @@ Example Response:
     "slack_username": "mentor0",
     "location": "Denver",
     "timezone": "MT",
-    "bio": "Former Student, current mentor!"
+    "bio": "Former Student, current mentor!",
+    "expertise": "Rails, Javascript, Postgres",
+    "Company": "Turing",
+    "Position": "Senior Developer",
+    "last_active": "2 days ago"
   }
 }
 ```
