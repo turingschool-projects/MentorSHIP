@@ -1,5 +1,4 @@
 var SearchMentors = React.createClass({
-
   handleSearch(event) {
     this.props.searchMentors(event.target.value)
   },

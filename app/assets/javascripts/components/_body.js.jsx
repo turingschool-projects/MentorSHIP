@@ -1,5 +1,4 @@
 var Body = React.createClass({
-
   getInitialState() {
     return { mentors: []}
   },
