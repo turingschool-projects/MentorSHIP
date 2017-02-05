@@ -3,6 +3,7 @@ var AboutIndex = React.createClass({
     return (
       <div>
         <Navbar />
+        <AboutBody />
       </div>
     )
   }
