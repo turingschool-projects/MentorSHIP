@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   end
 
   resources :mentors, only: [:index]
+  get '/about', to: 'about#index'
   root to: 'site#index'
 end
