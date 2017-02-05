@@ -9,6 +9,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :mentors, only: [:index]
+  resources :mentors, only: [:index, :show]
   root to: 'site#index'
 end
