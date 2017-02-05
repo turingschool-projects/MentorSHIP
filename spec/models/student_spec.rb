@@ -17,4 +17,9 @@ RSpec.describe Student, type: :model do
     it{ should validate_uniqueness_of(:slack_username)}
   end
 
+  context "Relationships" do
+    it { should have_many(:students_mentor) }
+    it { should have_many(:mentors).through(:students_mentor) }
+  end
+
 end

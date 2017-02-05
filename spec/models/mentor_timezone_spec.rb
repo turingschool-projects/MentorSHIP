@@ -2,8 +2,12 @@ require 'rails_helper'
 
 RSpec.describe MentorTimezone, type: :model do
 
-  describe "Validations" do
+  context "Validations" do
     it { should validate_presence_of(:name) }
+  end
+
+  context "Relationships" do
+    it { should have_many(:mentors) }
   end
 
 end

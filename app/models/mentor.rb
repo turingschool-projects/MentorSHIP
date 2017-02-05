@@ -17,6 +17,9 @@ class Mentor < ApplicationRecord
             :slack_username,
             uniqueness: true
 
-  has_many :students, through: :students_mentors 
+  has_many :students_mentor
+  has_many :students, through: :students_mentor
 
+
+  belongs_to :mentor_timezone
 end

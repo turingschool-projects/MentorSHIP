@@ -8,8 +8,4 @@ Rails.application.routes.draw do
       get '/user_name', to: 'sessions#user_name'
     end
   end
-  get "/auth/github", as: :github_login
-  get "/auth/github/callback", to: "sessions#create"
-  get "/start_auth", to: 'github#github_start'
-  get "/sign_out", to: 'sessions#destroy'
 end
