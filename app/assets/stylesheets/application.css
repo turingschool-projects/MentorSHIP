@@ -55,6 +55,18 @@ nav .brand-logo {
   color: #05c2d1;
 }
 
+.index-banner {
+  height: 990px;
+ background-image: url('mentorship.png');
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: center center;
+ width: 100%;
+ border-bottom: 10px solid $turing-blue;
+ margin-top: -50px;
+ z-index: -100;
+}
+
 /* About Page*/
 div.col.s4 > img {
   height: 250px;
