@@ -43,18 +43,16 @@ body {
 
 nav {
   background-color: grey;
-}
-
-.left-logo {
-  color: red;
-  text-shadow: 2px 2px 10px #000
+  width: 100%;
 }
 
 nav .brand-logo {
-color: white;
+  font-size: 24px;
+  text-shadow: 2px 2px 10px #000;
 }
-nav .brand-logo {
-color: #05c2d1;
+
+.ship-word-navbar {
+  color: #05c2d1;
 }
 
 /* About Page*/
