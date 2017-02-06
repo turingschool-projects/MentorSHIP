@@ -1,4 +1,4 @@
 language: ruby
-php:
-- 2.3.3p222
+rvm:
+  -2.2
 script: rspec
