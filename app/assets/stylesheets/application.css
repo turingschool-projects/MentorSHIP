@@ -40,9 +40,9 @@ body {
 
 nav {
   background-color: grey;
+  width: 100%;
 }
 
-.left-logo {
-  color: red;
+nav .brand-logo {
   text-shadow: 2px 2px 10px #000
 }
