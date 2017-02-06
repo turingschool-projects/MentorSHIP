@@ -10,7 +10,6 @@ var Navbar = React.createClass({
          </ul>
        </div>
       </nav>
-
     )
   }
 });

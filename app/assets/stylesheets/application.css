@@ -14,6 +14,9 @@
  *= require_self
  */
 
+/*turing-blue: #05c2d1;*/
+
+
 h3 {
   font-size: 22px;
   color: #05c2d1;
@@ -50,4 +53,17 @@ nav .brand-logo {
 
 .ship-word-navbar {
   color: #05c2d1;
+}
+
+nav .brand-logo {
+color: white;
+}
+nav .brand-logo {
+color: #05c2d1;
+}
+
+/* About Page*/
+div.col.s4 > img {
+  height: 250px;
+  width: auto;
 }
