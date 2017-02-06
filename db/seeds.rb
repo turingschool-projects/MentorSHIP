@@ -37,12 +37,12 @@ class Seed
         email: "mentor#{n}@notTuring.io",
         phone_number: Faker::PhoneNumber.phone_number,
         slack_username: "@mentor#{n}",
-        location: "Denver",
+        location: Faker::Address.city,
         mentor_timezone_id: MentorTimezone.find(Random.new.rand(1..4)).id,
         bio: 'This is my mentor bio.',
-        expertise: "All things Rails.",
-        company: "That one company",
-        position: "The most senior jounior dev.",
+        expertise: Faker::Lorem.words(6),
+        company: Faker::Company.name,
+        position: "Senior Rails dev.",
         last_active: DateTime.now,
         profile_completed: true
       )
