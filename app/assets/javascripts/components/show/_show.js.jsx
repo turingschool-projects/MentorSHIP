@@ -13,14 +13,14 @@ var Show = React.createClass({
            <img src={this.props.mentor[0].avatar} />
           </span>
           <h3 className="col s12">{this.props.mentor[0].name}</h3>
+          <p>Last Active: {this.props.mentor[0].last_active} </p>
           <p>Location: {this.props.mentor[0].location} </p>
           <p>Company: {this.props.mentor[0].position} @ {this.props.mentor[0].company} </p>
           <p>Email: {this.props.mentor[0].email} </p>
           <p>Slack: {this.props.mentor[0].slack_username} </p>
-          <p>Expertise: {this.props.mentor[0].expertise}</p>
+          <p>Expertise: {this.props.mentor[0].expertise.replace(/"/g, "").replace("[", "").replace("]", "")}</p>
           <p>Position: {this.props.mentor[0].position} </p>
           <p>Bio: {this.props.mentor[0].bio} </p>
-          <p>Last Active: {this.props.mentor[0].last_active} </p>
 
         </div>
       </div>
