@@ -25,6 +25,8 @@ group :development, :test do
   gem 'simplecov'
   gem 'database_cleaner'
   gem 'pry-rails'
+  gem 'capybara'
+  gem 'launchy'
 end
 
 group :development do

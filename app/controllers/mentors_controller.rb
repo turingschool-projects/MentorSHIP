@@ -8,5 +8,4 @@ class MentorsController < ApplicationController
     render component: 'Show', props: { mentor: @mentor }
   end
 
-
 end
