@@ -62,3 +62,12 @@ div.col.s4 > img {
   height: 250px;
   width: auto;
 }
+
+#about-container {
+  padding-top: 125px;
+}
+
+.about_parrot {
+  padding-left: 50px;
+  padding-right: 50px;
+}
