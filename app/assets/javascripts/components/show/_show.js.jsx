@@ -1,8 +1,4 @@
 var Show = React.createClass({
-  componentWillMount() {
-    console.log(this.props.mentor[0].name)
-  },
-
   render() {
     return (
       <div>
