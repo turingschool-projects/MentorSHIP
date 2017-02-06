@@ -4,10 +4,7 @@ var Body = React.createClass({
 
     $.ajax({
       url: '/auth/census',
-      type: 'GET',
-      success: (response) => {
-        console.log('it worked!', response);
-      }
+      type: 'GET'
     });
   },
 
@@ -19,7 +16,7 @@ var Body = React.createClass({
         </div>
 
         <div id="login_values">
-          <button onClick={this.handleClick}>Log In</button>
+          <button onClick={() => this.handleClick()}>Log In</button>
         </div>
       </div>
     )
