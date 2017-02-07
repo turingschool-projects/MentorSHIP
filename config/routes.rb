@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   get '/about', to: 'about#index'
   root to: 'site#index'
 
+  resources :dashboard, only: [:show]
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207002339) do
+ActiveRecord::Schema.define(version: 20170207153201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20170207002339) do
     t.string   "company"
     t.string   "position"
     t.datetime "last_active"
-    t.integer  "token"
+    t.string   "token"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["timezone_id"], name: "index_users_on_timezone_id", using: :btree

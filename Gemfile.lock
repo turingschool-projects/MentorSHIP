@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/NZenitram/census_staging_oauth
-  revision: 6d14959add8a344013cb91c4223f2cdd692d2ee1
+  revision: 082f9c376dd85e6d65415f8d1dac0e054971433c
   specs:
     omniauth-census (0.1.1)
       omniauth-oauth2
@@ -31,10 +31,11 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active_model_serializers (0.10.3)
+    active_model_serializers (0.10.4)
       actionpack (>= 4.1, < 6)
       activemodel (>= 4.1, < 6)
-      jsonapi (= 0.1.1.beta2)
+      case_transform (>= 0.2)
+      jsonapi (= 0.1.1.beta6)
     activejob (5.0.0)
       activesupport (= 5.0.0)
       globalid (>= 0.3.6)
@@ -61,13 +62,15 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
     byebug (9.0.6)
-    capybara (2.11.0)
+    capybara (2.12.0)
       addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    case_transform (0.2)
+      activesupport
     coderay (1.1.1)
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.4)
@@ -85,7 +88,7 @@ GEM
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
-    faker (1.7.2)
+    faker (1.7.3)
       i18n (~> 0.5)
     faraday (0.10.1)
       multipart-post (>= 1.2, < 3)
@@ -93,8 +96,8 @@ GEM
       thor (~> 0.14)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    hashie (3.4.6)
-    i18n (0.7.0)
+    hashie (3.5.1)
+    i18n (0.8.0)
     jquery-rails (4.2.2)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -102,8 +105,11 @@ GEM
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     json (1.8.6)
-    jsonapi (0.1.1.beta2)
-      json (~> 1.8)
+    jsonapi (0.1.1.beta6)
+      jsonapi-parser (= 0.1.1.beta3)
+      jsonapi-renderer (= 0.1.1.beta1)
+    jsonapi-parser (0.1.1.beta3)
+    jsonapi-renderer (0.1.1.beta1)
     jwt (1.5.6)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -129,7 +135,7 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
-    omniauth (1.3.2)
+    omniauth (1.4.0)
       hashie (>= 1.2, < 4)
       rack (>= 1.0, < 3)
     omniauth-oauth2 (1.4.0)
@@ -145,7 +151,7 @@ GEM
     public_suffix (2.0.5)
     puma (3.7.0)
     rack (2.0.1)
-    rack-cors (0.4.0)
+    rack-cors (0.4.1)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0)
@@ -223,7 +229,7 @@ GEM
       rack (>= 1, < 3)
     thor (0.19.4)
     thread_safe (0.3.5)
-    tilt (2.0.5)
+    tilt (2.0.6)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.4)
@@ -255,6 +261,7 @@ DEPENDENCIES
   jquery-ui-rails
   launchy
   omniauth-census!
+  omniauth-oauth2
   pg (~> 0.15)
   pry-rails
   puma
@@ -271,4 +278,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.13.6
+   1.14.3
