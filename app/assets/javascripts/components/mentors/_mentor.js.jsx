@@ -14,7 +14,7 @@ var Mentor = React.createClass({
             <p><strong>Company: </strong>{this.props.mentor.company}</p>
         </span>
         <span className='mentor-position'>
-            <p><strong>Position:  </strong>{this.props.mentor.position}</p>
+            <p><strong>Bio:  </strong>{this.props.mentor.bio}</p>
         </span>
       </div>
     )

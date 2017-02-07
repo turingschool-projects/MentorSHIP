@@ -32,14 +32,14 @@ class Seed
   def create_mentors
     50.times do |n|
       mentor = Mentor.create!(
-        avatar: 'http://feverclan.com/forums/customavatars/avatar56958_1.gif',
+        avatar: Faker::Avatar.image,
         name: Faker::Name.name,
         email: "mentor#{n}@notTuring.io",
         phone_number: Faker::PhoneNumber.phone_number,
         slack_username: "@mentor#{n}",
         location: Faker::Address.city,
         mentor_timezone_id: MentorTimezone.find(Random.new.rand(1..4)).id,
-        bio: 'This is my mentor bio.',
+        bio: Faker::Lorem.sentence(3),
         expertise: Faker::Lorem.words(6),
         company: Faker::Company.name,
         position: "Senior Rails dev.",

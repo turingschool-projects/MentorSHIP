@@ -49,10 +49,21 @@ nav {
 nav .brand-logo {
   font-size: 24px;
   text-shadow: 2px 2px 10px #000;
+  margin-left: 30px;
 }
 
 .ship-word-navbar {
   color: #05c2d1;
+}
+
+.index-banner {
+  height: 715px;
+  background-image: url('mentorship.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  margin-top: -100px;
+  z-index: -100;
 }
 
 /* About Page*/
