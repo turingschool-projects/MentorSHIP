@@ -10,7 +10,7 @@ var SearchMentors = React.createClass({
           Filter Mentors:
         </span>
         <div className="filter-input">
-          <input type="text" onKeyUp={this.handleSearch.bind(this)}/>
+          <input type="text" onKeyUp={this.handleSearch}/>
         </div>
       </div>
     )
