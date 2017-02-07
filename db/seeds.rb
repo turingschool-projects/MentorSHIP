@@ -2,28 +2,19 @@ class Seed
 
   def start
     create_timezones
-    create_student
-    create_mentors
+    create_users
   end
 
   def create_timezones
     ['Pacific', 'Mountain', 'Central', 'Eastern'].each do |location|
-      MentorTimezone.create!(name: location)
+      Timezone.create!(name: location)
       puts "Created time zone: #{location}!"
     end
   end
 
-  def create_student
+  def create_users
     100.times do |n|
-      student = Student.create!(
-      avatar: 'http://www.forumla.de/attachments/kreative-ecke/151339d1395599937-avatar-wettbewerb-abstimmung-tumblr_mwe88mlxe41sare1go1_1280.png',
-      name: Faker::Name.name,
-      email: "student#{n}@example.com",
-      phone_number: Faker::PhoneNumber.phone_number,
-      slack_username: "@student#{n}",
-      bio: "This is my student bio",
-      last_active: DateTime.now,
-      profile_completed: true
+      student = User.create!(
       )
       puts "Crated student: #{student.name}!"
     end
