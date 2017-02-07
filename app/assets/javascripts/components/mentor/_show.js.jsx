@@ -1,13 +1,13 @@
-var Show = React.createClass({
+var MentorShow = React.createClass({
   render() {
-    let mentor = this.props.mentor[0];
+    let mentor = this.props.mentor;
     return (
       <div>
         <Navbar />
         <div className="container center-align">
           <h1>Mentor Show Page</h1>
           <span className='mentor-picture col s12'>
-           <img src={mentor.avatar} />
+            <img src={mentor.avatar} />
           </span>
           <h3 className="col s12">{mentor.name}</h3>
           <p>Last Active: {mentor.last_active} </p>
@@ -15,10 +15,9 @@ var Show = React.createClass({
           <p>Company: {mentor.position} @ {mentor.company} </p>
           <p>Email: {mentor.email} </p>
           <p>Slack: {mentor.slack_username} </p>
-          <p>Expertise: {mentor.expertise.replace(/"/g, "").replace("[", "").replace("]", "")}</p>
+          <p>Expertise: {mentor.expertise}</p>
           <p>Position: {mentor.position} </p>
           <p>Bio: {mentor.bio} </p>
-
         </div>
       </div>
     )
