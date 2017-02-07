@@ -2,34 +2,41 @@ require "rails_helper"
 
 RSpec.describe "GET /api/v1/students" do
   it "returns an array of all students" do
-    students = create_list(:student, 3, profile_completed: true)
-    student = students.first
+    raw_students = create_list(:student, 3, profile_completed: true)
+    raw_student = raw_students.first
 
     get "/api/v1/students"
-    parsed_json = JSON.parse(response.body)
-    recieved_students = parsed_json["students"]
+
+    students = JSON.parse(response.body)
 
     expect(response.status).to eq(200)
-    expect(recieved_students.count).to eq(3)
+    expect(students.count).to eq(3)
 
-    expect(recieved_students.first["id"]).to eq(student.id)
-    expect(recieved_students.first["github_avatar"]).to eq(student.user.github_avatar_url)
-    expect(recieved_students.first["name"]).to eq(student.user.name)
-    expect(recieved_students.first["email"]).to eq(student.user.email)
-    expect(recieved_students.first["phone_number"]).to eq(student.user.phone_number)
-    expect(recieved_students.first["slack_username"]).to eq(student.user.slack_username)
-    expect(recieved_students.first["cohort"]).to eq(student.cohort.number)
+    student = students.first
+
+    readable_time = raw_student.last_active.strftime("%A %d %b %Y %l:%M %p")
+
+    expect(student["id"]).to eq(raw_student.id)
+    expect(student["avatar"]).to eq(raw_student.avatar)
+    expect(student["name"]).to eq(raw_student.name)
+    expect(student["email"]).to eq(raw_student.email)
+    expect(student["phone_number"]).to eq(raw_student.phone_number)
+    expect(student["slack_username"]).to eq(raw_student.slack_username)
+    expect(student["bio"]).to eq(raw_student.bio)
+    expect(student["last_active"]).to eq(readable_time)
   end
 
   it "only returns students with completed profiles" do
-    create(:student, profile_completed: true)
-    create(:student, profile_completed: false)
+    student1 = create(:student, profile_completed: true)
+    student2 = create(:student, profile_completed: false)
 
     get "/api/v1/students"
-    parsed_json = JSON.parse(response.body)
-    recieved_students = parsed_json["students"]
+
+    student = JSON.parse(response.body)
 
     expect(response.status).to eq(200)
-    expect(recieved_students.count).to eq(1)
+    expect(student.count).to eq(1)
+
+    expect(student.first['name']).to eq(student1.name)
   end
 end
