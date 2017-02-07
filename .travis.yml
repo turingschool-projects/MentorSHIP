@@ -1,4 +1,11 @@
 language: ruby
-php:
-- 2.3.3p222
-script: rspec
+rvm:
+  - 2.3.0
+script:
+  - bundle exec rake db:setup
+  - bundle exec rspec
+cache: bundler
+services:
+  - postgresql
+addons:
+  postgresql: "9.4"
