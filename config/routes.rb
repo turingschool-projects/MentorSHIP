@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
@@ -10,5 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :mentors, only: [:index]
+  get '/about', to: 'about#index'
   root to: 'site#index'
+  
 end
