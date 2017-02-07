@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  factory :mentor_timezone do
+  factory :timezone do
     name { ["Pacific", "Mountain", "Central", "Eastern"].sample }
   end
 
