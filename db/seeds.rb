@@ -40,7 +40,7 @@ class Seed
         location: Faker::Address.city,
         mentor_timezone_id: MentorTimezone.find(Random.new.rand(1..4)).id,
         bio: 'This is my mentor bio.',
-        expertise: Faker::Lorem.words(6),
+        expertise: Faker::Lorem.words(6).join(", "),
         company: Faker::Company.name,
         position: "Senior Rails dev.",
         last_active: DateTime.now,
