@@ -8,8 +8,9 @@ var Body = React.createClass({
   },
 
   searchMentors(query){
+    query = query.toLowerCase();
     let mentors = this.state.allMentors.filter((mentor) => {
-      return mentor.name.includes(query) || mentor.location.includes(query) || mentor.expertise.includes(query) || mentor.company.includes(query) || mentor.bio.includes(query)
+      return mentor.name.toLowerCase().includes(query) || mentor.location.toLowerCase().includes(query) || mentor.expertise.toLowerCase().includes(query) || mentor.company.toLowerCase().includes(query) || mentor.bio.toLowerCase().includes(query)
     });
     this.setState({mentors: mentors})
   },
