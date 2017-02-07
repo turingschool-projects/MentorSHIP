@@ -13,11 +13,13 @@ gem "puma"
 gem 'active_model_serializers', '~> 0.10.0'
 gem "responders"
 gem "figaro"
-gem 'omniauth'
 gem 'awesome_print'
 gem 'faker'
 
+gem 'omniauth-census', git: "https://github.com/NZenitram/census_staging_oauth"
+
 group :development, :test do
+  gem 'thin'
   gem 'byebug'
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails'
@@ -25,6 +27,8 @@ group :development, :test do
   gem 'simplecov'
   gem 'database_cleaner'
   gem 'pry-rails'
+  gem 'capybara'
+  gem 'launchy'
 end
 
 group :development do
