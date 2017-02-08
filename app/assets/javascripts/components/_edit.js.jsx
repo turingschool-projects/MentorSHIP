@@ -1,17 +1,20 @@
 var Edit = React.createClass({
 
-  handleEdit(item) {
-    item.preventDefault();
-      let user = this.props.user[0];
-      $.ajax({
-        url: `/api/v1/mentors/${user.id}`,
-        type: 'PUT',
-        data: {},
-        success: () => { console.log('you did it!!!');
-        }
-      }
-    )},
+  handleUpdate(bio){
+    let mentor = this.props.user[0];
+    $.ajax({
+     url: `/api/v1/mentors/${mentor.id}`,
+     type: 'PATCH',
+     data: { bio: bio },
+     success: console.log("yay")
+   });
+  },
 
+  handleEdit(user) {
+    var bio = this.state.bio;
+    var updatedUser = {bio: bio}
+    this.handleUpdate(updatedUser);
+  },
 
   render() {
     let user = this.props.user[0];
@@ -29,11 +32,9 @@ var Edit = React.createClass({
           <h5>Email:</h5>
             <p>{user.email} </p>
           <h5>Bio:</h5>
-            var bio = this.state.editable <input type='text'
-                                         onChange={ (e) => this.setState({ bio: e.target.value }) }
-                                         defaultValue="Enter a bio here" />
-
-          <button onClick={this.handleEdit}> Submit </button>
+           <input type='text' onChange={ (e) => this.setState({ bio: e.target.value }) }
+            defaultValue="Enter a bio here" />
+          <button onClick={this.handleEdit}> <a href="/mentors">Submit</a> </button>
         </div>
       </div>
     )
