@@ -2,6 +2,7 @@ language: ruby
 rvm:
   - 2.3.0
 script:
+  - npm installa phantomjs
   - bundle exec rake db:setup
   - bundle exec rspec
 cache: bundler
