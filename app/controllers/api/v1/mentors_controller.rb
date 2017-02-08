@@ -6,4 +6,10 @@ class Api::V1::MentorsController < Api::V1::BaseController
   def show
     render json: Mentor.find(params[:id])
   end
+
+  def edit
+  end
+
+  def update
+  end
 end
