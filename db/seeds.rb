@@ -16,7 +16,7 @@ class Seed
     100.times do |n|
       student = User.create!(
       )
-      puts "Crated student: #{student.name}!"
+      puts "Crated student: #{n}!"
     end
   end
 

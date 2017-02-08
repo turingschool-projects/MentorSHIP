@@ -1,3 +1,16 @@
 class User < ApplicationRecord
-  belongs_to :timezone
+  has_one :student
+  has_one :mentor
+
+  delegate :avatar,
+          :first_name,
+          :last_name,
+          :email,
+          :slack,
+          :cohort, to: :census_profile
+
+  def census_profile
+    @census_profile ||= CensusProfile.find(census_id, token)
+  end
+
 end

@@ -15,6 +15,7 @@ gem "responders"
 gem "figaro"
 gem 'awesome_print'
 gem 'faker'
+gem "faraday"
 
 gem 'omniauth-oauth2'
 gem 'omniauth-census', git: "https://github.com/NZenitram/census_staging_oauth"

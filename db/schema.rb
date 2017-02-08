@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207153201) do
+ActiveRecord::Schema.define(version: 20170208023039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "mentors", force: :cascade do |t|
+    t.integer  "timezone_id"
+    t.string   "expertise"
+    t.string   "location"
+    t.string   "company"
+    t.string   "position"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["timezone_id"], name: "index_mentors_on_timezone_id", using: :btree
+    t.index ["user_id"], name: "index_mentors_on_user_id", using: :btree
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_students_on_user_id", using: :btree
+  end
 
   create_table "timezones", force: :cascade do |t|
     t.string   "name"
@@ -23,18 +43,15 @@ ActiveRecord::Schema.define(version: 20170207153201) do
 
   create_table "users", force: :cascade do |t|
     t.string   "phone"
-    t.string   "location"
-    t.integer  "timezone_id"
     t.string   "bio"
-    t.string   "expertise"
-    t.string   "company"
-    t.string   "position"
     t.datetime "last_active"
     t.string   "token"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["timezone_id"], name: "index_users_on_timezone_id", using: :btree
+    t.integer  "census_id"
   end
 
-  add_foreign_key "users", "timezones"
+  add_foreign_key "mentors", "timezones"
+  add_foreign_key "mentors", "users"
+  add_foreign_key "students", "users"
 end
