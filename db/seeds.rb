@@ -14,30 +14,23 @@ class Seed
 
   def create_users
     100.times do |n|
-      student = User.create!(
+      timezone = Timezone.find(rand(1..4))
+      user = User.create!(
+        phone: Faker::PhoneNumber.phone_number,
+        bio: Faker::Hacker.say_something_smart,
+        last_active: Time.now,
+        token: "token#{n}",
+        census_id: "#{n+43}"
       )
-      puts "Crated student: #{n}!"
-    end
-  end
-
-  def create_mentors
-    50.times do |n|
-      mentor = Mentor.create!(
-        avatar: Faker::Avatar.image,
-        name: Faker::Name.name,
-        email: "mentor#{n}@notTuring.io",
-        phone_number: Faker::PhoneNumber.phone_number,
-        slack_username: "@mentor#{n}",
-        location: Faker::Address.city,
-        mentor_timezone_id: MentorTimezone.find(Random.new.rand(1..4)).id,
-        bio: 'This is my mentor bio.',
-        expertise: Faker::Lorem.words(6).join(", "),
+      puts "Crated user: #{n}!"
+      user.create_mentor!(
+        timezone_id: timezone.id,
+        expertise: "Rails",
+        location: Faker::LordOfTheRings.location,
         company: Faker::Company.name,
-        position: "Senior Rails dev.",
-        last_active: DateTime.now,
-        profile_completed: true
+        position: Faker::Company.profession,
       )
-      puts "Created mentor: #{mentor.name}!"
+      puts "Created mentor: #{user.mentor.id}"
     end
   end
 
