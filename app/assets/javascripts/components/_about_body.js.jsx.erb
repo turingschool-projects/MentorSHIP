@@ -1,3 +1,4 @@
+
 var AboutBody = React.createClass({
   render() {
     return (
@@ -5,7 +6,8 @@ var AboutBody = React.createClass({
         <div id="about-container">
           <div className="row">
             <div className="col s4 about_anchor">
-              <img src={"assets/about-cartoon-anchor.png"} />
+              <%= image_tag 'about-cartoon-anchor' %>
+
               <p>
                 They say you don't truelly know something until you teach it.
                 Signing up offers unique oppurtunity to being a mentor to a budding
@@ -14,7 +16,8 @@ var AboutBody = React.createClass({
               </p>
             </div>
             <div className="col s4 about_pirate">
-              <img src={"assets/about-cartoon-pirate-parrot.png"} />
+              <%= image_tag 'cartoon-pirate-parrot' %>
+
               <p>
                 As a student at Turing one of the lessons is maximizing your use
                 of resources, having a mentor is key because it offers insights
@@ -24,7 +27,7 @@ var AboutBody = React.createClass({
               </p>
             </div>
             <div className="col s4 about-parrot">
-              <img src={"assets/about-cartoon-treasure-chest.png"} />
+              <%= image_tag 'cartoon-treasure-chest' %>
               <p>
                 The reward for the mentor relationship is two fold, it rewards
                 the mentor with a sense of leadership. It provides valuable insights
