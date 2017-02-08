@@ -3,8 +3,6 @@ var MentorIndex = React.createClass({
     return (
       <div>
         <Navbar />
-        <div className="index-banner">
-        </div>
       </div>
     )
   }
