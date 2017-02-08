@@ -1,17 +1,18 @@
 class CensusProfile
 
-  def initialize
-    @slack = 0
-    @email = 0
-    @first_name = 0
-    @last_name = 0
-    @id = 0
-    @avatar = 0
-    @cohort = 0
+  def initialize(user_hash)
+    @slack = user_hash[:slack]
+    @email = user_hash[:email]
+    @first_name = user_hash[:first_name]
+    @last_name = user_hash[:last_name]
+    @id = user_hash[:id]
+    @avatar = user_hash[:avatar]
+    @cohort = user_hash[:cohort]
   end
 
   def self.find(id, token)
-    CensusService.new(id).get_user(token)
+    user_hash = CensusService.new(id).get_user(token)
+    CensusProfile.new(user_hash)
   end
 
 end
