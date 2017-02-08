@@ -10,6 +10,6 @@ class Mentor < ApplicationRecord
            :slack,
            :bio,
            :census_id,
-           :token, 
+           :token,
            :last_active, to: :user
 end
