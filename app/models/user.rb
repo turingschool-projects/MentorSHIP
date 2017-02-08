@@ -10,7 +10,7 @@ class User < ApplicationRecord
           :cohort, to: :census_profile
 
   def census_profile
-
+    @census_profile ||= CensusProfile.find(census_id, token)
   end
 
 end
