@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207153201) do
+ActiveRecord::Schema.define(version: 20170208022436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,18 +23,12 @@ ActiveRecord::Schema.define(version: 20170207153201) do
 
   create_table "users", force: :cascade do |t|
     t.string   "phone"
-    t.string   "location"
-    t.integer  "timezone_id"
     t.string   "bio"
-    t.string   "expertise"
-    t.string   "company"
-    t.string   "position"
     t.datetime "last_active"
     t.string   "token"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["timezone_id"], name: "index_users_on_timezone_id", using: :btree
+    t.integer  "census_id"
   end
 
-  add_foreign_key "users", "timezones"
 end
