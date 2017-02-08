@@ -14,9 +14,23 @@ class Seed
 
   def create_users
     100.times do |n|
-      student = User.create!(
+      timezone = Timezone.find(rand(1..4))
+      user = User.create!(
+        phone: Faker::PhoneNumber.phone_number,
+        bio: Faker::Hacker.say_something_smart,
+        last_active: Time.now,
+        token: "token#{n}",
+        census_id: "#{n+43}"
       )
-      puts "Crated student: #{n}!"
+      puts "Crated user: #{n}!"
+      user.create_mentor!(
+        timezone_id: timezone.id,
+        expertise: "Rails",
+        location: Faker::LordOfTheRings.location,
+        company: Faker::Company.name,
+        position: Faker::Company.profession,
+      )
+      puts "Created mentor: #{user.mentor.id}"
     end
   end
 
