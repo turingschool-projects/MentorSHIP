@@ -19,6 +19,13 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 end
 
+
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
+Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, {:js_errors => false})
+end
+
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec
