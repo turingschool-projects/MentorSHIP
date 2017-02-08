@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "As a visitor" do
   context "When I go to the about page" do
-    scenario "I see infomation about Mentorship" do
+    scenario "I see infomation about Mentorship", :js => true do
 
       visit '/about'
 
