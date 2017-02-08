@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208022436) do
+ActiveRecord::Schema.define(version: 20170208022811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "mentors", force: :cascade do |t|
+    t.integer  "timezone_id"
+    t.string   "expertise"
+    t.string   "location"
+    t.string   "company"
+    t.string   "position"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["timezone_id"], name: "index_mentors_on_timezone_id", using: :btree
+    t.index ["user_id"], name: "index_mentors_on_user_id", using: :btree
+  end
 
   create_table "timezones", force: :cascade do |t|
     t.string   "name"
@@ -31,4 +44,6 @@ ActiveRecord::Schema.define(version: 20170208022436) do
     t.integer  "census_id"
   end
 
+  add_foreign_key "mentors", "timezones"
+  add_foreign_key "mentors", "users"
 end
