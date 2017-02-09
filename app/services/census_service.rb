@@ -7,8 +7,8 @@ class CensusService
     end
   end
 
-  def get_user
-    response = conn.get("user_credentials")
+  def get_user(id)
+    response = conn.get("users/#{id}")
     JSON.parse(response.body, symbolize_names: true)
   end
 
