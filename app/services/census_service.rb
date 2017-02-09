@@ -1,7 +1,6 @@
 class CensusService
 
   def initialize(token)
-    @token = token
     @conn = Faraday.new(url: "https://census-app-staging.herokuapp.com/api/v1/") do |faraday|
       faraday.adapter  Faraday.default_adapter
       faraday.params[:access_token] = token
