@@ -13,6 +13,7 @@ gem "puma"
 gem 'active_model_serializers', '~> 0.10.0'
 gem "responders"
 gem "figaro"
+gem "faraday"
 gem 'awesome_print'
 gem 'faker'
 gem "faraday"

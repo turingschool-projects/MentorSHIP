@@ -19,5 +19,5 @@ Rails.application.routes.draw do
 
   get '/about', to: 'about#index'
 
-  resources :dashboard, only: [:show]
+  resources :dashboard, only: [:edit]
 end
