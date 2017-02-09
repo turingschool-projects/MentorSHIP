@@ -3,10 +3,10 @@ class MentorSerializer < ActiveModel::Serializer
              :avatar,
              :name,
              :email,
-             :phone_number,
-             :slack_username,
+             :phone,
+             :slack,
              :location,
-             :mentor_timezone_id,
+             :timezone_id,
              :bio,
              :expertise,
              :company,
@@ -22,5 +22,5 @@ class MentorSerializer < ActiveModel::Serializer
     last = object.last_name
     "#{first} #{last}"
   end
-  
+
 end
