@@ -22,7 +22,7 @@ class Seed
         token: "token#{n}",
         census_id: "#{n+43}"
       )
-      puts "Crated user: #{n}!"
+      puts "Created user: #{n}!"
       user.create_mentor!(
         timezone_id: timezone.id,
         expertise: "Rails",

@@ -11,7 +11,7 @@ var Mentor = React.createClass({
         </span>
         <h3><a href={"/mentors/" + this.props.mentor.id }>{this.props.mentor.name}</a></h3>
         <span className='mentor-company'>
-            <p><strong>Company: </strong>{this.props.mentor.company}</p>
+            <p><strong>Company: Google</strong>{this.props.mentor.company}</p>
         </span>
         <span className='mentor-position'>
             <p><strong>Bio:  </strong>{this.props.mentor.bio}</p>
