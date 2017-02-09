@@ -12,7 +12,7 @@ var AllMentors = React.createClass({
     return (
       <div>
         <div className="row">
-        {mentors}
+          {mentors}
         </div>
       </div>
     )
