@@ -5,8 +5,7 @@ class CensusProfile
     @email = user_hash[:email]
     @first_name = user_hash[:first_name]
     @last_name = user_hash[:last_name]
-    @id = user_hash[:id]
-    @avatar = user_hash[:avatar]
+    @avatar = user_hash[:image_url]
     @cohort = user_hash[:cohort]
   end
 
