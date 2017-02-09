@@ -11,13 +11,18 @@ class Api::V1::MentorsController < Api::V1::BaseController
 
   def update
     user = User.find(params[:id])
-    user.update(mentor_params)
+    user.update(user_params)
+    user.mentor.update(mentor_params)
   end
 
   private
 
+    def user_params
+      params.require(:user).permit(:bio)
+    end
+
     def mentor_params
-      params.require(:bio).permit(:bio)
+      params.require(:user).permit(:company, :position, :location, :expertise)
     end
 
 
