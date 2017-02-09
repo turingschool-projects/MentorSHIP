@@ -7,7 +7,7 @@ describe Timezone, type: :model do
   end
 
   context "Relationships" do
-    it { should have_many(:users) }
+    it { should have_many(:mentors) }
   end
 
 end
