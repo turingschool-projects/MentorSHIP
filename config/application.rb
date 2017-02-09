@@ -12,5 +12,8 @@ module MentorShipApi
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.react.addons = true
+    config.react.server_renderer_options = {
+  files: ["server_rendering.js"], # files to load for prerendering
+}
   end
 end
