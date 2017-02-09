@@ -1,5 +1,7 @@
 class CensusProfile
 
+  attr_reader :slack, :email, :first_name, :last_name, :avatar, :cohort
+
   def initialize(user_hash)
     @slack = user_hash[:slack]
     @email = user_hash[:email]
