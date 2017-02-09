@@ -2,7 +2,7 @@ class Api::V1::MentorsController < Api::V1::BaseController
   skip_before_action :verify_authenticity_token
 
   def index
-    render json: Mentor.where(profile_completed: true)
+    render json: User.all
   end
 
   def show
