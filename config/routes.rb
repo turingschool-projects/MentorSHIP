@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root to: 'site#index'
 
   get 'auth/:provider/callback', to: 'sessions#create'
-
+  get '/logout', to: "sessions#destroy"
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :students, only: [:index, :show]
