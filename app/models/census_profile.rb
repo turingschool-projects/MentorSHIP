@@ -12,7 +12,7 @@ class CensusProfile
   end
 
   def self.find(id, token)
-    user_hash = CensusService.new(id).get_user(token)
+    user_hash = CensusService.new(token).get_user(id)
     CensusProfile.new(user_hash)
   end
 
