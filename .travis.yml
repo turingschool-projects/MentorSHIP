@@ -2,9 +2,8 @@ language: ruby
 rvm:
   - 2.3.0
 script:
-  - npm installa phantomjs
-  - phantomjs --webdriver=4444 &
   - bundle exec rake db:setup
+  - phantomjs testrunner.js
   - bundle exec rspec
 cache: bundler
 services:
