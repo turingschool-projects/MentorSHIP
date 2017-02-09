@@ -13,14 +13,14 @@ class Seed
   end
 
   def create_users
-    100.times do |n|
+    [1,2,3,5,].each do |n|
       timezone = Timezone.find(rand(1..4))
       user = User.create!(
         phone: Faker::PhoneNumber.phone_number,
         bio: Faker::Hacker.say_something_smart,
         last_active: Time.now,
         token: "token#{n}",
-        census_id: "#{n+43}"
+        census_id: "#{n}"
       )
       puts "Created user: #{n}!"
       user.create_mentor!(
