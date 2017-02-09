@@ -3,7 +3,6 @@ var Edit = React.createClass({
     let user = this.props.user[0];
     return (
       <div>
-        <Navbar />
         <p>{user.first_name}</p>
         <form>
           <label>
