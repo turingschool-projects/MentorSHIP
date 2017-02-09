@@ -1,5 +1,5 @@
 # MentorSHIP
-This is the back end api for the Turing MentorSHIP project. It is written in Rails 5.
+This is the Turing MentorSHIP project. It is written in Rails 5.
 
 ![mentorship](https://s3.amazonaws.com/f.cl.ly/items/1o2y3w262I2b0A2G1a3B/Screen%20Shot%202016-07-20%20at%209.11.26%20PM.png?v=d5da8526)
 
@@ -16,22 +16,17 @@ This is the back end api for the Turing MentorSHIP project. It is written in Rai
 
 ### Production
 
-* The Production Version will live here: http://turing-mentorship-api.herokuapp.com/
+* Our deployable app: http://turing-mentorship-api.herokuapp.com/
 
 ### Testing
 
 * To run the tests:
 * `bundle exec rspec`
 
-## Issues
-
-Github Oauth will be replaced with Census Oauth. To be addressed.
-
-
 ## Endpoints
 
 ### Current Schema
-![schema](https://s3-us-west-2.amazonaws.com/turingmentorship/Screen+Shot+2017-02-02+at+2.36.02+PM.png)
+![schema](http://imgur.com/a/3Hgji)
 
 ### Students
 
