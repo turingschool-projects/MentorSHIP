@@ -10,4 +10,8 @@ class SessionsController < ApplicationController
     redirect_to edit_dashboard_path(user)
   end
 
+  def destroy
+    session.delete(:user_id)
+    redirect_to root_path
+  end
 end

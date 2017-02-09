@@ -1,0 +1,14 @@
+<nav>
+ <div class="nav">
+  <a href="/" class="brand-logo">MENTOR<span class="ship-word-navbar">SHIP</span></a>
+   <ul id="nav-mobile" class="right hide-on-med-and-down">
+     <li><a href="/">Home</a></li>
+     <li><a href="/about">How It Works</a></li>
+     <% if current_user %>
+      <li><a href='/logout'>Logout</a></li>
+     <% else %>
+     <li><a href='/auth/census'>Log In With Census</a></li>
+     <% end %>
+   </ul>
+ </div>
+</nav>

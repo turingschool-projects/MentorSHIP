@@ -26,7 +26,7 @@ var Edit = React.createClass({
     let user = this.props.user[0];
     return (
       <div>
-        <Navbar />
+
         <div className="container">
         <img src={user.image_url} />
           <form action="#">
