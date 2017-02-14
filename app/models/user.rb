@@ -10,6 +10,7 @@ class User < ApplicationRecord
           :cohort, to: :census_profile
 
   def census_profile
+    token = ENV['CENSUS_ACCESS_TOKEN']
     @census_profile ||= CensusProfile.find(census_id, token)
   end
 
