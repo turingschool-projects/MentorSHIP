@@ -3,7 +3,6 @@ var MentorShow = React.createClass({
     let mentor = this.props.mentor;
     return (
       <div>
-        <Navbar />
         <div className="container center-align">
           <h1>Mentor Show Page</h1>
           <span className='mentor-picture col s12'>

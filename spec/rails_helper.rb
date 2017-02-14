@@ -19,6 +19,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 end
 
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
