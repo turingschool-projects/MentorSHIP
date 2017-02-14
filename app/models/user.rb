@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_one :student
   has_one :mentor
 
-  delegate :image_url,
+  delegate :avatar,
           :first_name,
           :last_name,
           :email,

@@ -2,7 +2,7 @@ class Mentor < ApplicationRecord
   belongs_to :timezone
   belongs_to :user
 
-  delegate :image_url,
+  delegate :avatar,
            :first_name,
            :last_name,
            :email,
