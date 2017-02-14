@@ -18,7 +18,7 @@ class Seed
   end
 
   def get_all_census_users
-    this = Faraday.get("https://census-app-staging.herokuapp.com/api/v1/users/?access_token=7b2f733b97791542a1e79207f67e3eba9e991c6a7ccf570a169eaf498160cf1d")
+    this = Faraday.get("https://census-app-staging.herokuapp.com/api/v1/users/?access_token=#{ENV['CENSUS_ACCESS_TOKEN']}")
     response = JSON.parse(this.body, symbolize_names: true)
   end
 

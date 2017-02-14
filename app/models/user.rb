@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_one :student
   has_one :mentor
 
-  delegate :avatar,
+  delegate :image_url,
           :first_name,
           :last_name,
           :email,
@@ -10,7 +10,7 @@ class User < ApplicationRecord
           :cohort, to: :census_profile
 
   def census_profile
-    token = "5cd91c71ba86d702504b4bd4d3b3a1126584d4bf09df70b106a6d42bb45a7c75"
+    token = ENV['CENSUS_ACCESS_TOKEN']
     @census_profile ||= CensusProfile.find(census_id, token)
   end
 
