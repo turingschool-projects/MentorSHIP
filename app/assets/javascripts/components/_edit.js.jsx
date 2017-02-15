@@ -26,45 +26,41 @@ var Edit = React.createClass({
     let user = this.props.user[0];
     return (
       <div className="container">
-        <h5>Welcome {user.first_name}! Please enter the rest of your information in order to accept mentees.</h5>
-          <div className="row">
-            <div className="col s4">
-              <img src={user.image_url} className='dashboard-pic'/>
-              <form action="#">
-                <p>
-                  <input type="checkbox" disabled="disabled"/>
-                  <label for="test5">Accepting Mentees</label>
-                </p>
-              </form>
+        <div className="edit-page">
+          <h5>Welcome {user.first_name}! Please enter the rest of your information in order to accept mentees.</h5>
+            <div className="row">
+              <div className="col s4">
+                <img src={user.image_url} className='dashboard-pic'/>
+                <form action="#">
+                  <p><input type="checkbox" disabled="disabled"/>
+                  <label for="test5">Accepting Mentees</label></p>
+                </form>
+              </div>
+              <div className="col s6">
+                <h6><span className="edit-headers">First Name:</span> {user.first_name} </h6>
+                <h6><span className="edit-headers">Last Name:</span> {user.last_name} </h6>
+                <h6><span className="edit-headers">Slack:</span> {user.slack} </h6>
+                <h6><span className="edit-headers">Email:</span> {user.email} </h6>
+                <h6><span className="edit-headers">Bio:</span></h6>
+                  <input type='text' onChange={ (e) => this.setState({ bio: e.target.value }) }
+                    defaultValue="Enter your bio" />
+                <h6><span className="edit-headers">Company:</span></h6>
+                  <input type='text' onChange={ (e) => this.setState({ company: e.target.value }) }
+                    defaultValue="Enter your company" />
+                <h6><span className="edit-headers">Position:</span></h6>
+                   <input type='text' onChange={ (e) => this.setState({ position: e.target.value }) }
+                    defaultValue="Enter your position" />
+                <h6><span className="edit-headers">Location:</span></h6>
+                   <input type='text' onChange={ (e) => this.setState({ location: e.target.value }) }
+                    defaultValue="Enter your location" />
+                <h6><span className="edit-headers">Expertise:</span></h6>
+                  <input type='text' onChange={ (e) => this.setState({ expertise: e.target.value }) }
+                    defaultValue="Enter your expertise" />
+                <button onClick={this.handleEdit}> <a href="/mentors">Submit</a> </button>
+              </div>
             </div>
-          <div className="col s6">
-          <h5>First Name:</h5>
-            <p>{user.first_name} </p>
-          <h5>Last Name:</h5>
-            <p>{user.last_name} </p>
-          <h5>Slack:</h5>
-            <p>{user.slack} </p>
-          <h5>Email:</h5>
-            <p>{user.email} </p>
-          <h5>Bio:</h5>
-           <input type='text' onChange={ (e) => this.setState({ bio: e.target.value }) }
-            defaultValue="Enter a bio" />
-          <h5>Company:</h5>
-           <input type='text' onChange={ (e) => this.setState({ company: e.target.value }) }
-            defaultValue="Enter your company" />
-          <h5>Position:</h5>
-           <input type='text' onChange={ (e) => this.setState({ position: e.target.value }) }
-            defaultValue="Enter your position" />
-          <h5>Location:</h5>
-             <input type='text' onChange={ (e) => this.setState({ location: e.target.value }) }
-              defaultValue="Enter your location" />
-            <h5>Expertise:</h5>
-             <input type='text' onChange={ (e) => this.setState({ expertise: e.target.value }) }
-              defaultValue="Enter your expertise" />
-          <button onClick={this.handleEdit}> <a href="/mentors">Submit</a> </button>
           </div>
-        </div>
       </div>
-    ) 
+    )
   }
 });
