@@ -1,4 +1,5 @@
 var Body = React.createClass({
+
   getInitialState() {
     return { mentors: []}
   },
@@ -27,7 +28,7 @@ var Body = React.createClass({
           <SearchMentors searchMentors={this.searchMentors}/>
         </div>
       </div>
-      </div>
+    </div>
     )
   }
 });

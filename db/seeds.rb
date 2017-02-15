@@ -1,56 +1,52 @@
+require 'faraday'
+require 'json'
+require './app/models/timezone.rb'
+
 class Seed
 
   def start
     create_timezones
-    create_student
-    create_mentors
+    find_mentors
   end
 
   def create_timezones
     ['Pacific', 'Mountain', 'Central', 'Eastern'].each do |location|
-      MentorTimezone.create!(name: location)
+      Timezone.create!(name: location)
       puts "Created time zone: #{location}!"
     end
   end
 
-  def create_student
-    100.times do |n|
-      student = Student.create!(
-      avatar: 'http://www.forumla.de/attachments/kreative-ecke/151339d1395599937-avatar-wettbewerb-abstimmung-tumblr_mwe88mlxe41sare1go1_1280.png',
-      name: Faker::Name.name,
-      email: "student#{n}@example.com",
-      phone_number: Faker::PhoneNumber.phone_number,
-      slack_username: "@student#{n}",
-      bio: "This is my student bio",
-      last_active: DateTime.now,
-      profile_completed: true
-      )
-      puts "Crated student: #{student.name}!"
+  def get_all_census_users
+    this = Faraday.get("https://census-app-staging.herokuapp.com/api/v1/users/?access_token=#{ENV['CENSUS_ACCESS_TOKEN']}")
+    response = JSON.parse(this.body, symbolize_names: true)
+  end
+
+  def find_mentors
+    get_all_census_users.each do |user|
+      create_user(user) if user[:roles].any?{|role| role[:name] == "mentor"}
     end
   end
 
-  def create_mentors
-    50.times do |n|
-      mentor = Mentor.create!(
-        avatar: Faker::Avatar.image,
-        name: Faker::Name.name,
-        email: "mentor#{n}@notTuring.io",
-        phone_number: Faker::PhoneNumber.phone_number,
-        slack_username: "@mentor#{n}",
-        location: Faker::Address.city,
-        mentor_timezone_id: MentorTimezone.find(Random.new.rand(1..4)).id,
-        bio: Faker::Lorem.sentence(3),
-        expertise: Faker::Lorem.words(6),
-        company: Faker::Company.name,
-        position: "Senior Rails dev.",
-        last_active: DateTime.now,
-        profile_completed: true
-      )
-      puts "Created mentor: #{mentor.name}!"
-    end
+  def create_user(user)
+    timezone = Timezone.find(rand(1..4))
+    new_user = User.create!(
+    phone: '911-867-5309',
+    bio: "Say something cool about yourself",
+    last_active: Time.now,
+    token: "First OAuth login will overwrite this",
+    census_id: user[:id]
+    )
+    puts "Created user: #{user[:first_name]}!"
+    new_user.create_mentor!(
+    timezone_id: timezone.id,
+    expertise: "Enter your expertise here",
+    location: "location",
+    company: "Company",
+    position: "Position",
+    )
+    puts "Created mentor: #{new_user.mentor.id}"
   end
 
 end
-
 
 Seed.new.start

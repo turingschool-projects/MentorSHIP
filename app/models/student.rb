@@ -1,17 +1,15 @@
 class Student < ApplicationRecord
-  validates :avatar,
-            :name,
-            :email,
-            :phone_number,
-            :slack_username,
-            :bio,
-            presence: true
+  belongs_to :user
 
-  validates :email,
-            :phone_number,
-            :slack_username,
-            uniqueness: true
-
-  has_many :students_mentor
-  has_many :mentors, through: :students_mentor
+  delegate :avatar,
+           :first_name,
+           :last_name,
+           :phone,
+           :email,
+           :slack,
+           :bio,
+           :last_active,
+           :census_id,
+           :token,
+           :cohort, to: :user
 end

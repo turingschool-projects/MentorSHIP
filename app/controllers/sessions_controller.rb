@@ -1,28 +1,17 @@
 class SessionsController < ApplicationController
+
   def create
-    if @user = User.from_omniauth(request.env["omniauth.auth"])
-      session[:user_id] = @user.id
-      cookies[:session_id] = session[:session_id]
-      cookies[:token] = @user.token
-      cookies[:email] = @user.email
-      cookies[:authenticated] = true;
-      redirect_to ENV['PATH_BASE'] + "/welcome"
-    else
-      destroy_session
-    end
+    census_user_info = env["omniauth.auth"]
+    user = User.find_or_create_by(id: census_user_info["uid"])
+    user.token = census_user_info['info']['token']
+    user.census_id = census_user_info['uid']
+    user.save
+    session[:user_id] = user.id
+    redirect_to edit_dashboard_path(user)
   end
 
   def destroy
-    destroy_session
-  end
-
-  private
-  def destroy_session
-    session.clear
-    cookies.delete :session_id
-    cookies.delete :token
-    cookies.delete :email
-    cookies.delete :authenticated
-    redirect_to ENV['PATH_BASE']
+    session.delete(:user_id)
+    redirect_to root_path
   end
 end

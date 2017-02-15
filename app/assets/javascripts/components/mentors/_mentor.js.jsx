@@ -7,9 +7,9 @@ var Mentor = React.createClass({
     return (
       <div className="col s4">
         <span className='mentor-picture'>
-         <img src={this.props.mentor.avatar} />
+         <img src={this.props.mentor.avatar} className="mentor-pic-icon" />
         </span>
-        <h3>{this.props.mentor.name}</h3>
+        <h3><a href={"/mentors/" + this.props.mentor.id }>{this.props.mentor.name}</a></h3>
         <span className='mentor-company'>
             <p><strong>Company: </strong>{this.props.mentor.company}</p>
         </span>

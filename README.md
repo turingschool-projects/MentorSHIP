@@ -1,12 +1,12 @@
 # MentorSHIP
-This is the back end api for the Turing MentorSHIP project. It is written in Rails 5.
+This is the Turing MentorSHIP project. It is written in Rails 5.
 
 ![mentorship](https://s3.amazonaws.com/f.cl.ly/items/1o2y3w262I2b0A2G1a3B/Screen%20Shot%202016-07-20%20at%209.11.26%20PM.png?v=d5da8526)
 
 ## Installation
 
 * `git clone git@github.com:turingMentorSHIP/MentorSHIP-API.git`
-* cd MentorSHIP-API
+* `cd MentorSHIP-API`
 * `bundle exec rake db:create db:migrate db:seed`
 
 ## Running / Development
@@ -16,22 +16,20 @@ This is the back end api for the Turing MentorSHIP project. It is written in Rai
 
 ### Production
 
-* The Production Version will live here: http://turing-mentorship-api.herokuapp.com/
+* Our deployable app: http://turing-mentorship-api.herokuapp.com/
 
 ### Testing
 
 * To run the tests:
 * `bundle exec rspec`
 
-## Issues
-
-Github Oauth will be replaced with Census Oauth. To be addressed.
-
+### Important notes for seed file
+* to populate the seed file with mentors we hit the Census API with a unique access token. This token expires every 90 days. The current token was generated on 02/08/2017. If you are trying to run `rake db:seed` after 05/08/2017 you will need to OAuth in first and get a new access token. We have set up the seed to take an environment variable. We recommend using the figaro gem to help set up the `appication.yml` file.
 
 ## Endpoints
 
 ### Current Schema
-![schema](https://s3-us-west-2.amazonaws.com/turingmentorship/Screen+Shot+2017-02-02+at+2.36.02+PM.png)
+![schema](http://i.imgur.com/1YoEdXA.png)
 
 ### Students
 

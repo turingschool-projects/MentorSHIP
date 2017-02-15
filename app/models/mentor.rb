@@ -1,25 +1,15 @@
 class Mentor < ApplicationRecord
-  validates :name,
-            :avatar,
-            :email,
-            :phone_number,
-            :slack_username,
-            :location,
-            :mentor_timezone_id,
-            :bio,
-            :expertise,
-            :company,
-            :position,
-            presence: true
+  belongs_to :timezone
+  belongs_to :user
 
-  validates :email,
-            :phone_number,
-            :slack_username,
-            uniqueness: true
-
-  has_many :students_mentor
-  has_many :students, through: :students_mentor
-
-  belongs_to :mentor_timezone
-
+  delegate :avatar,
+           :first_name,
+           :last_name,
+           :email,
+           :phone,
+           :slack,
+           :bio,
+           :census_id,
+           :token,
+           :last_active, to: :user
 end
