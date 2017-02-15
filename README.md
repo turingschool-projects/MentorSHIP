@@ -5,7 +5,7 @@ This is the Turing MentorSHIP project. It is written in Rails 5.
 
 ## Installation
 
-* `git clone git@github.com:turingMentorSHIP/MentorSHIP-API.git`
+* `git clone git@github.com:turingMentorSHIP/MentorSHIP.git`
 * `cd MentorSHIP-API`
 * `bundle exec rake db:create db:migrate db:seed`
 
@@ -26,73 +26,13 @@ This is the Turing MentorSHIP project. It is written in Rails 5.
 ### Important notes for seed file
 * to populate the seed file with mentors we hit the Census API with a unique access token. This token expires every 90 days. The current token was generated on 02/08/2017. If you are trying to run `rake db:seed` after 05/08/2017 you will need to OAuth in first and get a new access token. We have set up the seed to take an environment variable. We recommend using the figaro gem to help set up the `appication.yml` file.
 
+### Environment variables needed
+* In the root of the project is an `application.yml.sample` file. This file contains all environment variables we are using in this project. We didn't push keys (for obvious reasons) but wanted to make sure any future teams knew which variables they needed to use.
+
 ## Endpoints
 
 ### Current Schema
 ![schema](http://i.imgur.com/1YoEdXA.png)
-
-### Students
-
-#### Get all students with completed profiles
-
-Example Request:
-```
-  /api/v1/students
-```
-
-Example Response - response needs to be updated per specs:
-```
-{
-  "students": [
-    {
-      "id": 1,
-      "avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
-      "name": "student 0",
-      "email": "student0@turing.io",
-      "phone_number": "555-555-5555",
-      "slack_username": "student0",
-      "bio": "Backend Student Bio",
-      "cohort": 1602
-      "last_active": "2 days ago"
-    },
-    {
-      "id": 2,
-      "avatar": "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
-      "name": "student 1",
-      "email": "student1@turing.io",
-      "phone_number": "555-555-5555",
-      "slack_username": "student1",
-      "bio": "Backend Student Bio",
-      "cohort": 1602,
-      "last_active": "2 days ago"
-    }
-  ]
-}
-```
-
-#### Get a single student by ID
-
-Example Request:
-```
-  /api/v1/students/1
-```
-
-Example Response - also needs to be updated per spec:
-```
-{
-  "student": {
-    "id": 1,
-    "github":  "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460",
-    "name": "student 0",
-    "email": "student0@turing.io",
-    "phone_number": "555-555-5555",
-    "slack_username": "student0",
-    "bio": "Backend Student Bio",
-    "cohort": 1602,
-    "last_active": "2 days ago"
-  }
-}
-```
 
 ### Mentors
 
