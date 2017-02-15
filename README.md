@@ -29,7 +29,7 @@ This is the Turing MentorSHIP project. It is written in Rails 5.
 ## Endpoints
 
 ### Current Schema
-[schema](http://imgur.com/a/3Hgji)
+![schema](http://i.imgur.com/1YoEdXA.png)
 
 ### Students
 
