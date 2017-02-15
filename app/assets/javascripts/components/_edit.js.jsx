@@ -65,6 +65,6 @@ var Edit = React.createClass({
           </div>
         </div>
       </div>
-    ) 
+    )
   }
 });
