@@ -25,17 +25,19 @@ var Edit = React.createClass({
   render() {
     let user = this.props.user[0];
     return (
-      <div>
-
-        <div className="container">
-        <img src={user.image_url} />
-          <form action="#">
-    <p>
-      <input type="checkbox" disabled="disabled"/>
-      <label for="test5">Accepting Mentees</label>
-    </p>
-  </form>
-        <p>Welcome {user.first_name}! Please enter the rest of your information in order to accept mentees.</p>
+      <div className="container">
+        <h5>Welcome {user.first_name}! Please enter the rest of your information in order to accept mentees.</h5>
+          <div className="row">
+            <div className="col s4">
+              <img src={user.image_url} className='dashboard-pic'/>
+              <form action="#">
+                <p>
+                  <input type="checkbox" disabled="disabled"/>
+                  <label for="test5">Accepting Mentees</label>
+                </p>
+              </form>
+            </div>
+          <div className="col s6">
           <h5>First Name:</h5>
             <p>{user.first_name} </p>
           <h5>Last Name:</h5>
@@ -60,8 +62,9 @@ var Edit = React.createClass({
              <input type='text' onChange={ (e) => this.setState({ expertise: e.target.value }) }
               defaultValue="Enter your expertise" />
           <button onClick={this.handleEdit}> <a href="/mentors">Submit</a> </button>
+          </div>
         </div>
       </div>
-    )
+    ) 
   }
 });

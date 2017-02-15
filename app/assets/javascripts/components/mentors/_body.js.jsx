@@ -28,7 +28,7 @@ var Body = React.createClass({
           <SearchMentors searchMentors={this.searchMentors}/>
         </div>
       </div>
-      </div>
+    </div>
     )
   }
 });
