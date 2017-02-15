@@ -6,7 +6,7 @@ This is the Turing MentorSHIP project. It is written in Rails 5.
 ## Installation
 
 * `git clone git@github.com:turingMentorSHIP/MentorSHIP-API.git`
-* cd MentorSHIP-API
+* `cd MentorSHIP-API`
 * `bundle exec rake db:create db:migrate db:seed`
 
 ## Running / Development
@@ -23,10 +23,13 @@ This is the Turing MentorSHIP project. It is written in Rails 5.
 * To run the tests:
 * `bundle exec rspec`
 
+### Important notes for seed file
+* to populate the seed file with mentors we hit the Census API with a unique access token. This token expires every 90 days. The current token was generated on 02/08/2017. If you are trying to run `rake db:seed` after 05/08/2017 you will need to OAuth in first and get a new access token. We have set up the seed to take an environment variable. We recommend using the figaro gem to help set up the `appication.yml` file.
+
 ## Endpoints
 
 ### Current Schema
-![schema](http://imgur.com/a/3Hgji)
+![schema](http://i.imgur.com/1YoEdXA.png)
 
 ### Students
 
