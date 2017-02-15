@@ -5,8 +5,8 @@ This is the Turing MentorSHIP project. It is written in Rails 5.
 
 ## Installation
 
-* `git clone git@github.com:turingMentorSHIP/MentorSHIP.git`
-* `cd MentorSHIP-API`
+* `git clone git@github.com:turingschool-projects/MentorSHIP.git`
+* `cd MentorSHIP`
 * `bundle exec rake db:create db:migrate db:seed`
 
 ## Running / Development
