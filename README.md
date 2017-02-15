@@ -24,7 +24,7 @@ This is the Turing MentorSHIP project. It is written in Rails 5.
 * `bundle exec rspec`
 
 ### Important notes for seed file
-* to populate the seed file with mentors we hit the Census API with a unique access token. This token expires every 90 days the current token was generated on 02/08/2017 If you are trying to run `rake db:seed` after 05/08/2017 you will need to OAuth in first and get a new access token. We have set up the seed to take an environment variable. We recommend using the figaro gem to help set up the `appication.yml` file.
+* to populate the seed file with mentors we hit the Census API with a unique access token. This token expires every 90 days. The current token was generated on 02/08/2017. If you are trying to run `rake db:seed` after 05/08/2017 you will need to OAuth in first and get a new access token. We have set up the seed to take an environment variable. We recommend using the figaro gem to help set up the `appication.yml` file.
 
 ## Endpoints
 
