@@ -2,12 +2,14 @@ var Edit = React.createClass({
   getInitialState(){
     return {mentor:{}}
   },
+
   componentDidMount() {
     $.getJSON(`/api/v1/mentors/${this.props.mentorId}`, function(mentor){
       console.log(mentor);
       this.setState({mentor: mentor});
     }.bind(this));
   },
+
   handleClick() {
     let mentor = this.state.mentor;
     $.ajax({
