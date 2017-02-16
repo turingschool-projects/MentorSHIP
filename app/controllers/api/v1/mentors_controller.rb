@@ -22,7 +22,7 @@ class Api::V1::MentorsController < Api::V1::BaseController
     end
 
     def mentor_params
-      params.require(:user).permit(:company, :position, :location, :expertise)
+      params.require(:user).permit(:company, :position, :location, :expertise, :active)
     end
 
 
