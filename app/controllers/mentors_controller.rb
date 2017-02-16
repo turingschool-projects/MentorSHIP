@@ -1,5 +1,6 @@
 class MentorsController < ApplicationController
   def index
+    mentor = Mentor.where(profile_complete: true)
   end
 
   def show
