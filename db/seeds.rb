@@ -30,19 +30,19 @@ class Seed
   def create_user(user)
     timezone = Timezone.find(rand(1..4))
     new_user = User.create!(
-    phone: '911-867-5309',
-    bio: "Say something cool about yourself",
-    last_active: Time.now,
-    token: "First OAuth login will overwrite this",
-    census_id: user[:id]
+      phone: '911-867-5309',
+      bio: "Say something cool about yourself",
+      last_active: Time.now,
+      token: "First OAuth login will overwrite this",
+      census_id: user[:id]
     )
     puts "Created user: #{user[:first_name]}!"
     new_user.create_mentor!(
-    timezone_id: timezone.id,
-    expertise: "Enter your expertise here",
-    location: "location",
-    company: "Company",
-    position: "Position",
+      timezone_id: timezone.id,
+      expertise: "Enter your expertise here",
+      location: "location",
+      company: "Company",
+      position: "Position",
     )
     puts "Created mentor: #{new_user.mentor.id}"
   end
