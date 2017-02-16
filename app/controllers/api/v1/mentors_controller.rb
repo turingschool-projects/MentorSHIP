@@ -14,16 +14,16 @@ class Api::V1::MentorsController < Api::V1::BaseController
     user.update(user_params)
     user.mentor.update(mentor_params)
   end
-
+  
   private
 
-    def user_params
-      params.require(:user).permit(:bio)
-    end
+  def user_params
+    params.require(:user).permit(:bio)
+  end
 
-    def mentor_params
-      params.require(:user).permit(:company, :position, :location, :expertise)
-    end
+  def mentor_params
+    params.require(:user).permit(:company, :position, :location, :expertise)
+  end
 
 
 end
