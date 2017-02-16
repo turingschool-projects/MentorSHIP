@@ -13,6 +13,8 @@ class Api::V1::MentorsController < Api::V1::BaseController
     user = User.find(params[:id])
     user.update(user_params)
     user.mentor.update(mentor_params)
+    user.mentor.profile_complete = true
+    user.save
   end
 
   private
