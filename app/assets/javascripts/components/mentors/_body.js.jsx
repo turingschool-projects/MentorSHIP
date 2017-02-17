@@ -17,6 +17,28 @@ var Body = React.createClass({
     this.setState({mentors: mentors})
   },
 
+  filterMentorsByTimezone(timezone){
+    if (timezone == "All") {
+      return this.setState({mentors: this.state.allMentors})
+    } else {
+      let mentors = this.state.allMentors.filter((mentor)=> {
+        return mentor.timezone === timezone
+      })
+      this.setState({mentors: mentors})
+    }
+  },
+
+  filterMentorsByAcceptingStudents(accepting){
+    if (accepting == "All") {
+      return this.setState({mentors: this.state.allMentors})
+    } else {
+      let mentors = this.state.allMentors.filter((mentor)=> {
+        return (mentor.active + "") === accepting
+      })
+      this.setState({mentors: mentors})
+    }
+  },
+
   render() {
     return (
     <div>
@@ -26,6 +48,12 @@ var Body = React.createClass({
         </div>
         <div className="col s2 pull-s10">
           <SearchMentors searchMentors={this.searchMentors}/>
+        </div>
+        <div className= "col s2 pull-s10">
+          <TimezoneFilter filterMentorsByTimezone={this.filterMentorsByTimezone}/>
+        </div>
+        <div className= "col s2 pull-s10">
+          <AcceptingStudentsFilter filterMentorsByAcceptingStudents={this.filterMentorsByAcceptingStudents}/>
         </div>
       </div>
     </div>

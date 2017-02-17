@@ -1,16 +1,41 @@
 var Edit = React.createClass({
+  buttonStatus(){
+    document.getElementById('acceptingButton').style.color = "green";
+  },
+
+  getInitialState(){
+    return {mentor:{}}
+  },
+
+  componentDidMount() {
+    $.getJSON(`/api/v1/mentors/${this.props.mentorId}`, function(mentor){
+      console.log(mentor);
+      this.setState({mentor: mentor});
+    }.bind(this));
+  },
+
+  handleClick() {
+    let mentor = this.state.mentor;
+    $.ajax({
+     url: `/api/v1/mentors/${mentor.id}`,
+     type: 'PATCH',
+     data: {user: { active: true}},
+     success: console.log.bind(this, "yay")
+   });
+  },
 
   handleUpdate(updatedInfo){
-    let mentor = this.props.user[0];
+    let mentor = this.state.mentor;
     $.ajax({
      url: `/api/v1/mentors/${mentor.id}`,
      type: 'PATCH',
      data: {user: { bio: updatedInfo.bio, company: updatedInfo.company, position: updatedInfo.position, location: updatedInfo.location, expertise: updatedInfo.expertise }},
-     success: console.log("yay")
+     success: function(){ window.location = "/mentors"; }
    });
   },
 
-  handleEdit() {
+  handleEdit(e) {
+    e.preventDefault();
     var bio = this.state.bio;
     var company = this.state.company;
     var position = this.state.position;
@@ -23,44 +48,43 @@ var Edit = React.createClass({
   },
 
   render() {
-    let user = this.props.user[0];
+    let mentor = this.state.mentor;
+
     return (
       <div className="container">
         <div className="edit-page">
-          <h5>Welcome {user.first_name}! Please enter the rest of your information in order to accept mentees.</h5>
+          <h5>Welcome {mentor.first_name}! Please enter the rest of your information in order to accept mentees.</h5>
             <div className="row">
               <div className="col s4">
-                <img src={user.image_url} className='dashboard-pic'/>
-                <form action="#">
-                  <p><input type="checkbox" disabled="disabled"/>
-                  <label for="test5">Accepting Mentees</label></p>
-                </form>
+                <img src={mentor.avatar} className='dashboard-pic'/>
+                  <button onClick={this.handleClick} id="acceptingButton" type="button" >Accepting Mentees</button>
               </div>
               <div className="col s6">
-                <h6><span className="edit-headers">First Name:</span> {user.first_name} </h6>
-                <h6><span className="edit-headers">Last Name:</span> {user.last_name} </h6>
-                <h6><span className="edit-headers">Slack:</span> {user.slack} </h6>
-                <h6><span className="edit-headers">Email:</span> {user.email} </h6>
+                <h6><span className="edit-headers">First Name:</span> {mentor.first_name} </h6>
+                <h6><span className="edit-headers">Last Name:</span> {mentor.last_name} </h6>
+                <h6><span className="edit-headers">Slack:</span> {mentor.slack} </h6>
+                <h6><span className="edit-headers">Email:</span> {mentor.email} </h6>
                 <h6><span className="edit-headers">Bio:</span></h6>
-                  <input type='text' onChange={ (e) => this.setState({ bio: e.target.value }) }
-                    defaultValue="Enter your bio" />
+                  <input type='text' className="inputField" onChange={ (e) => this.setState({ bio: e.target.value }) }
+                    defaultValue="Please Enter Your Information To Accept Mentees" />
                 <h6><span className="edit-headers">Company:</span></h6>
-                  <input type='text' onChange={ (e) => this.setState({ company: e.target.value }) }
-                    defaultValue="Enter your company" />
+                  <input type='text' className="inputField" onChange={ (e) => this.setState({ company: e.target.value }) }
+                    defaultValue="Please Enter Your Information To Accept Mentees" />
                 <h6><span className="edit-headers">Position:</span></h6>
-                   <input type='text' onChange={ (e) => this.setState({ position: e.target.value }) }
-                    defaultValue="Enter your position" />
+                   <input type='text' className="inputField" onChange={ (e) => this.setState({ position: e.target.value }) }
+                    defaultValue="Please Enter Your Information To Accept Mentees" />
                 <h6><span className="edit-headers">Location:</span></h6>
-                   <input type='text' onChange={ (e) => this.setState({ location: e.target.value }) }
-                    defaultValue="Enter your location" />
+                   <input type='text' className="inputField" onChange={ (e) => this.setState({ location: e.target.value }) }
+                    defaultValue="Please Enter Your Information To Accept Mentees" />
                 <h6><span className="edit-headers">Expertise:</span></h6>
-                  <input type='text' onChange={ (e) => this.setState({ expertise: e.target.value }) }
-                    defaultValue="Enter your expertise" />
-                <button onClick={this.handleEdit}> <a href="/mentors">Submit</a> </button>
+                  <input type='text' className="inputField" onKeyUp={this.buttonStatus} onChange={ (e) => this.setState({ expertise: e.target.value }) }
+                    defaultValue="Please Enter Your Information To Accept Mentees" />
+                  <button onClick={this.handleEdit}> Submit </button>
               </div>
             </div>
           </div>
       </div>
     )
+
   }
 });

@@ -16,16 +16,15 @@ class Api::V1::MentorsController < Api::V1::BaseController
     user.mentor.profile_complete = true
     user.save
   end
-
+  
   private
 
-    def user_params
-      params.require(:user).permit(:bio)
-    end
+  def user_params
+    params.require(:user).permit(:bio)
+  end
 
-    def mentor_params
-      params.require(:user).permit(:company, :position, :location, :expertise)
-    end
-
-
+  def mentor_params
+    params.require(:user).permit(:company, :position, :location, :expertise, :active)
+  end
+  
 end
