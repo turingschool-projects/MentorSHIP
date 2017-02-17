@@ -13,7 +13,8 @@ class MentorSerializer < ActiveModel::Serializer
              :position,
              :last_active,
              :first_name,
-             :last_name
+             :last_name,
+             :active
 
   def last_active
     object.last_active.strftime("%A %d %b %Y %l:%M %p")
