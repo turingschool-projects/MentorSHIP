@@ -66,19 +66,19 @@ var Edit = React.createClass({
                 <h6><span className="edit-headers">Email:</span> {mentor.email} </h6>
                 <h6><span className="edit-headers">Bio:</span></h6>
                   <input type='text' className="inputField" onChange={ (e) => this.setState({ bio: e.target.value }) }
-                    defaultValue="Please Enter Your Information To Accept Mentees" />
+                    placeholder="Please Enter Your Information To Accept Mentees" />
                 <h6><span className="edit-headers">Company:</span></h6>
                   <input type='text' className="inputField" onChange={ (e) => this.setState({ company: e.target.value }) }
-                    defaultValue="Please Enter Your Information To Accept Mentees" />
+                    placeholder="Please Enter Your Information To Accept Mentees" />
                 <h6><span className="edit-headers">Position:</span></h6>
                    <input type='text' className="inputField" onChange={ (e) => this.setState({ position: e.target.value }) }
-                    defaultValue="Please Enter Your Information To Accept Mentees" />
+                    placeholder="Please Enter Your Information To Accept Mentees" />
                 <h6><span className="edit-headers">Location:</span></h6>
                    <input type='text' className="inputField" onChange={ (e) => this.setState({ location: e.target.value }) }
-                    defaultValue="Please Enter Your Information To Accept Mentees" />
+                    placeholder="Please Enter Your Information To Accept Mentees" />
                 <h6><span className="edit-headers">Expertise:</span></h6>
                   <input type='text' className="inputField" onKeyUp={this.buttonStatus} onChange={ (e) => this.setState({ expertise: e.target.value }) }
-                    defaultValue="Please Enter Your Information To Accept Mentees" />
+                    placeholder="Please Enter Your Information To Accept Mentees" />
                   <button onClick={this.handleEdit}> Submit </button>
               </div>
             </div>
