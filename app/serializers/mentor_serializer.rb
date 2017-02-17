@@ -14,7 +14,7 @@ class MentorSerializer < ActiveModel::Serializer
              :last_active,
              :first_name,
              :last_name,
-             :timezone,
+             :timezone
 
   def last_active
     object.last_active.strftime("%A %d %b %Y %l:%M %p")
@@ -29,4 +29,7 @@ class MentorSerializer < ActiveModel::Serializer
     object.timezone.name
   end
 
+  def timezone
+    object.timezone.name
+  end
 end
