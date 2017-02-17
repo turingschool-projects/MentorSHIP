@@ -3,8 +3,9 @@ class MentorsController < ApplicationController
   end
 
   def show
-    mentor = Mentor.find(params[:id])
-    render component: 'MentorShow', props: { mentor: mentor }
+    id = params[:id]
+    # render component: 'MentorShow',
+    render component: 'MentorShow', props: { id: id }
   end
 
 end

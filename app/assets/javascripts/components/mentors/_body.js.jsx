@@ -19,9 +19,10 @@ var Body = React.createClass({
 
   filterMentorsByTimezone(timezone){
     if (timezone == "All") {
-      return this.state
+      return this.state.allMentors
     } else {
       let mentors = this.state.allMentors.filter((mentor)=> {
+        debugger;
         return mentor.timezone.name === timezone
       })
       this.setState({mentors: mentors})
