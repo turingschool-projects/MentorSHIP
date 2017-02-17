@@ -25,6 +25,9 @@ class MentorSerializer < ActiveModel::Serializer
     last = object.last_name
     "#{first} #{last}"
   end
+  def timezone
+    object.timezone.name
+  end
 
   def timezone
     object.timezone.name
