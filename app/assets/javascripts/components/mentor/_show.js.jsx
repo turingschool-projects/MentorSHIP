@@ -35,6 +35,7 @@ var MentorShow = React.createClass({
                  <p>About Me: {mentor.bio} </p>
                  <p>Email: {mentor.email} </p>
                  <p>Slack: {mentor.slack} </p>
+                 <p>Available: {" " +mentor.active} </p>
                 </div>
               </div>
            </div>
