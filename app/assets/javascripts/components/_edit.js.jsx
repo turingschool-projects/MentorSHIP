@@ -1,4 +1,8 @@
 var Edit = React.createClass({
+  buttonStatus(){
+    document.getElementById('acceptingButton').style.color = "green";
+  },
+
   getInitialState(){
     return {mentor:{}}
   },
@@ -53,9 +57,7 @@ var Edit = React.createClass({
             <div className="row">
               <div className="col s4">
                 <img src={mentor.avatar} className='dashboard-pic'/>
-
-                <button onClick={this.handleClick}>Accepting Mentees</button>
-
+                  <button onClick={this.handleClick} id="acceptingButton" type="button" >Accepting Mentees</button>
               </div>
               <div className="col s6">
                 <h6><span className="edit-headers">First Name:</span> {mentor.first_name} </h6>
@@ -63,21 +65,21 @@ var Edit = React.createClass({
                 <h6><span className="edit-headers">Slack:</span> {mentor.slack} </h6>
                 <h6><span className="edit-headers">Email:</span> {mentor.email} </h6>
                 <h6><span className="edit-headers">Bio:</span></h6>
-                  <input type='text' onChange={ (e) => this.setState({ bio: e.target.value }) }
-                    defaultValue="Enter your bio" />
+                  <input type='text' className="inputField" onChange={ (e) => this.setState({ bio: e.target.value }) }
+                    defaultValue="Please Enter Your Information To Accept Mentees" />
                 <h6><span className="edit-headers">Company:</span></h6>
-                  <input type='text' onChange={ (e) => this.setState({ company: e.target.value }) }
-                    defaultValue="Enter your company" />
+                  <input type='text' className="inputField" onChange={ (e) => this.setState({ company: e.target.value }) }
+                    defaultValue="Please Enter Your Information To Accept Mentees" />
                 <h6><span className="edit-headers">Position:</span></h6>
-                   <input type='text' onChange={ (e) => this.setState({ position: e.target.value }) }
-                    defaultValue="Enter your position" />
+                   <input type='text' className="inputField" onChange={ (e) => this.setState({ position: e.target.value }) }
+                    defaultValue="Please Enter Your Information To Accept Mentees" />
                 <h6><span className="edit-headers">Location:</span></h6>
-                   <input type='text' onChange={ (e) => this.setState({ location: e.target.value }) }
-                    defaultValue="Enter your location" />
+                   <input type='text' className="inputField" onChange={ (e) => this.setState({ location: e.target.value }) }
+                    defaultValue="Please Enter Your Information To Accept Mentees" />
                 <h6><span className="edit-headers">Expertise:</span></h6>
-                  <input type='text' onChange={ (e) => this.setState({ expertise: e.target.value }) }
-                    defaultValue="Enter your expertise" />
-                  <button onClick={this.handleEdit}> <a href="#">Submit</a> </button>
+                  <input type='text' className="inputField" onKeyUp={this.buttonStatus} onChange={ (e) => this.setState({ expertise: e.target.value }) }
+                    defaultValue="Please Enter Your Information To Accept Mentees" />
+                  <button onClick={this.handleEdit}> Submit </button>
               </div>
             </div>
           </div>
