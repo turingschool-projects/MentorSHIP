@@ -14,6 +14,7 @@ class MentorSerializer < ActiveModel::Serializer
              :last_active,
              :first_name,
              :last_name,
+             :active,
              :timezone
 
   def last_active
