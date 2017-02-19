@@ -53,35 +53,41 @@ var Edit = React.createClass({
     return (
       <div className="container">
         <div className="edit-page">
-          <h5>Welcome {mentor.first_name}! Please enter the rest of your information in order to accept mentees.</h5>
+          <h5><div className="welcome-edit">Welcome {mentor.first_name}! Thanks for checking out Turing MentorSHIP.</div> <div className="edit-instructions">Please enter the rest of your information in order to accept mentees.</div></h5>
             <div className="row">
               <div className="col s4">
                 <img src={mentor.avatar} className='dashboard-pic'/>
                   <button onClick={this.handleClick} id="acceptingButton" type="button" >Accepting Mentees</button>
+                  <p><em>This button won't be clickable until you fill in all fields on this form.</em></p>
               </div>
               <div className="col s6">
-                <h6><span className="edit-headers">First Name:</span> {mentor.first_name} </h6>
-                <h6><span className="edit-headers">Last Name:</span> {mentor.last_name} </h6>
-                <h6><span className="edit-headers">Slack:</span> {mentor.slack} </h6>
-                <h6><span className="edit-headers">Email:</span> {mentor.email} </h6>
-                <h6><span className="edit-headers">Bio:</span></h6>
-                  <input type='text' className="inputField" onChange={ (e) => this.setState({ bio: e.target.value }) }
-                    placeholder="Please Enter Your Information To Accept Mentees" />
-                <h6><span className="edit-headers">Company:</span></h6>
-                  <input type='text' className="inputField" onChange={ (e) => this.setState({ company: e.target.value }) }
-                    placeholder="Please Enter Your Information To Accept Mentees" />
-                <h6><span className="edit-headers">Position:</span></h6>
-                   <input type='text' className="inputField" onChange={ (e) => this.setState({ position: e.target.value }) }
-                    placeholder="Please Enter Your Information To Accept Mentees" />
-                <h6><span className="edit-headers">Location:</span></h6>
-                   <input type='text' className="inputField" onChange={ (e) => this.setState({ location: e.target.value }) }
-                    placeholder="Please Enter Your Information To Accept Mentees" />
-                <h6><span className="edit-headers">Expertise:</span></h6>
-                  <input type='text' className="inputField" onKeyUp={this.buttonStatus} onChange={ (e) => this.setState({ expertise: e.target.value }) }
-                    placeholder="Please Enter Your Information To Accept Mentees" />
-                  <button onClick={this.handleEdit}> Submit </button>
+                <div className="form-area">
+                  <div className="container-form">
+                    <h6><span className="edit-headers">First Name:</span> {mentor.first_name} </h6>
+                    <h6><span className="edit-headers">Last Name:</span> {mentor.last_name} </h6>
+                    <h6><span className="edit-headers">Slack:</span> {mentor.slack} </h6>
+                    <h6><span className="edit-headers">Email:</span> {mentor.email} </h6>
+                    <h6><span className="edit-headers">Bio:</span></h6>
+                    <input type='text' className="inputField" onChange={ (e) => this.setState({ bio: e.target.value }) }
+                      placeholder="Please Enter Your Information To Accept Mentees" />
+                    <h6><span className="edit-headers">Company:</span></h6>
+                    <input type='text' className="inputField" onChange={ (e) => this.setState({ company: e.target.value }) }
+                      placeholder="Please Enter Your Information To Accept Mentees" />
+                    <h6><span className="edit-headers">Position:</span></h6>
+                    <input type='text' className="inputField" onChange={ (e) => this.setState({ position: e.target.value }) }
+                      placeholder="Please Enter Your Information To Accept Mentees" />
+                    <h6><span className="edit-headers">Location:</span></h6>
+                    <input type='text' className="inputField" onChange={ (e) => this.setState({ location: e.target.value }) }
+                      placeholder="Please Enter Your Information To Accept Mentees" />
+                    <h6><span className="edit-headers">Expertise:</span></h6>
+                    <input type='text' className="inputField" onKeyUp={this.buttonStatus} onChange={ (e) => this.setState({ expertise: e.target.value }) }
+                      placeholder="Please Enter Your Information To Accept Mentees" />
+                  </div>
+                </div>
+                  <div className="edit-submit-button"><button onClick={this.handleEdit}> Submit </button></div>
               </div>
             </div>
+
           </div>
       </div>
     )
