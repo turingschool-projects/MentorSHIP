@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user.census_id = census_user_info['uid']
     user.save
     session[:user_id] = user.id
-    if student?(census_user_info)
+    if not_mentor?(census_user_info)
       redirect_to mentors_path
     else
       redirect_to edit_dashboard_path(user)
@@ -21,8 +21,8 @@ class SessionsController < ApplicationController
 
   private
 
-  def student?(census_user_info)
-    census_user_info[:info][:roles].any?{|role| role[:name] == 'active student'}
+  def not_mentor?(census_user_info)
+    census_user_info[:info][:roles].none?{|role| role[:name] == 'mentor'}
   end
 
 end
