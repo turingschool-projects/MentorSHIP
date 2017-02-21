@@ -1,6 +1,6 @@
 var Edit = React.createClass({
   buttonStatus(){
-    document.getElementById('acceptingButton').style.color = "green";
+    document.getElementById('acceptingButton').disabled = false;
   },
 
   getInitialState(){
@@ -57,8 +57,13 @@ var Edit = React.createClass({
             <div className="row">
               <div className="col s4">
                 <img src={mentor.avatar} className='dashboard-pic'/>
-                  <button onClick={this.handleClick} id="acceptingButton" type="button" >Accepting Mentees</button>
-                  <p><em>This button won't be clickable until you fill in all fields on this form.</em></p>
+                <form>
+                  <p>
+                   <input type="checkbox" id="acceptingButton" disabled="disabled"/>
+                   <label htmlFor="acceptingButton">Accepting Students</label>
+                  </p>
+                  </form>
+                  <p><em>This won't be checkable until you fill in all fields on this form.</em></p>
               </div>
               <div className="col s6">
                 <div className="form-area">

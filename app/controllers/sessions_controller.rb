@@ -9,8 +9,10 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id
     if not_mentor?(census_user_info)
       redirect_to mentors_path
-    else
+    elsif user.mentor.company = nil
       redirect_to edit_dashboard_path(user)
+    else
+      redirect_to mentors_path
     end
   end
 
