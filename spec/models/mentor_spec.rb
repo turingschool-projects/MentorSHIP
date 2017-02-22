@@ -1,21 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe Mentor, type: :model do
-  context "Relationships" do
-    it { should belong_to(:timezone) }
-    it { should belong_to(:user) }
+
+  context "Validations" do
+    it { should validate_presence_of(:avatar)}
+    it { should validate_presence_of(:name)}
+    it { should validate_presence_of(:email)}
+    it { should validate_presence_of(:phone_number)}
+    it { should validate_presence_of(:slack_username)}
+    it { should validate_presence_of(:location)}
+    it { should validate_presence_of(:mentor_timezone_id)}
+    it { should validate_presence_of(:bio)}
+    it { should validate_presence_of(:expertise)}
+    it { should validate_presence_of(:company)}
+    it { should validate_presence_of(:position)}
   end
 
-  context "Delegations" do
-    it { should delegate_method(:avatar).to(:user) }
-    it { should delegate_method(:first_name).to(:user) }
-    it { should delegate_method(:last_name).to(:user) }
-    it { should delegate_method(:email).to(:user) }
-    it { should delegate_method(:phone).to(:user) }
-    it { should delegate_method(:slack).to(:user) }
-    it { should delegate_method(:bio).to(:user) }
-    it { should delegate_method(:census_id).to(:user) }
-    it { should delegate_method(:token).to(:user) }
-    it { should delegate_method(:last_active).to(:user) }
+  context "Uniqueness" do
+    it { should validate_uniqueness_of(:email)}
+    it { should validate_uniqueness_of(:phone_number)}
+    it { should validate_uniqueness_of(:slack_username)}
   end
+
 end
+
+# context "Relationships" do
+#   it { should have_many(:comments) }
+# end
