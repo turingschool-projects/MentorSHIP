@@ -13,8 +13,7 @@ class CensusService
   end
 
   def update_census(id, params)
-    binding.pry
-    @conn.put("users/#{id}/params")
+    @conn.put("users/#{id}", params)
   end
 
   private
