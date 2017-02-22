@@ -2,7 +2,7 @@ class Api::V1::MentorsController < Api::V1::BaseController
   skip_before_action :verify_authenticity_token
 
   def index
-    render json: Mentor.all
+    render json: Mentor.where(profile_complete: true)
   end
 
   def show
@@ -10,9 +10,12 @@ class Api::V1::MentorsController < Api::V1::BaseController
   end
 
   def update
+    CensusService.new(current_user.token).update_census(current_user.census_id, census_params)
     user = User.find(params[:id])
     user.update(user_params)
     user.mentor.update(mentor_params)
+    user.mentor.profile_complete = true
+    user.save
   end
 
   private
@@ -27,7 +30,6 @@ class Api::V1::MentorsController < Api::V1::BaseController
 
   def census_params
     params.require(:user).permit(:first_name, :last_name, :slack, :email)
-
   end
 
 end
