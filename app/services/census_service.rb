@@ -17,7 +17,8 @@ class CensusService
   end
 
   private
-  attr_reader :token, :conn
+    attr_reader :token, :conn
+
 
 
 end
