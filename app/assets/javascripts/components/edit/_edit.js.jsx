@@ -20,9 +20,9 @@ var Edit = React.createClass({
 
   componentDidMount() {
     $.getJSON(`/api/v1/mentors/${this.props.mentorId}`, function(mentor){
-      console.log(mentor);
       this.setState({mentor: mentor});
     }.bind(this));
+
   },
 
   handleClick() {
@@ -115,6 +115,7 @@ var Edit = React.createClass({
 
           </div>
       </div>
+
     )
 
   }
