@@ -1,6 +1,3 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-
-  provider :census, ENV["CENSUS_ID"], ENV["CENSUS_SECRET"], {
-    :name => "census"
-  }
+  provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], scope: "user:email"
 end

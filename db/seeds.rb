@@ -1,52 +1,46 @@
-require 'faraday'
-require 'json'
-require './app/models/timezone.rb'
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+#
+# Examples:
+#
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Emanuel', city: cities.first)
+cohort_1602 = Cohort.create(number: 1602)
+timezone = MentorTimezone.create(name: "MT")
 
-class Seed
 
-  def start
-    create_timezones
-    find_mentors
-  end
-
-  def create_timezones
-    ['Pacific', 'Mountain', 'Central', 'Eastern'].each do |location|
-      Timezone.create!(name: location)
-      puts "Created time zone: #{location}!"
-    end
-  end
-
-  def get_all_census_users
-    this = Faraday.get("https://census-app-staging.herokuapp.com/api/v1/users/?access_token=#{ENV['CENSUS_ACCESS_TOKEN']}")
-    response = JSON.parse(this.body, symbolize_names: true)
-  end
-
-  def find_mentors
-    get_all_census_users.each do |user|
-      create_user(user) if user[:roles].any?{|role| role[:name] == "mentor"}
-    end
-  end
-
-  def create_user(user)
-    timezone = Timezone.find(rand(1..4))
-    new_user = User.create!(
-      phone: '911-867-5309',
-      bio: "Say something cool about yourself",
-      last_active: Time.now,
-      token: "First OAuth login will overwrite this",
-      census_id: user[:id]
-    )
-    puts "Created user: #{user[:first_name]}!"
-    new_user.create_mentor!(
-      timezone_id: timezone.id,
-      expertise: "Enter your expertise here",
-      location: "location",
-      company: "Company",
-      position: "Position",
-    )
-    puts "Created mentor: #{new_user.mentor.id}"
-  end
-
+20.times do |n|
+  student = Student.new(profile_completed: true)
+  student.cohort = cohort_1602
+  user = User.new(
+    name: "student #{n}",
+    email: "student#{n}@turing.io",
+    phone_number: "555-555-5555",
+    slack_username: "student#{n}",
+    github_avatar_url: "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460"
+  )
+  student.user = user
+  result = student.save
+  puts "Saving student #{n + 1} - result: #{result}"
+  puts student.errors.full_messages.join(', ') unless result
 end
 
-Seed.new.start
+20.times do |n|
+  mentor = Mentor.new(
+    profile_completed: true,
+    location: "Denver",
+    bio: "Former Student, current mentor!"
+  )
+  mentor.mentor_timezone = timezone
+  user = User.new(
+    name: "mentor #{n}",
+    email: "mentor#{n}@turing.io",
+    phone_number: "555-555-5555",
+    slack_username: "mentor#{n}",
+    github_avatar_url: "https://avatars2.githubusercontent.com/u/14855129?v=3&s=460"
+  )
+  mentor.user = user
+  result = mentor.save
+  puts "Saving mentor #{n + 1} - result: #{result}"
+  puts mentor.errors.full_messages.join(', ') unless result
+end
