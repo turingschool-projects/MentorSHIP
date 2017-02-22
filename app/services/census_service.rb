@@ -12,8 +12,13 @@ class CensusService
     JSON.parse(response.body, symbolize_names: true)
   end
 
-    private
-      attr_reader :token, :conn
+  def update_census(id, params)
+    @conn.put("users/#{id}", params.to_json)
+  end
+
+  private
+    attr_reader :token, :conn
+
 
 
 end

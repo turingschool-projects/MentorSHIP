@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20170216134656) do
     t.integer  "user_id"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.boolean  "active",           default: false
     t.boolean  "profile_complete", default: false
-    t.boolean  "active",      default: false
     t.index ["timezone_id"], name: "index_mentors_on_timezone_id", using: :btree
     t.index ["user_id"], name: "index_mentors_on_user_id", using: :btree
   end
