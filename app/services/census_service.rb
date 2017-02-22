@@ -13,7 +13,7 @@ class CensusService
   end
 
   def update_census(id, params)
-    @conn.put("users/#{id}", params)
+    @conn.put("users/#{id}", params.to_json)
   end
 
   private
