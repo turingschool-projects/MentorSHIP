@@ -20,9 +20,9 @@ var Edit = React.createClass({
 
   componentDidMount() {
     $.getJSON(`/api/v1/mentors/${this.props.mentorId}`, function(mentor){
-      console.log(mentor);
       this.setState({mentor: mentor});
     }.bind(this));
+
   },
 
   handleClick() {
@@ -84,13 +84,14 @@ var Edit = React.createClass({
                 <div className="form-area">
                   <div className="container-form">
                     <h6><span className="edit-headers">First Name:</span></h6>
-                    <input type='text' className="inputField" onChange={ (e) => this.setState({ first_name: e.target.value }) } placeholder={mentor.first_name} />
+                    <input type='text' className="inputField census-data" onChange={ (e) => this.setState({ first_name: e.target.value }) }
+                     placeholder={mentor.first_name} />
                     <h6><span className="edit-headers">Last Name:</span></h6>
-                    <input type='text' className="inputField" onChange={ (e) => this.setState({ last_name: e.target.value }) } placeholder={mentor.last_name} />
+                    <input type='text' className="inputField census-data" onChange={ (e) => this.setState({ last_name: e.target.value }) } placeholder={mentor.last_name} />
                     <h6><span className="edit-headers">Slack:</span></h6>
-                    <input type='text' className="inputField" onChange={ (e) => this.setState({ slack: e.target.value }) } placeholder={mentor.slack} />
+                    <input type='text' className="inputField census-data" onChange={ (e) => this.setState({ slack: e.target.value }) } placeholder={mentor.slack} />
                     <h6><span className="edit-headers">Email:</span></h6>
-                    <input type='text' className="inputField" onChange={ (e) => this.setState({ email: e.target.value }) } placeholder={mentor.email} />
+                    <input type='text' className="inputField census-data" onChange={ (e) => this.setState({ email: e.target.value }) } placeholder={mentor.email} />
                     <h6><span className="edit-headers">Bio:</span></h6>
                     <input id="bioField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ bio: e.target.value }) }
                       placeholder="Please Enter Your Information To Accept Mentees" />
@@ -114,6 +115,7 @@ var Edit = React.createClass({
 
           </div>
       </div>
+
     )
 
   }
