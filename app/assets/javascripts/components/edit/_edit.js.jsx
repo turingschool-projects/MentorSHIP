@@ -64,7 +64,7 @@ var Edit = React.createClass({
     return (
       <div className="container">
         <div className="edit-page">
-          <h5><div className="welcome-edit">Welcome {mentor.first_name}! Thanks for checking out Turing MentorSHIP.</div> <div className="edit-instructions">Please enter the rest of your information in order to accept mentees.</div></h5>
+          <EditHeader />
             <div className="row">
               <div className="col s4">
                 <img src={mentor.avatar} className='dashboard-pic'/>
