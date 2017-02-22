@@ -1,8 +1,6 @@
 class Api::V1::MentorsController < Api::V1::BaseController
-  skip_before_action :verify_authenticity_token
-
   def index
-    render json: Mentor.all
+    @mentors = Mentor.where(profile_completed: true)
   end
 
   def show
@@ -23,13 +21,4 @@ class Api::V1::MentorsController < Api::V1::BaseController
   def user_params
     params.require(:user).permit(:bio)
   end
-
-  def mentor_params
-    params.require(:user).permit(:company, :position, :location, :expertise, :active)
-  end
-
-  def census_params
-    params.require(:user).permit(:first_name, :last_name, :slack, :email)
-  end
-
 end
