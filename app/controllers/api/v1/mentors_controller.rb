@@ -10,13 +10,14 @@ class Api::V1::MentorsController < Api::V1::BaseController
   end
 
   def update
+    CensusService.new(current_user.token).update_census(current_user.census_id, census_params)
     user = User.find(params[:id])
     user.update(user_params)
     user.mentor.update(mentor_params)
     user.mentor.profile_complete = true
     user.save
   end
-  
+
   private
 
   def user_params
@@ -26,5 +27,9 @@ class Api::V1::MentorsController < Api::V1::BaseController
   def mentor_params
     params.require(:user).permit(:company, :position, :location, :expertise, :active)
   end
-  
+
+  def census_params
+    params.require(:user).permit(:first_name, :last_name, :slack, :email)
+  end
+
 end
