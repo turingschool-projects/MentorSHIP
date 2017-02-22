@@ -33241,7 +33241,7 @@ var AboutBody = React.createClass({
           { id: "about-container" },
           React.createElement(
             "div",
-            { className: "row" },
+            { className: "row image-row" },
             React.createElement(
               "div",
               { className: "col s4 about_anchor" },
@@ -33299,216 +33299,6 @@ var AboutIndex = React.createClass({
     );
   }
 });
-var Edit = React.createClass({
-  displayName: 'Edit',
-
-  buttonStatus: function () {
-    document.getElementById('acceptingButton').style.color = "green";
-  },
-
-  getInitialState: function () {
-    return { mentor: {} };
-  },
-
-  componentDidMount: function () {
-    $.getJSON('/api/v1/mentors/' + this.props.mentorId, (function (mentor) {
-      console.log(mentor);
-      this.setState({ mentor: mentor });
-    }).bind(this));
-  },
-
-  handleClick: function () {
-    var mentor = this.state.mentor;
-    $.ajax({
-      url: '/api/v1/mentors/' + mentor.id,
-      type: 'PATCH',
-      data: { user: { active: true } },
-      success: console.log.bind(this, "yay")
-    });
-  },
-
-  handleUpdate: function (updatedInfo) {
-    var mentor = this.state.mentor;
-    $.ajax({
-      url: '/api/v1/mentors/' + mentor.id,
-      type: 'PATCH',
-      data: { user: { bio: updatedInfo.bio, company: updatedInfo.company, position: updatedInfo.position, location: updatedInfo.location, expertise: updatedInfo.expertise } },
-      success: function () {
-        window.location = "/mentors";
-      }
-    });
-  },
-
-  handleEdit: function (e) {
-    e.preventDefault();
-    var bio = this.state.bio;
-    var company = this.state.company;
-    var position = this.state.position;
-    var location = this.state.location;
-    var expertise = this.state.expertise;
-
-    var updatedInfo = { bio: bio, company: company, position: position, location: location, expertise: expertise };
-    this.handleUpdate(updatedInfo);
-  },
-
-  render: function () {
-    var _this = this;
-
-    var mentor = this.state.mentor;
-
-    return React.createElement(
-      'div',
-      { className: 'container' },
-      React.createElement(
-        'div',
-        { className: 'edit-page' },
-        React.createElement(
-          'h5',
-          null,
-          'Welcome ',
-          mentor.first_name,
-          '! Please enter the rest of your information in order to accept mentees.'
-        ),
-        React.createElement(
-          'div',
-          { className: 'row' },
-          React.createElement(
-            'div',
-            { className: 'col s4' },
-            React.createElement('img', { src: mentor.avatar, className: 'dashboard-pic' }),
-            React.createElement(
-              'button',
-              { onClick: this.handleClick, id: 'acceptingButton', type: 'button' },
-              'Accepting Mentees'
-            )
-          ),
-          React.createElement(
-            'div',
-            { className: 'col s6' },
-            React.createElement(
-              'h6',
-              null,
-              React.createElement(
-                'span',
-                { className: 'edit-headers' },
-                'First Name:'
-              ),
-              ' ',
-              mentor.first_name,
-              ' '
-            ),
-            React.createElement(
-              'h6',
-              null,
-              React.createElement(
-                'span',
-                { className: 'edit-headers' },
-                'Last Name:'
-              ),
-              ' ',
-              mentor.last_name,
-              ' '
-            ),
-            React.createElement(
-              'h6',
-              null,
-              React.createElement(
-                'span',
-                { className: 'edit-headers' },
-                'Slack:'
-              ),
-              ' ',
-              mentor.slack,
-              ' '
-            ),
-            React.createElement(
-              'h6',
-              null,
-              React.createElement(
-                'span',
-                { className: 'edit-headers' },
-                'Email:'
-              ),
-              ' ',
-              mentor.email,
-              ' '
-            ),
-            React.createElement(
-              'h6',
-              null,
-              React.createElement(
-                'span',
-                { className: 'edit-headers' },
-                'Bio:'
-              )
-            ),
-            React.createElement('input', { type: 'text', className: 'inputField', onChange: function (e) {
-                return _this.setState({ bio: e.target.value });
-              },
-              defaultValue: 'Please Enter Your Information To Accept Mentees' }),
-            React.createElement(
-              'h6',
-              null,
-              React.createElement(
-                'span',
-                { className: 'edit-headers' },
-                'Company:'
-              )
-            ),
-            React.createElement('input', { type: 'text', className: 'inputField', onChange: function (e) {
-                return _this.setState({ company: e.target.value });
-              },
-              defaultValue: 'Please Enter Your Information To Accept Mentees' }),
-            React.createElement(
-              'h6',
-              null,
-              React.createElement(
-                'span',
-                { className: 'edit-headers' },
-                'Position:'
-              )
-            ),
-            React.createElement('input', { type: 'text', className: 'inputField', onChange: function (e) {
-                return _this.setState({ position: e.target.value });
-              },
-              defaultValue: 'Please Enter Your Information To Accept Mentees' }),
-            React.createElement(
-              'h6',
-              null,
-              React.createElement(
-                'span',
-                { className: 'edit-headers' },
-                'Location:'
-              )
-            ),
-            React.createElement('input', { type: 'text', className: 'inputField', onChange: function (e) {
-                return _this.setState({ location: e.target.value });
-              },
-              defaultValue: 'Please Enter Your Information To Accept Mentees' }),
-            React.createElement(
-              'h6',
-              null,
-              React.createElement(
-                'span',
-                { className: 'edit-headers' },
-                'Expertise:'
-              )
-            ),
-            React.createElement('input', { type: 'text', className: 'inputField', onKeyUp: this.buttonStatus, onChange: function (e) {
-                return _this.setState({ expertise: e.target.value });
-              },
-              defaultValue: 'Please Enter Your Information To Accept Mentees' }),
-            React.createElement(
-              'button',
-              { onClick: this.handleEdit },
-              ' Submit '
-            )
-          )
-        )
-      )
-    );
-  }
-});
 var Landing = React.createClass({
   displayName: "Landing",
 
@@ -33539,6 +33329,280 @@ var Landing = React.createClass({
     );
   }
 });
+var Edit = React.createClass({
+  displayName: 'Edit',
+
+  checkValues: function () {
+    var bio = document.getElementById('bioField').value;
+    var company = document.getElementById('companyField').value;
+    var position = document.getElementById('positionField').value;
+    var location = document.getElementById('locationField').value;
+    var expertise = document.getElementById('expertiseField').value;
+    if ([bio, company, position, location, expertise].includes("") === false) {
+      this.buttonStatus();
+    }
+  },
+
+  buttonStatus: function () {
+    document.getElementById('acceptingButton').disabled = false;
+  },
+
+  getInitialState: function () {
+    return { mentor: {} };
+  },
+
+  componentDidMount: function () {
+    $.getJSON('/api/v1/mentors/' + this.props.mentorId, (function (mentor) {
+      this.setState({ mentor: mentor });
+    }).bind(this));
+  },
+
+  handleClick: function () {
+    var mentor = this.state.mentor;
+    $.ajax({
+      url: '/api/v1/mentors/' + mentor.id,
+      type: 'PATCH',
+      data: { user: { active: true } },
+      success: console.log.bind(this, "yay")
+    });
+  },
+
+  handleUpdate: function (updatedInfo) {
+    var mentor = this.state.mentor;
+    $.ajax({
+      url: '/api/v1/mentors/' + mentor.id,
+      type: 'PATCH',
+      data: { user: { bio: updatedInfo.bio, company: updatedInfo.company, position: updatedInfo.position, location: updatedInfo.location, expertise: updatedInfo.expertise, first_name: updatedInfo.first_name, last_name: updatedInfo.last_name, email: updatedInfo.email, slack: updatedInfo.slack } },
+      success: function () {
+        window.location = "/mentors";
+      }
+    });
+  },
+
+  handleEdit: function (e) {
+    e.preventDefault();
+    var bio = this.state.bio;
+    var company = this.state.company;
+    var position = this.state.position;
+    var location = this.state.location;
+    var expertise = this.state.expertise;
+    var first_name = this.state.first_name;
+    var last_name = this.state.last_name;
+    var slack = this.state.slack;
+    var email = this.state.email;
+
+    var updatedInfo = { bio: bio, company: company, position: position, location: location, expertise: expertise, first_name: first_name, last_name: last_name, slack: slack, email: email };
+    this.handleUpdate(updatedInfo);
+  },
+
+  render: function () {
+    var _this = this;
+
+    var mentor = this.state.mentor;
+
+    return React.createElement(
+      'div',
+      { className: 'container' },
+      React.createElement(
+        'div',
+        { className: 'edit-page' },
+        React.createElement(EditHeader, null),
+        React.createElement(
+          'div',
+          { className: 'row' },
+          React.createElement(
+            'div',
+            { className: 'col s4' },
+            React.createElement('img', { src: mentor.avatar, className: 'dashboard-pic' }),
+            React.createElement(
+              'form',
+              null,
+              React.createElement(
+                'p',
+                null,
+                React.createElement('input', { type: 'checkbox', id: 'acceptingButton', disabled: 'disabled' }),
+                React.createElement(
+                  'label',
+                  { htmlFor: 'acceptingButton' },
+                  'Accepting Students'
+                )
+              )
+            ),
+            React.createElement(
+              'p',
+              null,
+              React.createElement(
+                'em',
+                null,
+                'This won\'t be checkable until you fill in bio, company, position, and expertise on this form.'
+              )
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'col s6' },
+            React.createElement(
+              'div',
+              { className: 'form-area' },
+              React.createElement(
+                'div',
+                { className: 'container-form' },
+                React.createElement(
+                  'h6',
+                  null,
+                  React.createElement(
+                    'span',
+                    { className: 'edit-headers' },
+                    'First Name:'
+                  )
+                ),
+                React.createElement('input', { type: 'text', className: 'inputField census-data', onChange: function (e) {
+                    return _this.setState({ first_name: e.target.value });
+                  },
+                  placeholder: mentor.first_name }),
+                React.createElement(
+                  'h6',
+                  null,
+                  React.createElement(
+                    'span',
+                    { className: 'edit-headers' },
+                    'Last Name:'
+                  )
+                ),
+                React.createElement('input', { type: 'text', className: 'inputField census-data', onChange: function (e) {
+                    return _this.setState({ last_name: e.target.value });
+                  }, placeholder: mentor.last_name }),
+                React.createElement(
+                  'h6',
+                  null,
+                  React.createElement(
+                    'span',
+                    { className: 'edit-headers' },
+                    'Slack:'
+                  )
+                ),
+                React.createElement('input', { type: 'text', className: 'inputField census-data', onChange: function (e) {
+                    return _this.setState({ slack: e.target.value });
+                  }, placeholder: mentor.slack }),
+                React.createElement(
+                  'h6',
+                  null,
+                  React.createElement(
+                    'span',
+                    { className: 'edit-headers' },
+                    'Email:'
+                  )
+                ),
+                React.createElement('input', { type: 'text', className: 'inputField census-data', onChange: function (e) {
+                    return _this.setState({ email: e.target.value });
+                  }, placeholder: mentor.email }),
+                React.createElement(
+                  'h6',
+                  null,
+                  React.createElement(
+                    'span',
+                    { className: 'edit-headers' },
+                    'Bio:'
+                  )
+                ),
+                React.createElement('input', { id: 'bioField', type: 'text', className: 'inputField', onKeyUp: this.checkValues, onChange: function (e) {
+                    return _this.setState({ bio: e.target.value });
+                  },
+                  placeholder: 'Please Enter Your Information To Accept Mentees' }),
+                React.createElement(
+                  'h6',
+                  null,
+                  React.createElement(
+                    'span',
+                    { className: 'edit-headers' },
+                    'Company:'
+                  )
+                ),
+                React.createElement('input', { id: 'companyField', type: 'text', className: 'inputField', onKeyUp: this.checkValues, onChange: function (e) {
+                    return _this.setState({ company: e.target.value });
+                  },
+                  placeholder: 'Please Enter Your Information To Accept Mentees' }),
+                React.createElement(
+                  'h6',
+                  null,
+                  React.createElement(
+                    'span',
+                    { className: 'edit-headers' },
+                    'Position:'
+                  )
+                ),
+                React.createElement('input', { id: 'positionField', type: 'text', className: 'inputField', onKeyUp: this.checkValues, onChange: function (e) {
+                    return _this.setState({ position: e.target.value });
+                  },
+                  placeholder: 'Please Enter Your Information To Accept Mentees' }),
+                React.createElement(
+                  'h6',
+                  null,
+                  React.createElement(
+                    'span',
+                    { className: 'edit-headers' },
+                    'Location:'
+                  )
+                ),
+                React.createElement('input', { id: 'locationField', type: 'text', className: 'inputField', onKeyUp: this.checkValues, onChange: function (e) {
+                    return _this.setState({ location: e.target.value });
+                  },
+                  placeholder: 'Please Enter Your Information To Accept Mentees' }),
+                React.createElement(
+                  'h6',
+                  null,
+                  React.createElement(
+                    'span',
+                    { className: 'edit-headers' },
+                    'Expertise:'
+                  )
+                ),
+                React.createElement('input', { id: 'expertiseField', type: 'text', className: 'inputField', onKeyUp: this.checkValues, onChange: function (e) {
+                    return _this.setState({ expertise: e.target.value });
+                  },
+                  placeholder: 'Please Enter Your Information To Accept Mentees' })
+              )
+            ),
+            React.createElement(
+              'div',
+              { className: 'edit-submit-button' },
+              React.createElement(
+                'button',
+                { onClick: this.handleEdit },
+                ' Submit '
+              )
+            )
+          )
+        )
+      )
+    );
+  }
+});
+var EditHeader = React.createClass({
+  displayName: "EditHeader",
+
+  render: function () {
+    return React.createElement(
+      "div",
+      null,
+      React.createElement(
+        "h5",
+        null,
+        React.createElement(
+          "div",
+          { className: "welcome-edit" },
+          "Welcome! Thanks for checking out Turing MentorSHIP."
+        ),
+        " ",
+        React.createElement(
+          "div",
+          { className: "edit-instructions" },
+          "Please enter the rest of your information in order to accept mentees."
+        )
+      )
+    );
+  }
+});
 var MentorShow = React.createClass({
   displayName: "MentorShow",
 
@@ -33564,7 +33628,7 @@ var MentorShow = React.createClass({
         { className: "container" },
         React.createElement(
           "h1",
-          null,
+          { id: "mentor-show-header" },
           "Mentor Show Page"
         ),
         React.createElement(
@@ -33580,7 +33644,7 @@ var MentorShow = React.createClass({
             ),
             React.createElement(
               "h3",
-              null,
+              { id: "mentor-show-name" },
               mentor.name
             ),
             React.createElement(
@@ -33598,61 +33662,105 @@ var MentorShow = React.createClass({
               "div",
               { className: "container" },
               React.createElement(
-                "p",
-                null,
-                "Location: ",
-                mentor.location,
-                " "
-              ),
-              React.createElement(
-                "p",
-                null,
-                "Company: ",
-                mentor.position,
-                " @ ",
-                mentor.company,
-                " "
-              ),
-              React.createElement(
-                "p",
-                null,
-                "Position: ",
-                mentor.position,
-                " "
-              ),
-              React.createElement(
-                "p",
-                null,
-                "Expertise: ",
-                mentor.expertise
-              ),
-              React.createElement(
-                "p",
-                null,
-                "About Me: ",
-                mentor.bio,
-                " "
-              ),
-              React.createElement(
-                "p",
-                null,
-                "Email: ",
-                mentor.email,
-                " "
-              ),
-              React.createElement(
-                "p",
-                null,
-                "Slack: ",
-                mentor.slack,
-                " "
-              ),
-              React.createElement(
-                "p",
-                null,
-                "Available: ",
-                " " + mentor.active,
-                " "
+                "div",
+                { className: "form-area-show" },
+                React.createElement(
+                  "h6",
+                  { id: "location-show-header" },
+                  React.createElement(
+                    "span",
+                    { className: "edit-headers" },
+                    "Location:"
+                  ),
+                  " ",
+                  mentor.location,
+                  " "
+                ),
+                React.createElement(
+                  "h6",
+                  null,
+                  React.createElement(
+                    "span",
+                    { className: "edit-headers" },
+                    "Company:"
+                  ),
+                  " ",
+                  mentor.position,
+                  " @ ",
+                  mentor.company,
+                  " "
+                ),
+                React.createElement(
+                  "h6",
+                  null,
+                  React.createElement(
+                    "span",
+                    { className: "edit-headers" },
+                    "Position:"
+                  ),
+                  " ",
+                  mentor.position,
+                  " "
+                ),
+                React.createElement(
+                  "h6",
+                  null,
+                  React.createElement(
+                    "span",
+                    { className: "edit-headers" },
+                    "Expertise:"
+                  ),
+                  "  ",
+                  mentor.expertise
+                ),
+                React.createElement(
+                  "h6",
+                  null,
+                  React.createElement(
+                    "span",
+                    { className: "edit-headers" },
+                    "About Me:"
+                  ),
+                  " : ",
+                  mentor.bio,
+                  " "
+                ),
+                React.createElement(
+                  "h6",
+                  null,
+                  React.createElement(
+                    "span",
+                    { className: "edit-headers" },
+                    "Email:"
+                  ),
+                  " ",
+                  mentor.email,
+                  " "
+                ),
+                React.createElement(
+                  "h6",
+                  null,
+                  React.createElement(
+                    "span",
+                    { className: "edit-headers" },
+                    "Slack:"
+                  ),
+                  "  ",
+                  mentor.slack,
+                  " "
+                ),
+                React.createElement(
+                  "h6",
+                  null,
+                  React.createElement(
+                    "span",
+                    { className: "edit-headers" },
+                    "Available:"
+                  ),
+                  "  ",
+                  " " + mentor.active,
+                  " "
+                )
               )
             )
           )
