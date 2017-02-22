@@ -40,7 +40,7 @@ var Edit = React.createClass({
     $.ajax({
      url: `/api/v1/mentors/${mentor.id}`,
      type: 'PATCH',
-     data: {user: { bio: updatedInfo.bio, company: updatedInfo.company, position: updatedInfo.position, location: updatedInfo.location, expertise: updatedInfo.expertise }},
+     data: {user: { bio: updatedInfo.bio, company: updatedInfo.company, position: updatedInfo.position, location: updatedInfo.location, expertise: updatedInfo.expertise, first_name: updatedInfo.first_name, last_name: updatedInfo.last_name, email: updatedInfo.email, slack: updatedInfo.slack }},
      success: function(){ window.location = "/mentors"; }
    });
   },
@@ -52,9 +52,13 @@ var Edit = React.createClass({
     var position = this.state.position;
     var location = this.state.location;
     var expertise = this.state.expertise;
+    var first_name = this.state.first_name;
+    var last_name = this.state.last_name;
+    var slack = this.state.slack;
+    var email = this.state.email;
 
 
-    var updatedInfo = {bio: bio, company: company, position: position, location: location, expertise: expertise}
+    var updatedInfo = {bio: bio, company: company, position: position, location: location, expertise: expertise, first_name: first_name, last_name: last_name, slack: slack, email: email }
     this.handleUpdate(updatedInfo);
   },
 
@@ -74,15 +78,19 @@ var Edit = React.createClass({
                    <label htmlFor="acceptingButton">Accepting Students</label>
                   </p>
                   </form>
-                  <p><em>This won't be checkable until you fill in all fields on this form.</em></p>
+                  <p><em>This won't be checkable until you fill in bio, company, position, and expertise on this form.</em></p>
               </div>
               <div className="col s6">
                 <div className="form-area">
                   <div className="container-form">
-                    <h6><span className="edit-headers">First Name:</span> {mentor.first_name} </h6>
-                    <h6><span className="edit-headers">Last Name:</span> {mentor.last_name} </h6>
-                    <h6><span className="edit-headers">Slack:</span> {mentor.slack} </h6>
-                    <h6><span className="edit-headers">Email:</span> {mentor.email} </h6>
+                    <h6><span className="edit-headers">First Name:</span></h6>
+                    <input type='text' className="inputField" onChange={ (e) => this.setState({ first_name: e.target.value }) } placeholder={mentor.first_name} />
+                    <h6><span className="edit-headers">Last Name:</span></h6>
+                    <input type='text' className="inputField" onChange={ (e) => this.setState({ last_name: e.target.value }) } placeholder={mentor.last_name} />
+                    <h6><span className="edit-headers">Slack:</span></h6>
+                    <input type='text' className="inputField" onChange={ (e) => this.setState({ slack: e.target.value }) } placeholder={mentor.slack} />
+                    <h6><span className="edit-headers">Email:</span></h6>
+                    <input type='text' className="inputField" onChange={ (e) => this.setState({ email: e.target.value }) } placeholder={mentor.email} />
                     <h6><span className="edit-headers">Bio:</span></h6>
                     <input id="bioField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ bio: e.target.value }) }
                       placeholder="Please Enter Your Information To Accept Mentees" />
