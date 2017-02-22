@@ -14,6 +14,30 @@ This is the Turing MentorSHIP project. It is written in Rails 5.
 * `rails s`
 * Visit your app at [http://localhost:3000](http://localhost:3000).
 
+ ### Travis-CI
+
+  Travis CI is a continuous integration tool that receives a webhook everytime you update a branch to a repo you've told it to
+  follow. It deploys your application for each branch you pull request and runs your tests. If either of those things fail
+  (deploying or tests) you will see a red X next to your pull request. Clicking the  In order to have it work you must have a
+  travis.yml file.
+
+  The following is in our .travis.yml which essentially acts as a travis config and lives in your root directory. 
+  For more info go [here](https://docs.travis-ci.com/user/languages/ruby/)
+
+      ```
+      language: ruby
+      rvm:
+        - 2.3.0
+      script:
+        - bundle exec rake db:setup
+        - bundle exec rspec
+      cache: bundler
+      services:
+        - postgresql
+      addons:
+        postgresql: "9.4"
+      ```
+
 ### Production
 
 * Our deployable app: http://turing-mentorship-api.herokuapp.com/
