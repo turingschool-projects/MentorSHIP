@@ -1,4 +1,15 @@
 var Edit = React.createClass({
+  checkValues(){
+    var bio = document.getElementById('bioField').value;
+    var company = document.getElementById('companyField').value;
+    var position = document.getElementById('positionField').value;
+    var location = document.getElementById('locationField').value;
+    var expertise = document.getElementById('expertiseField').value;
+    if (([bio, company, position, location, expertise].includes("")) === false) {
+      this.buttonStatus();
+    }
+  },
+
   buttonStatus(){
     document.getElementById('acceptingButton').disabled = false;
   },
@@ -73,19 +84,19 @@ var Edit = React.createClass({
                     <h6><span className="edit-headers">Slack:</span> {mentor.slack} </h6>
                     <h6><span className="edit-headers">Email:</span> {mentor.email} </h6>
                     <h6><span className="edit-headers">Bio:</span></h6>
-                    <input type='text' className="inputField" onChange={ (e) => this.setState({ bio: e.target.value }) }
+                    <input id="bioField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ bio: e.target.value }) }
                       placeholder="Please Enter Your Information To Accept Mentees" />
                     <h6><span className="edit-headers">Company:</span></h6>
-                    <input type='text' className="inputField" onChange={ (e) => this.setState({ company: e.target.value }) }
+                    <input id="companyField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ company: e.target.value }) }
                       placeholder="Please Enter Your Information To Accept Mentees" />
                     <h6><span className="edit-headers">Position:</span></h6>
-                    <input type='text' className="inputField" onChange={ (e) => this.setState({ position: e.target.value }) }
+                    <input id="positionField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ position: e.target.value }) }
                       placeholder="Please Enter Your Information To Accept Mentees" />
                     <h6><span className="edit-headers">Location:</span></h6>
-                    <input type='text' className="inputField" onChange={ (e) => this.setState({ location: e.target.value }) }
+                    <input id="locationField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ location: e.target.value }) }
                       placeholder="Please Enter Your Information To Accept Mentees" />
                     <h6><span className="edit-headers">Expertise:</span></h6>
-                    <input type='text' className="inputField" onKeyUp={this.buttonStatus} onChange={ (e) => this.setState({ expertise: e.target.value }) }
+                    <input id="expertiseField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ expertise: e.target.value }) }
                       placeholder="Please Enter Your Information To Accept Mentees" />
                   </div>
                 </div>
