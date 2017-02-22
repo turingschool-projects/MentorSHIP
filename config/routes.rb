@@ -1,15 +1,19 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  root to: 'site#index'
+
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/logout', to: "sessions#destroy"
+
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :students, only: [:index, :show]
-      resources :mentors, only: [:index, :show]
-      get '/session_id', to: 'sessions#session_id'
-      get '/user_name', to: 'sessions#user_name'
+      resources :mentors, only: [:index, :show, :edit, :update]
     end
   end
-  get "/auth/github", as: :github_login
-  get "/auth/github/callback", to: "sessions#create"
-  get "/start_auth", to: 'github#github_start'
-  get "/sign_out", to: 'sessions#destroy'
+
+  resources :mentors, only: [:index, :show]
+
+  get '/about', to: 'about#index'
+
+  resources :dashboard, only: [:edit]
 end
