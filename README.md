@@ -1,7 +1,7 @@
 # MentorSHIP
 This is the Turing MentorSHIP project. It is written in Rails 5.
 
-![mentorship](https://s3.amazonaws.com/f.cl.ly/items/1o2y3w262I2b0A2G1a3B/Screen%20Shot%202016-07-20%20at%209.11.26%20PM.png?v=d5da8526)
+![MentorSHIP](http://i.imgur.com/aJ2znTv.jpg)
 
 ## Installation
 
@@ -21,7 +21,7 @@ This is the Turing MentorSHIP project. It is written in Rails 5.
   (deploying or tests) you will see a red X next to your pull request. Clicking the  In order to have it work you must have a
   travis.yml file.
 
-  The following is in our .travis.yml which essentially acts as a travis config and lives in your root directory. 
+  The following is in our .travis.yml which essentially acts as a travis config and lives in your root directory.
   For more info go [here](https://docs.travis-ci.com/user/languages/ruby/)
 
       ```
@@ -54,7 +54,7 @@ This is the Turing MentorSHIP project. It is written in Rails 5.
 * In the root of the project is an `application.yml.sample` file. This file contains all environment variables we are using in this project. We didn't push keys (for obvious reasons) but wanted to make sure any future teams knew which variables they needed to use.
 
 ###CensusService info
-* We are currently taking in info from the mentor dashboard edit and using it to update both our database and Census' database. At this point our database updates correctly and passes the necessary info for Census to the CensusService.new.update_census method. It doesn't make a connection to the census api yet (too late in the mod to accomplish this). You will have to work with Census to make sure this end point `https://census-app-staging.herokuapp.com/api/v1/users/#{id}, params.to_json` is hooked up before you can submit. We have already posted a PR to Census that will tell them the type of data and structure to expect so building it out shouldn't be too much work. 
+* We are currently taking in info from the mentor dashboard edit and using it to update both our database and Census' database. At this point our database updates correctly and passes the necessary info for Census to the CensusService.new.update_census method. It doesn't make a connection to the census api yet (too late in the mod to accomplish this). You will have to work with Census to make sure this end point `https://census-app-staging.herokuapp.com/api/v1/users/#{id}, params.to_json` is hooked up before you can submit. We have already posted a PR to Census that will tell them the type of data and structure to expect so building it out shouldn't be too much work.
 
 ## Endpoints
 
