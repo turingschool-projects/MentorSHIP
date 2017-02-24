@@ -15,6 +15,7 @@ class Api::V1::MentorsController < Api::V1::BaseController
     user.update(user_params)
     user.mentor.update(mentor_params)
     user.mentor.profile_complete = true
+    user.mentor.active = true
     user.save
   end
 
