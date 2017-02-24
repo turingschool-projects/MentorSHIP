@@ -40,7 +40,7 @@ This is the Turing MentorSHIP project. It is written in Rails 5.
 
 ### Production
 
-* Our deployable app: http://turing-mentorship-api.herokuapp.com/
+* Our deployable app: https://turing-mentorship-prod.herokuapp.com/
 
 ### Testing
 
