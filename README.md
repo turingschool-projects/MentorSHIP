@@ -49,7 +49,31 @@ The easiest way to exapline this is to tell you to go [here](https://github.com/
       addons:
         postgresql: "9.4"
       ```
+    
+   ### Heroku
 
+  During development we mostly ran our our app from the development branch on our staging server on heroku. Its available
+  [here](https://dashboard.heroku.com/apps/turing-mentorship-staging). 
+  
+  Our production app is here: https://turing-mentorship.herokuapp.com/
+  
+  
+  The main gotchya's on heroku are making sure to
+  
+  ```
+  #in console
+  
+  $ rake assets:clobber
+  $ rake asssets:precompile 
+  # then recommit and push
+  ```
+  
+  The other one is make sure your config variables for heroku are set to the same as your as in your application.yml file. And
+  set them the same in Travis.  Otherwise travis will fail, heroku requests to census will break and nothing will work and you
+  will cry.
+  
+  Reach out to me (@vidoseaver) via email if you need anything. Peace.
+  
 ### Where are the apps?
 
 * Our deployable app: https://turing-mentorship-prod.herokuapp.com/
