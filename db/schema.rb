@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170216134656) do
+ActiveRecord::Schema.define(version: 20170524225341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "mentor_skills", force: :cascade do |t|
+    t.integer "skills_id"
+    t.integer "mentors_id"
+    t.index ["mentors_id"], name: "index_mentor_skills_on_mentors_id", using: :btree
+    t.index ["skills_id"], name: "index_mentor_skills_on_skills_id", using: :btree
+  end
 
   create_table "mentors", force: :cascade do |t|
     t.integer  "timezone_id"
@@ -28,6 +35,11 @@ ActiveRecord::Schema.define(version: 20170216134656) do
     t.boolean  "profile_complete", default: false
     t.index ["timezone_id"], name: "index_mentors_on_timezone_id", using: :btree
     t.index ["user_id"], name: "index_mentors_on_user_id", using: :btree
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string  "name",       null: false
+    t.integer "skill_type", null: false
   end
 
   create_table "students", force: :cascade do |t|
@@ -53,6 +65,8 @@ ActiveRecord::Schema.define(version: 20170216134656) do
     t.integer  "census_id"
   end
 
+  add_foreign_key "mentor_skills", "mentors", column: "mentors_id"
+  add_foreign_key "mentor_skills", "skills", column: "skills_id"
   add_foreign_key "mentors", "timezones"
   add_foreign_key "mentors", "users"
   add_foreign_key "students", "users"
