@@ -14,6 +14,11 @@ Add yourself to this list if you helped.
 * John Kimble (1608)
 * Vido Seaver (1608)
 * Ben Pepper (1608)
+* Ryan Spink (1611)
+* Daniel Olson (1611)
+* Valerie Trundell (1611)
+* Ediline Cruz (1611)
+* Ashley Schauer (1611)
 
 ## Installation
 
@@ -23,8 +28,58 @@ Add yourself to this list if you helped.
 
 ## Running / Development
 
-So because of the Oauth Census had to use there are special instructions for running a local server.
-The easiest way to exapline this is to tell you to go [here](https://github.com/NZenitram/census_staging_oauth). This walkthrough will get you set up to run a local HTTPS server so you can test locally.
+So because of the Oauth Census had to use there are special instructions for running a local server. This walkthrough will get you set up to run a local HTTPS server so you can run dev server and test locally.
+
+## 1) Create your private key (any password will do, we remove it below)
+
+$ cd ~/.ssh
+$ openssl genrsa -des3 -out server.orig.key 2048
+
+## 2) Remove the password
+
+$ openssl rsa -in server.orig.key -out server.key
+
+
+## 3) Generate the csr (Certificate signing request) (Details are important!)
+
+$ openssl req -new -key server.key -out server.csr
+
+## IMPORTANT
+## MUST have localhost.ssl as the common name to keep browsers happy
+## (has to do with non internal domain names ... which sadly can be
+## avoided with a domain name with a "." in the middle of it somewhere)
+
+Country Name (2 letter code) [AU]:
+
+#### Just press enter to get past prompts until you reach:
+...
+Common Name: localhost.ssl
+...
+#### Fill out the Common Name field and skip the rest.
+
+## 4) Generate self signed ssl certificate
+
+$ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+
+## 5) Finally Add localhost.ssl to your hosts file
+
+$ echo "127.0.0.1 localhost.ssl" | sudo tee -a /private/etc/hosts
+
+## 6) Install Figaro and Census keys
+
+$ bundle exec figaro install
+
+This will add an application.yml file to your config folder
+
+Add your census keys to the application.yml file. Use fuzzy finder(cmd + t) if you can't see the file in your file tree. Keys should be formatted as such.
+
+CENSUS_ID: eba503f490a06e4065366baa96
+CENSUS_SECRET: 78a08c6eafac10bd1adb2c05fd107
+CENSUS_ACCESS_TOKEN: 3d8f68e0aa477176133655427eff29e7b77de72
+
+# 7) To start the SSL web server open another terminal window and run
+
+thin start -p 3001 --ssl --ssl-key-file ~/.ssh/server.key --ssl-cert-file ~/.ssh/server.crt
 
  ### Travis-CI
 
@@ -49,31 +104,31 @@ The easiest way to exapline this is to tell you to go [here](https://github.com/
       addons:
         postgresql: "9.4"
       ```
-    
+
    ### Heroku
 
   During development we mostly ran our our app from the development branch on our staging server on heroku. Its available
-  [here](https://dashboard.heroku.com/apps/turing-mentorship-staging). 
-  
+  [here](https://dashboard.heroku.com/apps/turing-mentorship-staging).
+
   Our production app is here: https://turing-mentorship.herokuapp.com/
-  
-  
+
+
   The main gotchya's on heroku are making sure to
-  
+
   ```
   #in console
-  
+
   $ rake assets:clobber
-  $ rake asssets:precompile 
+  $ rake asssets:precompile
   # then recommit and push
   ```
-  
+
   The other one is make sure your config variables for heroku are set to the same as your as in your application.yml file. And
   set them the same in Travis.  Otherwise travis will fail, heroku requests to census will break and nothing will work and you
   will cry.
-  
+
   Reach out to me (@vidoseaver) via email if you need anything. Peace.
-  
+
 ### Where are the apps?
 
 * Our deployable app: https://turing-mentorship-prod.herokuapp.com/
