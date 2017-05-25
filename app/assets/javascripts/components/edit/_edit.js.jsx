@@ -26,7 +26,7 @@ var Edit = React.createClass({
   },
 
   handleClick() {
-    let mentor = {id:this.props.mentorId};
+    let mentor = this.state.mentor;
     $.ajax({
      url: `/api/v1/mentors/${mentor.id}`,
      type: 'PATCH',
@@ -36,7 +36,7 @@ var Edit = React.createClass({
   },
 
   handleUpdate(updatedInfo){
-    let mentor = {id:this.props.mentorId};
+    let mentor = this.state.mentor;
     $.ajax({
      url: `/api/v1/mentors/${mentor.id}`,
      type: 'PATCH',
