@@ -13,6 +13,7 @@ class CensusService
   end
 
   def update_census(id, params)
+    binding.pry
     @conn.put("users/#{id}", params.to_json)
   end
 
