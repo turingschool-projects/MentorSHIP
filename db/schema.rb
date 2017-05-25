@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524225341) do
+ActiveRecord::Schema.define(version: 20170525185033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,11 @@ ActiveRecord::Schema.define(version: 20170524225341) do
   create_table "mentor_skills", force: :cascade do |t|
     t.integer "skills_id"
     t.integer "mentors_id"
+    t.integer "skill_id"
+    t.integer "mentor_id"
+    t.index ["mentor_id"], name: "index_mentor_skills_on_mentor_id", using: :btree
     t.index ["mentors_id"], name: "index_mentor_skills_on_mentors_id", using: :btree
+    t.index ["skill_id"], name: "index_mentor_skills_on_skill_id", using: :btree
     t.index ["skills_id"], name: "index_mentor_skills_on_skills_id", using: :btree
   end
 
