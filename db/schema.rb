@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526010548) do
-
+ActiveRecord::Schema.define(version: 20170526031531) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,14 +22,10 @@ ActiveRecord::Schema.define(version: 20170526010548) do
   end
 
   create_table "mentor_skills", force: :cascade do |t|
-    t.integer "skills_id"
-    t.integer "mentors_id"
     t.integer "skill_id"
     t.integer "mentor_id"
     t.index ["mentor_id"], name: "index_mentor_skills_on_mentor_id", using: :btree
-    t.index ["mentors_id"], name: "index_mentor_skills_on_mentors_id", using: :btree
     t.index ["skill_id"], name: "index_mentor_skills_on_skill_id", using: :btree
-    t.index ["skills_id"], name: "index_mentor_skills_on_skills_id", using: :btree
   end
 
   create_table "mentors", force: :cascade do |t|
@@ -44,6 +39,7 @@ ActiveRecord::Schema.define(version: 20170526010548) do
     t.datetime "updated_at",                       null: false
     t.boolean  "active",           default: false
     t.boolean  "profile_complete", default: false
+    t.string   "gender"
     t.index ["timezone_id"], name: "index_mentors_on_timezone_id", using: :btree
     t.index ["user_id"], name: "index_mentors_on_user_id", using: :btree
   end
