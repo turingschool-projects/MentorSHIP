@@ -16,6 +16,10 @@ var Mentor = React.createClass({
         <span className='mentor-position'>
             <p><strong>Bio:  </strong>{this.props.mentor.bio}</p>
         </span>
+        <span className='favorited-mentor'>
+          <button>Favorite this mentor</button>
+        </span>
+
       </div>
     )
   }
