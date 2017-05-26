@@ -10,7 +10,6 @@ RSpec.describe Skill, type: :model do
     before(:each) do
       @skill = Skill.create!(name: "Ruby", skill_type: 1)
     end
-
     subject{ @skill }
 
     it { should validate_presence_of(:name ) }
