@@ -1,5 +1,6 @@
 require "rails_helper"
 
+
 RSpec.describe Skill, type: :model do
   context "Relationships" do
     it { should have_many(:mentor_skills) }
