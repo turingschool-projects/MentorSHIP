@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170525185033) do
+ActiveRecord::Schema.define(version: 20170526010548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favorite_mentors", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "mentor_id"
+    t.index ["mentor_id"], name: "index_favorite_mentors_on_mentor_id", using: :btree
+    t.index ["user_id"], name: "index_favorite_mentors_on_user_id", using: :btree
+  end
 
   create_table "mentor_skills", force: :cascade do |t|
     t.integer "skills_id"
@@ -69,6 +76,8 @@ ActiveRecord::Schema.define(version: 20170525185033) do
     t.integer  "census_id"
   end
 
+  add_foreign_key "favorite_mentors", "mentors"
+  add_foreign_key "favorite_mentors", "users"
   add_foreign_key "mentor_skills", "mentors", column: "mentors_id"
   add_foreign_key "mentor_skills", "skills", column: "skills_id"
   add_foreign_key "mentors", "timezones"

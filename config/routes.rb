@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   get '/about', to: 'about#index'
 
   resources :dashboard, only: [:edit]
+
+  resources :favorite_mentors, only: [:create, :destroy]
 end

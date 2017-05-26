@@ -1,4 +1,4 @@
-class CensusProfile 
+class CensusProfile
 
   attr_reader :slack, :email, :first_name, :last_name, :avatar, :cohort
 
