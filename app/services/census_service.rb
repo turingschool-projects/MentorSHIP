@@ -1,8 +1,6 @@
 class CensusService
 
   def initialize(token)
-    # url = "https://turing-census.herokuapp.com/api/v1/" if Rails.env == "production"
-    # url = "https://census-app-staging.herokuapp.com/api/v1/" if Rails.env != "production"
       @conn = Faraday.new(url: "https://turing-census.herokuapp.com/api/v1/") do |faraday|
 
       faraday.adapter  Faraday.default_adapter
