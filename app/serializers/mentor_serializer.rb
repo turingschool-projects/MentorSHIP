@@ -15,6 +15,7 @@ class MentorSerializer < ActiveModel::Serializer
              :first_name,
              :last_name,
              :active,
+             :gender,
              :timezone
 
   def last_active
@@ -34,5 +35,9 @@ class MentorSerializer < ActiveModel::Serializer
 
   def timezone
     object.timezone.name
+  end
+
+  def gender
+    object[:gender]
   end
 end
