@@ -19,9 +19,9 @@ gem 'faker'
 gem "faraday"
 
 gem 'omniauth-oauth2'
-gem 'omniauth-census', git: "https://github.com/NZenitram/census_staging_oauth"
 
 group :development, :test do
+  gem 'omniauth-census', git: "https://github.com/NZenitram/census_staging_oauth"
   gem 'thin'
   gem 'byebug'
   gem 'rspec-rails', '~> 3.5'
@@ -34,6 +34,10 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'selenium-webdriver'
+end
+
+group :production do
+  gem 'omniauth-census-production', git: "https://github.com/AELSchauer/census_production_oauth"
 end
 
 group :development do

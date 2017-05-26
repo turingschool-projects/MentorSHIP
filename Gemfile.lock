@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/AELSchauer/census_production_oauth
+  revision: 3580f1aca9c64b6779b99e6f5940fa9cd2fc97b5
+  specs:
+    omniauth-census-production (0.1.1)
+      omniauth-oauth2
+
+GIT
   remote: https://github.com/NZenitram/census_staging_oauth
   revision: 082f9c376dd85e6d65415f8d1dac0e054971433c
   specs:
@@ -276,6 +283,7 @@ DEPENDENCIES
   jquery-ui-rails
   launchy
   omniauth-census!
+  omniauth-census-production!
   omniauth-oauth2
   pg (~> 0.15)
   poltergeist
@@ -295,4 +303,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.14.4
+   1.14.6
