@@ -31,6 +31,7 @@ class Seed
   def create_user(user)
     timezone = Timezone.find(rand(1..4))
     genders = ["Male", "Female", "Other"]
+    accepting_mentees = [true, false]
     new_user = User.create!(
       phone: '911-867-5309',
       bio: "Say something cool about yourself",
@@ -45,7 +46,8 @@ class Seed
       location: "location",
       company: "Company",
       position: "Position",
-      gender: genders.sample
+      gender: genders.sample,
+      active: accepting_mentees.sample
     )
     puts "Created mentor: #{new_user.mentor.id}"
   end
