@@ -15,11 +15,14 @@ class MentorSerializer < ActiveModel::Serializer
              :first_name,
              :last_name,
              :active,
+             :gender,
              :timezone
 
   def last_active
-    object.last_active.strftime("%A %d %b %Y %l:%M %p")
+    object.updated_at.strftime("%A %d %b %Y %l:%M %p")
+    # object.last_active.strftime("%A %d %b %Y %l:%M %p")
   end
+
 
   def name
     first = object.first_name
@@ -32,5 +35,9 @@ class MentorSerializer < ActiveModel::Serializer
 
   def timezone
     object.timezone.name
+  end
+
+  def gender
+    object[:gender]
   end
 end

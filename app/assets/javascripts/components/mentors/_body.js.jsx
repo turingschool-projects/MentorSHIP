@@ -17,6 +17,19 @@ var Body = React.createClass({
     this.setState({mentors: mentors})
   },
 
+  filterMentorsByGender(gender){
+    // debugger
+    if (gender == "All") {
+      return this.setState({mentors: this.state.allMentors})
+    } else {
+      debugger
+      let mentors = this.state.allMentors.filter((mentor) => {
+        return mentor.gender === gender
+      })
+      this.setState({mentors: mentors})
+    }
+  },
+
   filterMentorsByTimezone(timezone){
     if (timezone == "All") {
       return this.setState({mentors: this.state.allMentors})
@@ -51,6 +64,9 @@ var Body = React.createClass({
         </div>
         <div className= "col s2 pull-s10">
           <TimezoneFilter filterMentorsByTimezone={this.filterMentorsByTimezone}/>
+        </div>
+        <div className= "col s2 pull-s10">
+          <GenderFilter filterMentorsByGender={this.filterMentorsByGender}/>
         </div>
         <div className= "col s2 pull-s10">
           <AcceptingStudentsFilter filterMentorsByAcceptingStudents={this.filterMentorsByAcceptingStudents}/>

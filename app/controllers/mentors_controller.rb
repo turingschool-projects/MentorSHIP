@@ -6,5 +6,4 @@ class MentorsController < ApplicationController
     id = params[:id]
     render component: 'MentorShow', props: { id: id }
   end
-
 end

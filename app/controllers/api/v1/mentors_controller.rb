@@ -15,7 +15,6 @@ class Api::V1::MentorsController < Api::V1::BaseController
     user.update(user_params)
     user.mentor.update(mentor_params)
     user.mentor.profile_complete = true
-    binding.pry
     user.save
   end
 
@@ -26,7 +25,7 @@ class Api::V1::MentorsController < Api::V1::BaseController
   end
 
   def mentor_params
-    params.require(:user).permit(:company, :position, :location, :expertise, :active)
+    params.require(:user).permit(:company, :position, :location, :expertise, :active, :gender)
   end
 
   def census_params
