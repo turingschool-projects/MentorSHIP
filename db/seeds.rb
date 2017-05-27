@@ -19,7 +19,7 @@ class Seed
 
   def get_all_census_users
     this = Faraday.get("https://census-app-staging.herokuapp.com/api/v1/users/?access_token=#{ENV['CENSUS_ACCESS_TOKEN']}")
-    response = JSON.parse(this.body, symbolize_names: true)
+    this.body.empty? ? [] : JSON.parse(this.body, symbolize_names: true)
   end
 
   def find_mentors
