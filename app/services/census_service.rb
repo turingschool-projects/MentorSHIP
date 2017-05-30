@@ -1,7 +1,7 @@
 class CensusService
 
   def initialize(token)
-    url = ENV["CENSUS_URL"]
+    url = "#{ENV["CENSUS_URL"]}/api/v1"
 
     @conn = Faraday.new(url: url) do |faraday|
       faraday.adapter  Faraday.default_adapter
