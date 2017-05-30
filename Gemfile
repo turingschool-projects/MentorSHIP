@@ -16,10 +16,9 @@ gem "figaro"
 gem "faraday"
 gem 'awesome_print'
 gem 'faker'
-gem "faraday"
 
 gem 'omniauth-oauth2'
-gem 'omniauth-census', git: "https://github.com/NZenitram/census_staging_oauth"
+gem 'omniauth-census', git: 'https://github.com/AELSchauer/omniauth-census', branch: 'env'
 
 group :development, :test do
   gem 'thin'
@@ -35,7 +34,6 @@ group :development, :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
-
 
 group :development do
   gem 'web-console', '~> 2.0'
