@@ -9,6 +9,7 @@ gem 'jquery-ui-rails'
 gem 'rack-cors'
 gem 'react-rails'
 gem "puma"
+gem 'materialize-sass'
 
 gem 'active_model_serializers', '~> 0.10.0'
 gem "responders"

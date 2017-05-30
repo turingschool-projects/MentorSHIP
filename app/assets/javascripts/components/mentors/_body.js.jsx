@@ -26,6 +26,9 @@ var Body = React.createClass({
       let mentors = this.state.allMentors.filter((mentor) => {
         return mentor.gender === gender
       })
+
+
+      
       this.setState({mentors: mentors})
     }
   },
