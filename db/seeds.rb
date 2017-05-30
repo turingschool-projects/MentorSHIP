@@ -19,7 +19,7 @@ class Seed
 
   def get_all_census_users
     this = Faraday.get("https://census-app-staging.herokuapp.com/api/v1/users/?access_token=#{ENV['CENSUS_ACCESS_TOKEN']}")
-    response = JSON.parse(this.body, symbolize_names: true)
+    this.body.empty? ? [] : JSON.parse(this.body, symbolize_names: true)
   end
 
   def find_mentors
@@ -31,6 +31,7 @@ class Seed
   def create_user(user)
     timezone = Timezone.find(rand(1..4))
     genders = ["Male", "Female", "Other"]
+    accepting_mentees = [true, false]
     new_user = User.create!(
       phone: '911-867-5309',
       bio: "Say something cool about yourself",
@@ -45,7 +46,8 @@ class Seed
       location: "location",
       company: "Company",
       position: "Position",
-      gender: genders.sample
+      gender: genders.sample,
+      active: accepting_mentees.sample
     )
     puts "Created mentor: #{new_user.mentor.id}"
   end
