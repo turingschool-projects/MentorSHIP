@@ -28,13 +28,10 @@ var Body = React.createClass({
     }
   },
   filterMentorsByAlphabet(letter){
-    // debugger
     if (letter == "All") {
       return this.setState({mentors: this.state.allMentors})
     } else {
-      // debugger
       let mentors = this.state.allMentors.filter((mentor) => {
-        // debugger;
         return mentor.last_name[0] === letter.toUpperCase();
       })
       this.setState({mentors: mentors})
