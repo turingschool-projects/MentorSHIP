@@ -5,8 +5,9 @@ class Mentor < ApplicationRecord
   has_many :mentor_skills
   has_many :skills, through: :mentor_skills
 
-  has_many :favorite_mentors
-  
+
+  has_many :student_mentors
+  has_many :students, through: :student_mentors
 
   delegate :avatar,
            :first_name,

@@ -1,9 +1,7 @@
 class User < ApplicationRecord
   has_one :student
   has_one :mentor
-
-  has_many :favorite_mentors
-
+  
   delegate :avatar,
           :first_name,
           :last_name,

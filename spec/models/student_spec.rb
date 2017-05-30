@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Student, type: :model do
   context "Relationships" do
     it { should belong_to(:user)}
+    it { should have_many(:mentors)}
+    it { should have_many(:student_mentors)}
   end
 
   context "Delegations" do
