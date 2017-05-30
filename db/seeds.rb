@@ -18,8 +18,7 @@ class Seed
   end
 
   def get_all_census_users
-    # this = Faraday.get("https://census-app-staging.herokuapp.com/api/v1/users/?access_token=#{ENV['CENSUS_ACCESS_TOKEN']}") if Rails.env != "production"
-    this = Faraday.get("https://turing-census.herokuapp.com/api/v1/users/?access_token=#{ENV['CENSUS_ACCESS_TOKEN']}")
+    this = Faraday.get("#{ENV['CENSUS_URL']}users/?access_token=#{ENV['CENSUS_ACCESS_TOKEN']}")
   end
 
   def find_mentors
