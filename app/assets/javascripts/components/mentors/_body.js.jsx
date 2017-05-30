@@ -16,7 +16,6 @@ var Body = React.createClass({
     });
     this.setState({mentors: mentors})
   },
-
   filterMentorsByGender(gender){
     if (gender == "All") {
       return this.setState({mentors: this.state.allMentors})
@@ -29,13 +28,14 @@ var Body = React.createClass({
     }
   },
   filterMentorsByAlphabet(letter){
+    // debugger
     if (letter == "All") {
       return this.setState({mentors: this.state.allMentors})
     } else {
       // debugger
       let mentors = this.state.allMentors.filter((mentor) => {
-        debugger;
-        return mentor.gender === letter
+        // debugger;
+        return mentor.last_name[0] === letter.toUpperCase();
       })
       this.setState({mentors: mentors})
     }
@@ -80,7 +80,7 @@ var Body = React.createClass({
           <GenderFilter filterMentorsByGender={this.filterMentorsByGender}/>
         </div>
         <div className= "col s2 pull-s10">
-          <LastNameFilter filterMentorsByAlhabet={this.filterMentorsByAlphabet}/>
+          <LastNameFilter filterMentorsByAlphabet={this.filterMentorsByAlphabet}/>
         </div>
         <div className= "col s2 pull-s10">
           <AcceptingStudentsFilter filterMentorsByAcceptingStudents={this.filterMentorsByAcceptingStudents}/>

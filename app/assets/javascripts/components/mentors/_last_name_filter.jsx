@@ -4,7 +4,7 @@ var LastNameFilter = React.createClass({
   },
   handleLastNameChange(event) {
     this.state = {value: event.target.value};
-    this.props.filterMentorsByLastName(event.target.value)
+    this.props.filterMentorsByAlphabet(event.target.value)
   },
 
   render (){
