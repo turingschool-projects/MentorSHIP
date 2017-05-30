@@ -18,7 +18,10 @@ gem 'awesome_print'
 gem 'faker'
 
 gem 'omniauth-oauth2'
+
 gem 'omniauth-census', git: "https://github.com/AELSchauer/omniauth-census", branch: "env"
+
+
 
 group :development, :test do
   gem 'thin'
@@ -34,7 +37,6 @@ group :development, :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
-
 
 group :development do
   gem 'web-console', '~> 2.0'

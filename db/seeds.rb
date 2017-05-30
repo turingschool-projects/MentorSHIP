@@ -19,6 +19,7 @@ class Seed
 
   def get_all_census_users
     this = Faraday.get("#{ENV['CENSUS_URL']}users/?access_token=#{ENV['CENSUS_ACCESS_TOKEN']}")
+    this.body.empty? ? [] : JSON.parse(this.body, symbolize_names: true)
   end
 
   def find_mentors
