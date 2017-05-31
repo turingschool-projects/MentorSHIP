@@ -3,9 +3,11 @@ var Edit = React.createClass({
     var bio = document.getElementById('bioField').value;
     var company = document.getElementById('companyField').value;
     var position = document.getElementById('positionField').value;
-    var location = document.getElementById('locationField').value;
+    var city = document.getElementById('cityField').value;
+    var state = document.getElementById('stateField').value;
+    var country = document.getElementById('countryField').value;
     var expertise = document.getElementById('expertiseField').value;
-    if (([bio, company, position, location, expertise].includes("")) === false) {
+    if ([bio, company, position, city, expertise].includes("") === false && !(state == "" && country == "")) {
       this.buttonStatus();
     }
   },
@@ -41,7 +43,7 @@ var Edit = React.createClass({
     $.ajax({
      url: `/api/v1/mentors/${mentor.id}`,
      type: 'PATCH',
-     data: {user: { bio: updatedInfo.bio, company: updatedInfo.company, position: updatedInfo.position, location: updatedInfo.location, expertise: updatedInfo.expertise, first_name: updatedInfo.first_name, last_name: updatedInfo.last_name, email: updatedInfo.email, slack: updatedInfo.slack }},
+     data: { user: { bio: updatedInfo.bio, company: updatedInfo.company, position: updatedInfo.position, city: updatedInfo.city, state: updatedInfo.state, country: updatedInfo.country } },
      success: function(){ window.location = "/mentors"; }
    });
   },
@@ -51,10 +53,12 @@ var Edit = React.createClass({
     var bio = this.state.bio;
     var company = this.state.company;
     var position = this.state.position;
-    var location = this.state.location;
+    var city = this.state.city;
+    var state = this.state.state;
+    var country = this.state.country;
     var expertise = this.state.expertise;
 
-    var updatedInfo = {bio: bio, company: company, position: position, location: location, expertise: expertise, first_name: first_name, last_name: last_name, slack: slack, email: email }
+    var updatedInfo = { bio: bio, company: company, position: position, city: city, state: state, country: country, expertise: expertise }
     this.handleUpdate(updatedInfo);
   },
 
@@ -110,9 +114,15 @@ var Edit = React.createClass({
                     <h6><span className="edit-headers">Position:</span></h6>
                     <input id="positionField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ position: e.target.value }) }
                       placeholder="Please Enter Your Information To Accept Mentees" value={mentor.position} />
-                    <h6><span className="edit-headers">Location:</span></h6>
-                    <input id="locationField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ location: e.target.value }) }
-                      placeholder="Please Enter Your Information To Accept Mentees" value={mentor.location} />
+                    <h6><span className="edit-headers">City:</span></h6>
+                    <input id="cityField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ city: e.target.value }) }
+                      placeholder="Please Enter Your Information To Accept Mentees" value={mentor.city} />
+                    <h6><span className="edit-headers">State:</span></h6>
+                    <input id="stateField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ state: e.target.value }) }
+                      placeholder="Please Enter Your Information To Accept Mentees" value={mentor.state} />
+                    <h6><span className="edit-headers">Country:</span></h6>
+                    <input id="countryField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ country: e.target.value }) }
+                      placeholder="Please Enter Your Information To Accept Mentees" value={mentor.country} />
                     <h6><span className="edit-headers">Expertise:</span></h6>
                     <input id="expertiseField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ expertise: e.target.value }) }
                       placeholder="Please Enter Your Information To Accept Mentees" value={mentor.expertise} />
