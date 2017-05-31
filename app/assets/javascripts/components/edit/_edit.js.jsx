@@ -41,7 +41,7 @@ var Edit = React.createClass({
     $.ajax({
      url: `/api/v1/mentors/${mentor.id}`,
      type: 'PATCH',
-     data: {user: { bio: updatedInfo.bio, company: updatedInfo.company, position: updatedInfo.position, location: updatedInfo.location, expertise: updatedInfo.expertise, first_name: updatedInfo.first_name, last_name: updatedInfo.last_name, email: updatedInfo.email, slack: updatedInfo.slack }},
+     data: { user: { bio: updatedInfo.bio, company: updatedInfo.company, position: updatedInfo.position, location: updatedInfo.location, expertise: updatedInfo.expertise } },
      success: function(){ window.location = "/mentors"; }
    });
   },
@@ -54,7 +54,7 @@ var Edit = React.createClass({
     var location = this.state.location;
     var expertise = this.state.expertise;
 
-    var updatedInfo = {bio: bio, company: company, position: position, location: location, expertise: expertise, first_name: first_name, last_name: last_name, slack: slack, email: email }
+    var updatedInfo = { bio: bio, company: company, position: position, location: location, expertise: expertise }
     this.handleUpdate(updatedInfo);
   },
 
