@@ -6,9 +6,9 @@ class Api::V1::MentorsController < Api::V1::BaseController
   end
 
   def show
-    user = User.find(params[:id])
+    mentor = Mentor.find_or_create_by(user: params[:id])
 
-    render json: user.mentor_profile
+    render json: mentor.profile
   end
 
   def update
