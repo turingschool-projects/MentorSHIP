@@ -14,16 +14,17 @@ var Body = React.createClass({
       searchableMentorsInfo = mentor.name.toLowerCase() + mentor.location.toLowerCase() + mentor.expertise.toLowerCase() + mentor.company.toLowerCase() + mentor.bio.toLowerCase()
       return searchableMentorsInfo.includes(query)
     });
+    debugger;
     this.setState({mentors: mentors})
   },
   filterMentorsByGender(gender){
     if (gender == "All") {
       return this.setState({mentors: this.state.allMentors})
     } else {
-      // debugger
       let mentors = this.state.allMentors.filter((mentor) => {
         return mentor.gender === gender
       })
+      debugger;
       this.setState({mentors: mentors})
     }
   },
@@ -34,6 +35,7 @@ var Body = React.createClass({
       let mentors = this.state.allMentors.filter((mentor) => {
         return mentor.last_name[0] === letter.toUpperCase();
       })
+      debugger;
       this.setState({mentors: mentors})
     }
   },
