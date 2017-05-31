@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :mentors, only: [:index, :show, :edit, :update]
-      resources :favorite_mentors, only: [:index, :create, :destroy]
+      resources :student_mentors, only: [:index, :create, :destroy]
     end
   end
 
@@ -18,5 +18,5 @@ Rails.application.routes.draw do
 
   resources :dashboard, only: [:edit]
 
-  resources :favorite_mentors, only: [:create, :destroy]
+  resources :student_mentors, only: [:index, :create, :destroy, :update]
 end

@@ -1,40 +1,28 @@
 var Mentor = React.createClass({
   getInitialState() {
-    return { editable: false, favorite: 'white' }
+    return { editable: false, color: 'white', text: 'Favorite' };
   },
 
-  // changeColor: function() {
-  //   var fav = this.state.favorite == 'white' ? 'red' : 'white';
-  //   this.setState({favorite: fav})
-  // },
+  changeColor: function() {
+    var colorTest = this.state.color == 'white' ? 'red' : 'white';
+    var buttonInput = this.state.text == 'Favorite' ? 'Unfavorite' : 'Favorite';
+      this.setState({color: colorTest, text: buttonInput})
+  },
+
+
   toggleFavorite: function () {
     //
     //
     // debugger
     var id_mentor = this.props.mentor.id;
     $.ajax({
-     url: `/api/v1/favorite_mentors`,
+     url: `/api/v1/student_mentors`,
      type: 'POST',
-     data: {favorite_mentor: {mentor_id: id_mentor}},
+     data: {student_mentor: {mentor_id: id_mentor}},
      success: alert("You just favorited a Mentor")
    });
 
 },
-
-  toggleUnFavorite: function () {
-    //
-    //
-    // debugger
-    var id_mentor = this.props.mentor.id;
-    $.ajax({
-     url: `/api/v1/favorite_mentors/${id_mentor}`,
-     type: 'DELETE',
-     success: alert("You just made a mentor cry")
-   });
-
-
-  },
-
 
 
 
@@ -55,10 +43,7 @@ var Mentor = React.createClass({
             <p><strong>Bio:  </strong>{this.props.mentor.bio}</p>
         </span>
         <span className='favorite-mentor'>
-          <button onClick={this.toggleFavorite} style={{backgroundColor:this.state.favorite}}><i class="material-icons">add</i></button>
-        </span>
-        <span className='unfavorite-mentor'>
-          <button onClick={this.toggleUnFavorite} style={{backgroundColor:this.state.favorite}}>UNFavorite</button>
+          <button onClick={this.toggleFavorite} style={{background:this.state.color}}>{this.state.text}</button>
         </span>
 
       </div>

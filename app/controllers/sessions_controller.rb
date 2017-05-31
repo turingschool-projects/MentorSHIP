@@ -3,9 +3,6 @@ class SessionsController < ApplicationController
   def create
     census_user_info = env["omniauth.auth"]
     user = User.find_or_create_by(census_id: census_user_info["uid"])
-    ## some logic we need to put here to determine if the user is a mentor or not
-    ##????
-
     user.token = census_user_info['info']['token']
     user.census_id = census_user_info['uid']
     user.save
