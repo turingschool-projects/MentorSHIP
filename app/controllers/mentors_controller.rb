@@ -4,6 +4,8 @@ class MentorsController < ApplicationController
 
   def show
     id = params[:id]
-    render component: 'MentorShow', props: { id: id }
+    mentor = Mentor.find(params[:id])
+    skills = mentor.skills
+    render component: 'MentorShow', props: { id: id, skills: skills}
   end
 end

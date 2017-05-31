@@ -14,7 +14,8 @@ class Mentor < ApplicationRecord
            :bio,
            :census_id,
            :token,
-           :gender,
+           #:gender,
            :last_active, to: :user
+
 
 end

@@ -1,3 +1,5 @@
+import RenderList from './mentor_skills'
+
 var MentorShow = React.createClass({
   getInitialState(){
     return {mentor:{}}
@@ -11,8 +13,12 @@ var MentorShow = React.createClass({
     }.bind(this));
   },
 
+  getMentorSkills() {
+    let skills = this.props.skills
+  }
+
   render() {
-    let mentor = this.state.mentor;
+    let mentor = this.state.mentor
     return (
        <div>
          <div className="container">
@@ -36,6 +42,16 @@ var MentorShow = React.createClass({
                  <h6><span className="edit-headers">Email:</span> {mentor.email} </h6>
                  <h6><span className="edit-headers">Slack:</span>  {mentor.slack} </h6>
                  <h6><span className="edit-headers">Available:</span>  {" " +mentor.active} </h6>
+                 <div className= "col s2 pull-s10">
+                   <table>
+                    <thead>
+                      <th></th>
+                    </thead>
+                    <tbody id="skill-list">
+                      <MentorSkill mentorSkills={this.getMentorSkills}/>
+                    </tbody>
+                  </table>
+                 </div>
                 </div>
               </div>
            </div>
