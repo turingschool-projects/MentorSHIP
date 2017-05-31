@@ -5,16 +5,8 @@ require './app/models/timezone.rb'
 class Seed
 
   def start
-    create_timezones
     find_mentors
     skills
-  end
-
-  def create_timezones
-    ['Pacific', 'Mountain', 'Central', 'Eastern'].each do |location|
-      Timezone.create!(name: location)
-      puts "Created time zone: #{location}!"
-    end
   end
 
   def get_all_census_users
@@ -29,7 +21,6 @@ class Seed
   end
 
   def create_user(user)
-    timezone = Timezone.find(rand(1..4))
     genders = ["Male", "Female", "Other"]
     accepting_mentees = [true, false]
     new_user = User.create!(
@@ -41,9 +32,10 @@ class Seed
     )
     puts "Created user: #{user[:first_name]}!"
     new_user.create_mentor!(
-      timezone_id: timezone.id,
       expertise: "Enter your expertise here",
-      location: "location",
+      city: 'Denver',
+      state: 'CO',
+      country: 'USA',
       company: "Company",
       position: "Position",
       gender: genders.sample,

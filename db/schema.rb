@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526031531) do
+ActiveRecord::Schema.define(version: 20170531173244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,9 +23,7 @@ ActiveRecord::Schema.define(version: 20170526031531) do
   end
 
   create_table "mentors", force: :cascade do |t|
-    t.integer  "timezone_id"
     t.string   "expertise"
-    t.string   "location"
     t.string   "company"
     t.string   "position"
     t.integer  "user_id"
@@ -34,7 +32,10 @@ ActiveRecord::Schema.define(version: 20170526031531) do
     t.boolean  "active",           default: false
     t.boolean  "profile_complete", default: false
     t.string   "gender"
-    t.index ["timezone_id"], name: "index_mentors_on_timezone_id", using: :btree
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "timezone"
     t.index ["user_id"], name: "index_mentors_on_user_id", using: :btree
   end
 
@@ -66,7 +67,6 @@ ActiveRecord::Schema.define(version: 20170526031531) do
     t.integer  "census_id"
   end
 
-  add_foreign_key "mentors", "timezones"
   add_foreign_key "mentors", "users"
   add_foreign_key "students", "users"
 end
