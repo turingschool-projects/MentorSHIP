@@ -1,19 +1,16 @@
 var Mentor = React.createClass({
   getInitialState() {
-    return { editable: false, color: 'white', text: 'Favorite' };
+    return { editable: false };
   },
 
-  changeColor: function() {
-    var colorTest = this.state.color == 'white' ? 'red' : 'white';
-    var buttonInput = this.state.text == 'Favorite' ? 'Unfavorite' : 'Favorite';
-      this.setState({color: colorTest, text: buttonInput})
-  },
+  // changeColor: function() {
+  //   var colorTest = this.state.color == 'white' ? 'red' : 'white';
+  //   var buttonInput = this.state.text == 'Favorite' ? 'Unfavorite' : 'Favorite';
+  //     this.setState({color: colorTest, text: buttonInput})
+  // },
 
 
   toggleFavorite: function () {
-    //
-    //
-    // debugger
     var id_mentor = this.props.mentor.id;
     $.ajax({
      url: `/api/v1/student_mentors`,
@@ -24,9 +21,16 @@ var Mentor = React.createClass({
 
 },
 
+toggleUnFavorite: function () {
+  var student_mentor_id = this.props.mentor.student_favorites[0].student_id;
+  $.ajax({
+    url: `/api/v1/student_mentors/${student_mentor_id}`,
+    type: 'DELETE',
+    success: alert("You just made a mentor cry")
+  });
 
 
-
+},
 
 
   render() {
@@ -43,7 +47,10 @@ var Mentor = React.createClass({
             <p><strong>Bio:  </strong>{this.props.mentor.bio}</p>
         </span>
         <span className='favorite-mentor'>
-          <button onClick={this.toggleFavorite} style={{background:this.state.color}}>{this.state.text}</button>
+          <button onClick={this.toggleFavorite}>Favorite</button>
+        </span>
+        <span className='favorite-mentor'>
+          <button onClick={this.toggleUnFavorite}>Unfavorite</button>
         </span>
 
       </div>

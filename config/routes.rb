@@ -17,6 +17,4 @@ Rails.application.routes.draw do
   get '/about', to: 'about#index'
 
   resources :dashboard, only: [:edit]
-
-  resources :student_mentors, only: [:index, :create, :destroy, :update]
 end

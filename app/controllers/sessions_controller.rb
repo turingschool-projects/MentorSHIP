@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
     user.token = census_user_info['info']['token']
     user.census_id = census_user_info['uid']
     user.save
-
     session[:user_id] = user.id
     if not_mentor?(census_user_info)
       Student.find_or_create_by(user_id: user.id)
