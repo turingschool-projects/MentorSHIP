@@ -30,4 +30,9 @@ class Mentor < ApplicationRecord
     end
   end
 
+  def determine_timezone
+    loc = Geokit::Geocoders::GoogleGeocoder.geocode(location)
+    loc.precision == 'unknown' ? nil : Timezone.lookup(loc.lat, loc.lng)
+  end
+
 end
