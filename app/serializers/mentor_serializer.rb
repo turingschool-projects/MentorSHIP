@@ -17,7 +17,8 @@ class MentorSerializer < ActiveModel::Serializer
              :active,
              :gender,
              :timezone,
-             :favorite
+             :favorite,
+             :student_favorites
 
   def last_active
     object.updated_at.strftime("%A %d %b %Y %l:%M %p")
@@ -49,5 +50,9 @@ class MentorSerializer < ActiveModel::Serializer
     else
       false
     end
+  end
+
+  def student_favorites
+    object.student_mentors
   end
 end

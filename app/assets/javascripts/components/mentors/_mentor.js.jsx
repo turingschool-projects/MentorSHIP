@@ -1,12 +1,11 @@
 var Mentor = React.createClass({
   getInitialState() {
-    debugger
     return { editable: false };
   },
 
   // changeColor: function() {
   //   var colorTest = this.state.color == 'white' ? 'red' : 'white';
-  //   var buttonInput = this.state.text == 'Favorite' ? 'Unfavorite' : 'Favorite';
+    // var buttonInput = this.state.text == 'Favorite' ? 'Unfavorite' : 'Favorite';
   //     this.setState({color: colorTest, text: buttonInput})
   // },
 
@@ -24,28 +23,14 @@ var Mentor = React.createClass({
 },
 
 toggleUnFavorite: function () {
-  var student_mentor_id = this.props.mentor.student_favorites[0].student_id;
+  // debugger
+  var student_mentor_id = this.props.mentor.student_favorites[0].id;
   $.ajax({
     url: `/api/v1/student_mentors/${student_mentor_id}`,
     type: 'DELETE',
     success: alert("You just made a mentor cry")
   });
-
-
 },
-
-renderButton: function (){
-  if (this.props.mentor.favorite === true) {
-    (<span className="colored-heart">
-      <button onClick={this.toggleFavorite}>Heart Emoji</button>
-    </span>)
-  } else {
-    (<span className="uncolored-heart">
-      <button onClick={this.toggleUnFavorite}>sad Emoji</button>
-    </span>)
-  }
-},
-
 
   render() {
     return (
@@ -60,8 +45,11 @@ renderButton: function (){
         <span className='mentor-position'>
             <p><strong>Bio:  </strong>{this.props.mentor.bio}</p>
         </span>
-        <span className={this.props.mentor.favorite === true ? "colored-heart" : "uncolored-heart"}>
-          <button onClick={this.toggleFavorite}>Heart Emoji</button>
+        <span style={{display: this.props.mentor.favorite === false ? "true" : "none"}}>
+          <button onClick={this.toggleFavorite}>Favorite</button>
+        </span>
+        <span style={{display: this.props.mentor.favorite === true ? "true" : "none"}}>
+          <button onClick={this.toggleUnFavorite}>UnFavorite</button>
         </span>
 
       </div>

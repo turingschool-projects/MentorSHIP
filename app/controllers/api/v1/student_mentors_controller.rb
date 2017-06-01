@@ -16,6 +16,7 @@ class Api::V1::StudentMentorsController < Api::V1::BaseController
     @student_mentor.destroy
   end
 
+
   def student_mentor_params
     params.require(:student_mentor).permit(:user_id, :mentor_id)
   end
