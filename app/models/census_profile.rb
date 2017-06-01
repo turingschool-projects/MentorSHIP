@@ -1,4 +1,4 @@
-class CensusProfile 
+class CensusProfile
 
   attr_reader :slack, :email, :first_name, :last_name, :avatar, :cohort
 
@@ -15,5 +15,4 @@ class CensusProfile
     user_hash = CensusService.new(token).get_user(id)
     CensusProfile.new(user_hash)
   end
-
 end

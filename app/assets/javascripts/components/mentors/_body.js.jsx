@@ -12,13 +12,13 @@ var Body = React.createClass({
                     'Access-Control-Allow-Origin': '*'
                 }
     }).then(function(data){
-      var eligibleUsers = data.map(function(user){
+      var eligibleUsers = []
+      data.forEach(function(user){
         if(user.roles[0].name == "graduated" || user.roles[0].name == "staff") {
-          return user
+          eligibleUsers.push(user.id)
         } else {
         }
       })
-      debugger;
     })
   },
 
