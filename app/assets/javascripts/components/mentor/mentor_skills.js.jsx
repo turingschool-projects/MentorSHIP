@@ -3,16 +3,26 @@ var MentorSkill = React.createClass({
     return { value: "All"}
   },
 
-  skillName(){
-    skills = this.props.skills
-
-    return skills.forEach(function(skill){
-      $('#skill-list)'.append(skill.name)
-    })
+  componentDidMount() {
+    // skillName()
   },
 
+  // skillName () {
+  //   // skills = this.props.skills
+  //   debugger;
+  //   // return skills.forEach(function(skill){
+  //   //   $('#skill-list)'.append(skill.name)
+  //   // })
+  //
+  // },
+
+
+
+
   render() {
+    // let derp = this.props.skills
+    // something = derp.forEach(function(der) {<tr><td>{der.name}</td></tr>}
     return (
-    <tr><td>{this.skillName()}</td></tr>
+      <div>Hi</div>
   )}
 });

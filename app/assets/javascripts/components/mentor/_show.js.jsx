@@ -1,5 +1,3 @@
-import RenderList from './mentor_skills'
-
 var MentorShow = React.createClass({
   getInitialState(){
     return {mentor:{}}
@@ -7,15 +5,23 @@ var MentorShow = React.createClass({
 
   componentDidMount() {
     let id = this.props.id;
+    let skills = this.props.skills
+    let skillName = skills.forEach(function (skill) {
+      let tableRef = document.getElementById('skill-list')
+      $(tableRef).append(`<tr><td>${skill.name}</td></tr>`);
+    })
+
     $.getJSON(`/api/v1/mentors/${id}`, function(mentor){
       console.log(mentor);
       this.setState({mentor: mentor});
     }.bind(this));
   },
 
-  getMentorSkills() {
-    let skills = this.props.skills
-  }
+  // getMentorSkills() {
+  //   // let skills = this.props.skills
+  //   // this.setState({skills:skills})
+  //
+  // },
 
   render() {
     let mentor = this.state.mentor
@@ -42,16 +48,21 @@ var MentorShow = React.createClass({
                  <h6><span className="edit-headers">Email:</span> {mentor.email} </h6>
                  <h6><span className="edit-headers">Slack:</span>  {mentor.slack} </h6>
                  <h6><span className="edit-headers">Available:</span>  {" " +mentor.active} </h6>
-                 <div className= "col s2 pull-s10">
-                   <table>
-                    <thead>
-                      <th></th>
-                    </thead>
-                    <tbody id="skill-list">
-                      <MentorSkill mentorSkills={this.getMentorSkills}/>
-                    </tbody>
-                  </table>
-                 </div>
+                  <div className='skills-table'>
+                    <table id="skill-list">
+                      <thead>
+                        <tr>
+                          <th>Skills: </th>
+                        </tr>
+                      </thead>
+                      <tbody >
+                        <tr>
+                          <td>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
            </div>
