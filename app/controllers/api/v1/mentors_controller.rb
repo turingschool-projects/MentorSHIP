@@ -7,7 +7,6 @@ class Api::V1::MentorsController < Api::V1::BaseController
 
   def show
     mentor = Mentor.find_or_create_by(user_id: params[:id])
-
     render json: mentor.profile
   end
 
@@ -16,8 +15,7 @@ class Api::V1::MentorsController < Api::V1::BaseController
     user.update(user_params)
     mentor = Mentor.find_or_create_by(user_id: params[:id])
     mentor.update(mentor_params)
-    mentor.profile_complete = true
-    user.save
+    # mentor.profile_complete = true
   end
 
   private
@@ -27,8 +25,7 @@ class Api::V1::MentorsController < Api::V1::BaseController
   end
 
   def mentor_params
-    params.require(:user).permit(:company, :position, :location, :expertise, :active, :gender)
-    .merge!({timezone_id: 1})
+    params.require(:user).permit(:company, :position, :expertise, :active, :gender, :location)
   end
 
   def census_params
