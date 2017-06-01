@@ -1,5 +1,4 @@
 class Mentor < ApplicationRecord
-  # belongs_to :timezone
   belongs_to :user
 
   has_many :mentor_skills
