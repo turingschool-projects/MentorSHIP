@@ -23,7 +23,7 @@ class Mentor < ApplicationRecord
     attr_list = [
       :account_url, :active, :avatar, :bio, :company,
       :email, :expertise, :first_name, :gender, :last_name,
-      :location, :position, :profile_complete, :slack, :state
+      :location, :position, :profile_complete, :slack
     ]
 
     attr_list.reduce({}) do |profile, attr|
@@ -32,7 +32,9 @@ class Mentor < ApplicationRecord
   end
 
   def determine_timezone
+    return if location.nil?
     loc = Location.find_by_search_name_or_parse(location)
+    return if loc.nil?
     assign_attributes(location: loc.full_name, timezone_name: loc.timezone_name)
   end
 end

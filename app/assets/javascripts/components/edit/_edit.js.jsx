@@ -84,7 +84,7 @@ var Edit = React.createClass({
 
   handleExpertiseChange(e) {
     let mentor = this.state.mentor;
-    mentor.expertiseField = e.target.value;
+    mentor.expertise = e.target.value;
     this.setMentorChange(mentor)
   },
 
