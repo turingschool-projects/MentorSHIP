@@ -5,7 +5,12 @@ var Body = React.createClass({
   },
 
   componentDidMount() {
-    $.getJSON('/api/v1/mentors.json', (response) => { this.setState({ mentors: response, allMentors: response }) });
+    $.getJSON('/api/v1/mentors.json', (response) => {
+      this.setState({ mentors: response, allMentors: response })
+    })
+    .fail( (failure) => {
+      console.log(failure)
+    })
   },
 
   searchMentors(query){
