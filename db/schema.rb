@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(version: 20170526031531) do
   create_table "student_mentors", force: :cascade do |t|
     t.integer  "student_id"
     t.integer  "mentor_id"
-    t.boolean  "favorite",   default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "favorite",   default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.index ["mentor_id"], name: "index_student_mentors_on_mentor_id", using: :btree
     t.index ["student_id"], name: "index_student_mentors_on_student_id", using: :btree
   end

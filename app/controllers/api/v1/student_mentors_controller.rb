@@ -7,7 +7,7 @@ class Api::V1::StudentMentorsController < Api::V1::BaseController
 
   def create
     @student = current_user.student
-    render json: StudentMentor.create(student_id: @student.id, mentor_id: student_mentor_params[:mentor_id])
+    render json: StudentMentor.create(student_id: @student.id, mentor_id: student_mentor_params[:mentor_id], favorite: true)
   end
 
   def destroy

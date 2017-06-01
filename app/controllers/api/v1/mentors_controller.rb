@@ -2,7 +2,9 @@ class Api::V1::MentorsController < Api::V1::BaseController
   skip_before_action :verify_authenticity_token
 
   def index
-    # binding.pry
+    # @current_user = current_user.id
+    # @mentors = Mentor.all
+    # render component: 'Main', props: { employees: @employees, current_user: @current_user }
     render json: Mentor.all
   end
 

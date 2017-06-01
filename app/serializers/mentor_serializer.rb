@@ -17,7 +17,7 @@ class MentorSerializer < ActiveModel::Serializer
              :active,
              :gender,
              :timezone,
-             :student_favorites
+             :favorite
 
   def last_active
     object.updated_at.strftime("%A %d %b %Y %l:%M %p")
@@ -42,14 +42,12 @@ class MentorSerializer < ActiveModel::Serializer
     object[:gender]
   end
 
-  def student_favorites
-    # binding.pry
-    object.student_mentors
-    # object.student_mentors(student_id: current_user.student.id)
-    # if object.student_mentors.include?(student_id: current_user.student.id, favorite: true)
-    #   #then display with button saying is favorite
-    # else
-    #   #display button to add it as a favorite
-    # end
+  def favorite
+    if current_user != nil
+      student_mentor = StudentMentor.find_by(student_id: current_user.student.id, mentor_id: object.id)
+      student_mentor != nil && student_mentor.favorite == true
+    else
+      false
+    end
   end
 end

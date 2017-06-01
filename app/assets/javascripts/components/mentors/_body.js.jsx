@@ -18,11 +18,9 @@ var Body = React.createClass({
   },
 
   filterMentorsByGender(gender){
-    // debugger
     if (gender == "All") {
       return this.setState({mentors: this.state.allMentors})
     } else {
-      debugger
       let mentors = this.state.allMentors.filter((mentor) => {
         return mentor.gender === gender
       })
@@ -60,7 +58,7 @@ var Body = React.createClass({
     <div>
       <div className="row">
         <div className="col s10 push-s2">
-          <AllMentors mentors={this.state.mentors} />
+          <AllMentors mentors={this.state.mentors} currentUserId={this.props.currentUserId} />
         </div>
         <div className="col s2 pull-s10">
           <SearchMentors searchMentors={this.searchMentors}/>

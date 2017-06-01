@@ -1,5 +1,6 @@
 var Mentor = React.createClass({
   getInitialState() {
+    debugger
     return { editable: false };
   },
 
@@ -34,7 +35,6 @@ toggleUnFavorite: function () {
 
 
   render() {
-    debugger
     return (
       <div className="col s4" style={{background: this.state.color}}>
         <span className='mentor-picture'>
@@ -47,11 +47,12 @@ toggleUnFavorite: function () {
         <span className='mentor-position'>
             <p><strong>Bio:  </strong>{this.props.mentor.bio}</p>
         </span>
-        <span className='favorite-mentor'>
-          <button onClick={this.toggleFavorite}>Favorite</button>
-        </span>
-        <span className='favorite-mentor'>
-          <button onClick={this.toggleUnFavorite}>Unfavorite</button>
+
+        if {this.props.mentor.favorite === true}
+
+
+        <span className={this.props.mentor.favorite === true ? "colored-heart" : "uncolored-heart"}>
+          <button onClick={this.toggleFavorite}>Heart Emoji</button>
         </span>
 
       </div>
