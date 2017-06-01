@@ -7,14 +7,15 @@ class Api::V1::MentorsController < Api::V1::BaseController
   end
 
   def show
-    render json: Mentor.find(params[:id])
+    mentor = Mentor.find_or_create_by(user_id: params[:id])
+
+    render json: mentor.profile
   end
 
   def update
-    CensusService.new(current_user.token).update_census(current_user.census_id, census_params)
     user = User.find(params[:id])
     user.update(user_params)
-    mentor = Mentor.find_or_create_by(user: user)
+    mentor = Mentor.find_or_create_by(user_id: params[:id])
     mentor.update(mentor_params)
     mentor.profile_complete = true
     user.save
@@ -34,5 +35,4 @@ class Api::V1::MentorsController < Api::V1::BaseController
   def census_params
     params.require(:user).permit(:first_name, :last_name, :slack, :email)
   end
-
 end
