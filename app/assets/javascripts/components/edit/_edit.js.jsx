@@ -20,6 +20,7 @@ var Edit = React.createClass({
 
   componentDidMount() {
     $.getJSON(`/api/v1/mentors/${this.props.mentorId}`, function(mentor){
+      console.log(mentor)
       this.setState({mentor: mentor});
     }.bind(this));
 
@@ -58,8 +59,46 @@ var Edit = React.createClass({
     this.handleUpdate(updatedInfo);
   },
 
+  handleBioChange(e) {
+    let mentor = this.state.mentor;
+    mentor.bio = e.target.value;
+    this.setMentorChange(mentor)
+  },
+
+  handleCompanyChange(e) {
+    let mentor = this.state.mentor;
+    mentor.company = e.target.value;
+    this.setMentorChange(mentor)
+  },
+
+  handlePositionChange(e) {
+    let mentor = this.state.mentor;
+    mentor.position = e.target.value;
+    this.setMentorChange(mentor)
+  },
+
+  handleLocationChange(e) {
+    let mentor = this.state.mentor;
+    mentor.location = e.target.value;
+    this.setMentorChange(mentor)
+  },
+
+  handleExpertiseChange(e) {
+    let mentor = this.state.mentor;
+    mentor.expertiseField = e.target.value;
+    this.setMentorChange(mentor)
+  },
+
+  setMentorChange(mentor) {
+    this.setState({
+      mentor,
+    });
+  },
+
   render() {
     let mentor = this.state.mentor;
+
+    console.log(mentor)
 
     return (
       <div className="container">
@@ -102,20 +141,15 @@ var Edit = React.createClass({
                   </div>
                   <div className="container-form">
                     <h6><span className="edit-headers">Bio:</span></h6>
-                    <input id="bioField" type='text' className="inputField" cols='50' rows='10' onKeyUp={this.checkValues} onChange={ (e) => this.setState({ bio: e.target.value }) }
-                      placeholder="Please Enter Your Information To Accept Mentees" value={mentor.bio} />
+                    <input id="bioField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.handleBioChange(e) } value={mentor.bio} />
                     <h6><span className="edit-headers">Company:</span></h6>
-                    <input id="companyField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ company: e.target.value }) }
-                      placeholder="Please Enter Your Information To Accept Mentees" value={mentor.company} />
+                    <input id="companyField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.handleCompanyChange(e) } value={mentor.company} />
                     <h6><span className="edit-headers">Position:</span></h6>
-                    <input id="positionField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ position: e.target.value }) }
-                      placeholder="Please Enter Your Information To Accept Mentees" value={mentor.position} />
+                    <input id="positionField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.handlePositionChange(e) } value={mentor.position} />
                     <h6><span className="edit-headers">Location:</span></h6>
-                    <input id="locationField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ location: e.target.value }) }
-                      placeholder="Please Enter Your Information To Accept Mentees" value={mentor.location} />
+                    <input id="locationField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.handleLocationChange(e) } value={mentor.location} />
                     <h6><span className="edit-headers">Expertise:</span></h6>
-                    <input id="expertiseField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ expertise: e.target.value }) }
-                      placeholder="Please Enter Your Information To Accept Mentees" value={mentor.expertise} />
+                    <input id="expertiseField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.handleExpertiseChange(e) } value={mentor.expertise} />
                   </div>
                 </div>
                   <div className="edit-submit-button"><button onClick={this.handleEdit}> Submit </button></div>
