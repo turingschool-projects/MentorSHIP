@@ -20,7 +20,6 @@ var Edit = React.createClass({
 
   componentDidMount() {
     $.getJSON(`/api/v1/mentors/${this.props.mentorId}`, function(mentor){
-      console.log(mentor)
       this.setState({mentor: mentor});
     }.bind(this));
 
@@ -49,11 +48,11 @@ var Edit = React.createClass({
 
   handleEdit(e) {
     e.preventDefault();
-    var bio = this.state.bio;
-    var company = this.state.company;
-    var position = this.state.position;
-    var location = this.state.location;
-    var expertise = this.state.expertise;
+    var bio = this.state.mentor.bio;
+    var company = this.state.mentor.company;
+    var position = this.state.mentor.position;
+    var location = this.state.mentor.location;
+    var expertise = this.state.mentor.expertise;
 
     var updatedInfo = { bio: bio, company: company, position: position, location: location, expertise: expertise }
     this.handleUpdate(updatedInfo);
@@ -97,8 +96,6 @@ var Edit = React.createClass({
 
   render() {
     let mentor = this.state.mentor;
-
-    console.log(mentor)
 
     return (
       <div className="container">
