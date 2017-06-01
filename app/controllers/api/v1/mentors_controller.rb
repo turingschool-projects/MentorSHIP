@@ -2,7 +2,6 @@ class Api::V1::MentorsController < Api::V1::BaseController
   skip_before_action :verify_authenticity_token
 
   def index
-    @eligible_users = EligibleUser.eligible_users.compact
     render json: Mentor.all
   end
 
