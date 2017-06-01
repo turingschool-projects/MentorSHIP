@@ -11,6 +11,7 @@ var Mentor = React.createClass({
   // },
 
 
+
   toggleFavorite: function () {
     var id_mentor = this.props.mentor.id;
     $.ajax({
@@ -33,6 +34,18 @@ toggleUnFavorite: function () {
 
 },
 
+renderButton: function (){
+  if (this.props.mentor.favorite === true) {
+    (<span className="colored-heart">
+      <button onClick={this.toggleFavorite}>Heart Emoji</button>
+    </span>)
+  } else {
+    (<span className="uncolored-heart">
+      <button onClick={this.toggleUnFavorite}>sad Emoji</button>
+    </span>)
+  }
+},
+
 
   render() {
     return (
@@ -47,10 +60,6 @@ toggleUnFavorite: function () {
         <span className='mentor-position'>
             <p><strong>Bio:  </strong>{this.props.mentor.bio}</p>
         </span>
-
-        if {this.props.mentor.favorite === true}
-
-
         <span className={this.props.mentor.favorite === true ? "colored-heart" : "uncolored-heart"}>
           <button onClick={this.toggleFavorite}>Heart Emoji</button>
         </span>
