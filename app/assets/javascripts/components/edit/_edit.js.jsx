@@ -41,21 +41,57 @@ var Edit = React.createClass({
     $.ajax({
      url: `/api/v1/mentors/${mentor.id}`,
      type: 'PATCH',
-     data: {user: { bio: updatedInfo.bio, company: updatedInfo.company, position: updatedInfo.position, location: updatedInfo.location, expertise: updatedInfo.expertise, first_name: updatedInfo.first_name, last_name: updatedInfo.last_name, email: updatedInfo.email, slack: updatedInfo.slack }},
+     data: { user: { bio: updatedInfo.bio, company: updatedInfo.company, position: updatedInfo.position, location: updatedInfo.location, expertise: updatedInfo.expertise } },
      success: function(){ window.location = "/mentors"; }
    });
   },
 
   handleEdit(e) {
     e.preventDefault();
-    var bio = this.state.bio;
-    var company = this.state.company;
-    var position = this.state.position;
-    var location = this.state.location;
-    var expertise = this.state.expertise;
+    var bio = this.state.mentor.bio;
+    var company = this.state.mentor.company;
+    var position = this.state.mentor.position;
+    var location = this.state.mentor.location;
+    var expertise = this.state.mentor.expertise;
 
-    var updatedInfo = {bio: bio, company: company, position: position, location: location, expertise: expertise, first_name: first_name, last_name: last_name, slack: slack, email: email }
+    var updatedInfo = { bio: bio, company: company, position: position, location: location, expertise: expertise }
     this.handleUpdate(updatedInfo);
+  },
+
+  handleBioChange(e) {
+    let mentor = this.state.mentor;
+    mentor.bio = e.target.value;
+    this.setMentorChange(mentor)
+  },
+
+  handleCompanyChange(e) {
+    let mentor = this.state.mentor;
+    mentor.company = e.target.value;
+    this.setMentorChange(mentor)
+  },
+
+  handlePositionChange(e) {
+    let mentor = this.state.mentor;
+    mentor.position = e.target.value;
+    this.setMentorChange(mentor)
+  },
+
+  handleLocationChange(e) {
+    let mentor = this.state.mentor;
+    mentor.location = e.target.value;
+    this.setMentorChange(mentor)
+  },
+
+  handleExpertiseChange(e) {
+    let mentor = this.state.mentor;
+    mentor.expertiseField = e.target.value;
+    this.setMentorChange(mentor)
+  },
+
+  setMentorChange(mentor) {
+    this.setState({
+      mentor,
+    });
   },
 
   render() {
@@ -102,20 +138,15 @@ var Edit = React.createClass({
                   </div>
                   <div className="container-form">
                     <h6><span className="edit-headers">Bio:</span></h6>
-                    <input id="bioField" type='text' className="inputField" cols='50' rows='10' onKeyUp={this.checkValues} onChange={ (e) => this.setState({ bio: e.target.value }) }
-                      placeholder="Please Enter Your Information To Accept Mentees" value={mentor.bio} />
+                    <input id="bioField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.handleBioChange(e) } value={mentor.bio} />
                     <h6><span className="edit-headers">Company:</span></h6>
-                    <input id="companyField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ company: e.target.value }) }
-                      placeholder="Please Enter Your Information To Accept Mentees" value={mentor.company} />
+                    <input id="companyField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.handleCompanyChange(e) } value={mentor.company} />
                     <h6><span className="edit-headers">Position:</span></h6>
-                    <input id="positionField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ position: e.target.value }) }
-                      placeholder="Please Enter Your Information To Accept Mentees" value={mentor.position} />
+                    <input id="positionField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.handlePositionChange(e) } value={mentor.position} />
                     <h6><span className="edit-headers">Location:</span></h6>
-                    <input id="locationField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ location: e.target.value }) }
-                      placeholder="Please Enter Your Information To Accept Mentees" value={mentor.location} />
+                    <input id="locationField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.handleLocationChange(e) } value={mentor.location} />
                     <h6><span className="edit-headers">Expertise:</span></h6>
-                    <input id="expertiseField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.setState({ expertise: e.target.value }) }
-                      placeholder="Please Enter Your Information To Accept Mentees" value={mentor.expertise} />
+                    <input id="expertiseField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.handleExpertiseChange(e) } value={mentor.expertise} />
                   </div>
                 </div>
                   <div className="edit-submit-button"><button onClick={this.handleEdit}> Submit </button></div>
