@@ -34,6 +34,7 @@ toggleUnFavorite: function () {
 
 
   render() {
+    debugger
     return (
       <div className="col s4" style={{background: this.state.color}}>
         <span className='mentor-picture'>

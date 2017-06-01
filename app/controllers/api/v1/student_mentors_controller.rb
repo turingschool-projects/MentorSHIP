@@ -14,7 +14,6 @@ class Api::V1::StudentMentorsController < Api::V1::BaseController
     @student = current_user.student
     @student_mentor = @student.student_mentors.find_by(params[:mentor_id])
     @student_mentor.destroy
-    binding.pry
   end
 
   def student_mentor_params
