@@ -15,7 +15,7 @@ class Api::V1::MentorsController < Api::V1::BaseController
     user.update(user_params)
     mentor = Mentor.find_or_create_by(user_id: params[:id])
     mentor.update(mentor_params)
-    binding.pry
+    mentor.update_location(params[:user][:location])
     mentor.profile_complete = true
     user.save
   end
@@ -31,7 +31,7 @@ class Api::V1::MentorsController < Api::V1::BaseController
   end
 
   def location_params
-    params.require(:user).permit(:city, :state, :country)
+    params.require(:user).permit(:location)
   end
 
   def census_params

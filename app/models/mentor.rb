@@ -5,6 +5,8 @@ class Mentor < ApplicationRecord
   has_many :mentor_skills
   has_many :skills, through: :mentor_skills
 
+  before_save :determine_timezone
+
   delegate :avatar,
            :first_name,
            :last_name,
@@ -17,14 +19,11 @@ class Mentor < ApplicationRecord
            :account_url,
            :last_active, to: :user
 
-  attr_writer :location
-
-
   def profile
     attr_list = [
-      :account_url, :active, :avatar, :bio, :company, :city,
-      :country, :email, :expertise, :first_name, :gender,
-      :last_name, :position, :profile_complete, :slack, :state
+      :account_url, :active, :avatar, :bio, :company,
+      :email, :expertise, :first_name, :gender, :last_name,
+      :location, :position, :profile_complete, :slack, :state
     ]
 
     attr_list.reduce({}) do |profile, attr|
@@ -32,9 +31,8 @@ class Mentor < ApplicationRecord
     end
   end
 
-  def define_location
-    binding.pry
-    loc = Geokit::Geocoders::GoogleGeocoder.geocode(location)
-    loc.precision == 'unknown' ? nil : Timezone.lookup(loc.lat, loc.lng)
+  def determine_timezone
+    loc = Location.find_by_search_name_or_parse(location)
+    assign_attributes(location: loc.full_name, timezone_name: loc.timezone_name)
   end
 end

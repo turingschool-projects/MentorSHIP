@@ -6,6 +6,7 @@ class Seed
 
   def start
     find_mentors
+    create_locations
     skills
   end
 
@@ -18,6 +19,14 @@ class Seed
     get_all_census_users.each do |user|
       create_user(user) if user[:roles].any?{|role| role[:name] == "mentor"}
     end
+  end
+
+  def create_locations
+    Location.create(
+      search_name: 'Denver, CO, USA',
+      full_name: 'Denver, CO, USA',
+      timezone_name: 'America/Denver'
+    )
   end
 
   def create_user(user)
@@ -33,9 +42,7 @@ class Seed
     puts "Created user: #{user[:first_name]}!"
     new_user.create_mentor!(
       expertise: "Enter your expertise here",
-      city: 'Denver',
-      state: 'CO',
-      country: 'USA',
+      location: 'Denver, CO, USA',
       company: "Company",
       position: "Position",
       gender: genders.sample,

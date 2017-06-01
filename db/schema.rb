@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531173244) do
+ActiveRecord::Schema.define(version: 20170601043249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "locations", force: :cascade do |t|
+    t.string "search_name"
+    t.string "full_name"
+    t.string "timezone_name"
+  end
 
   create_table "mentor_skills", force: :cascade do |t|
     t.integer "skill_id"
@@ -24,6 +30,7 @@ ActiveRecord::Schema.define(version: 20170531173244) do
 
   create_table "mentors", force: :cascade do |t|
     t.string   "expertise"
+    t.string   "location"
     t.string   "company"
     t.string   "position"
     t.integer  "user_id"
@@ -32,10 +39,7 @@ ActiveRecord::Schema.define(version: 20170531173244) do
     t.boolean  "active",           default: false
     t.boolean  "profile_complete", default: false
     t.string   "gender"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
-    t.string   "timezone"
+    t.string   "timezone_name"
     t.index ["user_id"], name: "index_mentors_on_user_id", using: :btree
   end
 
