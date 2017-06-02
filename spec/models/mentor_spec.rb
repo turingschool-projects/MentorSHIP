@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Mentor, type: :model do
   context "Relationships" do
-    it { should belong_to(:timezone) }
     it { should belong_to(:user) }
     it { should have_many(:mentor_skills) }
     it { should have_many(:skills)}
