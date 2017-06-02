@@ -30,24 +30,24 @@ Add yourself to this list if you helped.
 
 So because of the Oauth Census had to use there are special instructions for running a local server. This walkthrough will get you set up to run a local HTTPS server so you can run dev server and test locally.
 
-## 1) Create your private key (any password will do, we remove it below)
+#### 1) Create your private key (any password will do, we remove it below)
 
 $ cd ~/.ssh
 $ openssl genrsa -des3 -out server.orig.key 2048
 
-## 2) Remove the password
+#### 2) Remove the password
 
 $ openssl rsa -in server.orig.key -out server.key
 
 
-## 3) Generate the csr (Certificate signing request) (Details are important!)
+#### 3) Generate the csr (Certificate signing request) (Details are important!)
 
 $ openssl req -new -key server.key -out server.csr
 
-## IMPORTANT
-## MUST have localhost.ssl as the common name to keep browsers happy
-## (has to do with non internal domain names ... which sadly can be
-## avoided with a domain name with a "." in the middle of it somewhere)
+#### IMPORTANT
+#### MUST have localhost.ssl as the common name to keep browsers happy
+#### (has to do with non internal domain names ... which sadly can be
+#### avoided with a domain name with a "." in the middle of it somewhere)
 
 Country Name (2 letter code) [AU]:
 
@@ -57,15 +57,15 @@ Common Name: localhost.ssl
 ...
 #### Fill out the Common Name field and skip the rest.
 
-## 4) Generate self signed ssl certificate
+#### 4) Generate self signed ssl certificate
 
 $ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 
-## 5) Finally Add localhost.ssl to your hosts file
+#### 5) Finally Add localhost.ssl to your hosts file
 
 $ echo "127.0.0.1 localhost.ssl" | sudo tee -a /private/etc/hosts
 
-## 6) Install Figaro and Census keys
+#### 6) Install Figaro and Census keys
 
 $ bundle exec figaro install
 
@@ -73,11 +73,15 @@ This will add an application.yml file to your config folder
 
 Add your census keys to the application.yml file. Use fuzzy finder(cmd + t) if you can't see the file in your file tree. Keys should be formatted as such.
 
-CENSUS_ID: eba503f490a06e4065366baa96
-CENSUS_SECRET: 78a08c6eafac10bd1adb2c05fd107
-CENSUS_ACCESS_TOKEN: 3d8f68e0aa477176133655427eff29e7b77de72
+CENSUS_ID: eba503f490a06e4065366baa96 (CHANGE )
+CENSUS_SECRET: 78a08c6eafac10bd1adb2c05fd107 (CHANGE TO YOUR PRODUCTION SECRET)
+CENSUS_ACCESS_TOKEN: 3d8f68e0aa477176133655427eff29e7b77de72 (CHANGE TO YOUR PRODUCTION TOKEN)
+CENSUS_URL: "https://turing-census.herokuapp.com" (USE THIS URL FOR PRODUCTION ON HEROKU)
+GOOGLE_API_KEY: AIzaSyBBlwAFsEo5JfrMDQAgI_ya6zINxPwK1jg (USE THIS KEY)
+GEONAMES_USERNAME: 'turing.mentorship' (USE THIS)
 
-# 7) To start the SSL web server open another terminal window and run
+
+#### 7) To start the SSL web server open another terminal window and run
 
 thin start -p 3001 --ssl --ssl-key-file ~/.ssh/server.key --ssl-cert-file ~/.ssh/server.crt
 
@@ -110,29 +114,30 @@ thin start -p 3001 --ssl --ssl-key-file ~/.ssh/server.key --ssl-cert-file ~/.ssh
   During development we mostly ran our our app from the development branch on our staging server on heroku. Its available
   [here](https://dashboard.heroku.com/apps/turing-mentorship-staging).
 
-  Our production app is here: https://turing-mentorship.herokuapp.com/
+  Our production app is here: https://shielded-meadow-66130.herokuapp.com/mentors
 
 
   The main gotchya's on heroku are making sure to
 
   ```
-  #in console
+  #in terminal
 
   $ rake assets:clobber
   $ rake asssets:precompile
   # then recommit and push
   ```
 
-  The other one is make sure your config variables for heroku are set to the same as your as in your application.yml file. And
-  set them the same in Travis.  Otherwise travis will fail, heroku requests to census will break and nothing will work and you
-  will cry.
+  #### Also, make sure you are using production keys that you get from the production census app.
 
-  Reach out to me (@vidoseaver) via email if you need anything. Peace.
+  The other one is make sure your config variables for Heroku are set to the same as your as in your application.yml file. And
+  set them the same in Travis.  Otherwise travis will fail, heroku requests to census will break and nothing will work.
 
 ### Where are the apps?
 
-* Our deployable app: https://turing-mentorship-prod.herokuapp.com/
-* Our staging app: https://turing-mentorship-staging.herokuapp.com/
+* Our deployable app: (OLD)https://turing-mentorship-prod.herokuapp.com/
+https://shielded-meadow-66130.herokuapp.com/mentors
+
+* Our staging app: (OLD)https://turing-mentorship-staging.herokuapp.com/
 
 To get access to both of the above reach out to your Project Manager / Project Owner and they will add you to the app.
 
@@ -155,7 +160,7 @@ To create a new token do the following.  The hacky/easy way is to place a `pry` 
 ## Endpoints
 
 ### Current Schema
-![schema](http://i.imgur.com/1YoEdXA.png)
+(OLD)![schema](http://i.imgur.com/1YoEdXA.png)
 
 ### Mentors
 
