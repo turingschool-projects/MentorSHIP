@@ -33382,6 +33382,7 @@ var Edit = React.createClass({
   },
 
   handleEdit: function (e) {
+    debugger;
     e.preventDefault();
     var bio = this.state.mentor.bio;
     var company = this.state.mentor.company;
@@ -34457,7 +34458,7 @@ var Mentor = React.createClass({
           React.createElement(
             "strong",
             null,
-            "Bio:  "
+            "Bio: "
           ),
           this.props.mentor.bio
         )

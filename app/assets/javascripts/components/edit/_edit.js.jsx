@@ -48,6 +48,7 @@ var Edit = React.createClass({
   },
 
   handleEdit(e) {
+    debugger;
     e.preventDefault();
     var bio = this.state.mentor.bio;
     var company = this.state.mentor.company;
