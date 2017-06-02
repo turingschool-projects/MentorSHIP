@@ -20699,13 +20699,12 @@ var Edit = React.createClass({
     var position = document.getElementById('positionField').value;
     var location = document.getElementById('locationField').value;
     var expertise = document.getElementById('expertiseField').value;
+    var gender = document.getElementById('genderField').value;
     if ([bio, company, position, location, expertise].includes("") === false) {
-      this.buttonStatus();
+      this.handleProfileCompleteChange(true);
+    } else {
+      this.handleProfileCompleteChange(false);
     }
-  },
-
-  buttonStatus: function () {
-    document.getElementById('acceptingButton').disabled = false;
   },
 
   getInitialState: function () {
@@ -20725,15 +20724,18 @@ var Edit = React.createClass({
       type: 'PATCH',
       data: { user: { active: true } },
       success: console.log.bind(this, "yay")
+    }).fail(function (failure) {
+      console.log(failure);
     });
   },
 
   handleUpdate: function (updatedInfo) {
-    var mentor = this.state.mentor;
+    var id = this.props.mentorId;
+    var mentor = { id: id };
     $.ajax({
       url: '/api/v1/mentors/' + mentor.id,
       type: 'PATCH',
-      data: { user: { bio: updatedInfo.bio, company: updatedInfo.company, position: updatedInfo.position, location: updatedInfo.location, expertise: updatedInfo.expertise, first_name: updatedInfo.first_name, last_name: updatedInfo.last_name, email: updatedInfo.email, slack: updatedInfo.slack } },
+      data: { user: { bio: updatedInfo.bio, company: updatedInfo.company, position: updatedInfo.position, location: updatedInfo.location, expertise: updatedInfo.expertise, gender: updatedInfo.gender, active: updatedInfo.active, profile_complete: updatedInfo.profile_complete } },
       success: function () {
         window.location = "/mentors";
       }
@@ -20742,18 +20744,71 @@ var Edit = React.createClass({
 
   handleEdit: function (e) {
     e.preventDefault();
-    var bio = this.state.bio;
-    var company = this.state.company;
-    var position = this.state.position;
-    var location = this.state.location;
-    var expertise = this.state.expertise;
-    var first_name = this.state.first_name;
-    var last_name = this.state.last_name;
-    var slack = this.state.slack;
-    var email = this.state.email;
+    var bio = this.state.mentor.bio;
+    var company = this.state.mentor.company;
+    var position = this.state.mentor.position;
+    var location = this.state.mentor.location;
+    var expertise = this.state.mentor.expertise;
+    var gender = this.state.mentor.gender;
+    var active = this.state.mentor.active;
+    var profile_complete = this.state.mentor.profile_complete;
 
-    var updatedInfo = { bio: bio, company: company, position: position, location: location, expertise: expertise, first_name: first_name, last_name: last_name, slack: slack, email: email };
+    var updatedInfo = { bio: bio, company: company, position: position, location: location, expertise: expertise, gender: gender, active: active, profile_complete: profile_complete };
     this.handleUpdate(updatedInfo);
+  },
+
+  handleBioChange: function (e) {
+    var mentor = this.state.mentor;
+    mentor.bio = e.target.value;
+    this.setMentorChange(mentor);
+  },
+
+  handleCompanyChange: function (e) {
+    var mentor = this.state.mentor;
+    mentor.company = e.target.value;
+    this.setMentorChange(mentor);
+  },
+
+  handlePositionChange: function (e) {
+    var mentor = this.state.mentor;
+    mentor.position = e.target.value;
+    this.setMentorChange(mentor);
+  },
+
+  handleLocationChange: function (e) {
+    var mentor = this.state.mentor;
+    mentor.location = e.target.value;
+    this.setMentorChange(mentor);
+  },
+
+  handleExpertiseChange: function (e) {
+    var mentor = this.state.mentor;
+    mentor.expertise = e.target.value;
+    this.setMentorChange(mentor);
+  },
+
+  handleGenderChange: function (e) {
+    var mentor = this.state.mentor;
+    mentor.gender = e.target.value;
+    this.setMentorChange(mentor);
+  },
+
+  handleProfileCompleteChange: function (status) {
+    var mentor = this.state.mentor;
+    mentor.profile_complete = status;
+    this.setMentorChange(mentor);
+  },
+
+  handleAcceptingStudentsChange: function (e) {
+    var mentor = this.state.mentor;
+    mentor.active = e.target.checked;
+    this.setMentorChange(mentor);
+  },
+
+  setMentorChange: function (mentor) {
+    this.setState({
+      mentor: mentor
+    });
   },
 
   render: function () {
@@ -20781,7 +20836,9 @@ var Edit = React.createClass({
               React.createElement(
                 'p',
                 null,
-                React.createElement('input', { type: 'checkbox', id: 'acceptingButton', disabled: 'disabled' }),
+                React.createElement('input', { type: 'checkbox', id: 'acceptingButton', disabled: !mentor.profile_complete, onChange: function (e) {
+                    return _this.handleAcceptingStudentsChange(e);
+                  }, checked: mentor.active }),
                 React.createElement(
                   'label',
                   { htmlFor: 'acceptingButton' },
@@ -20795,7 +20852,7 @@ var Edit = React.createClass({
               React.createElement(
                 'em',
                 null,
-                'This won\'t be checkable until you fill in bio, company, position, and expertise on this form.'
+                'This won\'t be checkable until you fill in all fields on this form.'
               )
             )
           ),
@@ -20807,56 +20864,107 @@ var Edit = React.createClass({
               { className: 'form-area' },
               React.createElement(
                 'div',
+                { className: 'censusInformation' },
+                React.createElement(
+                  'table',
+                  null,
+                  React.createElement(
+                    'tbody',
+                    null,
+                    React.createElement(
+                      'tr',
+                      null,
+                      React.createElement(
+                        'td',
+                        null,
+                        React.createElement(
+                          'h6',
+                          { className: 'edit-headers' },
+                          'First Name:'
+                        )
+                      ),
+                      React.createElement(
+                        'td',
+                        null,
+                        React.createElement(
+                          'a',
+                          { href: mentor.account_url, target: '_blank' },
+                          mentor.first_name
+                        )
+                      )
+                    ),
+                    React.createElement(
+                      'tr',
+                      null,
+                      React.createElement(
+                        'td',
+                        null,
+                        React.createElement(
+                          'h6',
+                          { className: 'edit-headers' },
+                          'Last Name:'
+                        )
+                      ),
+                      React.createElement(
+                        'td',
+                        null,
+                        React.createElement(
+                          'a',
+                          { href: mentor.account_url, target: '_blank' },
+                          mentor.last_name
+                        )
+                      )
+                    ),
+                    React.createElement(
+                      'tr',
+                      null,
+                      React.createElement(
+                        'td',
+                        null,
+                        React.createElement(
+                          'h6',
+                          { className: 'edit-headers' },
+                          'Slack:'
+                        )
+                      ),
+                      React.createElement(
+                        'td',
+                        null,
+                        React.createElement(
+                          'a',
+                          { href: mentor.account_url, target: '_blank' },
+                          mentor.slack
+                        )
+                      )
+                    ),
+                    React.createElement(
+                      'tr',
+                      null,
+                      React.createElement(
+                        'td',
+                        null,
+                        React.createElement(
+                          'h6',
+                          { className: 'edit-headers' },
+                          'Email:'
+                        )
+                      ),
+                      React.createElement(
+                        'td',
+                        null,
+                        React.createElement(
+                          'a',
+                          { href: mentor.account_url, target: '_blank' },
+                          mentor.email
+                        )
+                      )
+                    )
+                  )
+                )
+              ),
+              React.createElement(
+                'div',
                 { className: 'container-form' },
-                React.createElement(
-                  'h6',
-                  null,
-                  React.createElement(
-                    'span',
-                    { className: 'edit-headers' },
-                    'First Name:'
-                  )
-                ),
-                React.createElement('input', { type: 'text', className: 'inputField census-data', onChange: function (e) {
-                    return _this.setState({ first_name: e.target.value });
-                  },
-                  placeholder: mentor.first_name }),
-                React.createElement(
-                  'h6',
-                  null,
-                  React.createElement(
-                    'span',
-                    { className: 'edit-headers' },
-                    'Last Name:'
-                  )
-                ),
-                React.createElement('input', { type: 'text', className: 'inputField census-data', onChange: function (e) {
-                    return _this.setState({ last_name: e.target.value });
-                  }, placeholder: mentor.last_name }),
-                React.createElement(
-                  'h6',
-                  null,
-                  React.createElement(
-                    'span',
-                    { className: 'edit-headers' },
-                    'Slack:'
-                  )
-                ),
-                React.createElement('input', { type: 'text', className: 'inputField census-data', onChange: function (e) {
-                    return _this.setState({ slack: e.target.value });
-                  }, placeholder: mentor.slack }),
-                React.createElement(
-                  'h6',
-                  null,
-                  React.createElement(
-                    'span',
-                    { className: 'edit-headers' },
-                    'Email:'
-                  )
-                ),
-                React.createElement('input', { type: 'text', className: 'inputField census-data', onChange: function (e) {
-                    return _this.setState({ email: e.target.value });
-                  }, placeholder: mentor.email }),
                 React.createElement(
                   'h6',
                   null,
@@ -20867,9 +20975,8 @@ var Edit = React.createClass({
                   )
                 ),
                 React.createElement('input', { id: 'bioField', type: 'text', className: 'inputField', onKeyUp: this.checkValues, onChange: function (e) {
-                    return _this.setState({ bio: e.target.value });
-                  },
-                  placeholder: 'Please Enter Your Information To Accept Mentees' }),
+                    return _this.handleBioChange(e);
+                  }, value: mentor.bio }),
                 React.createElement(
                   'h6',
                   null,
@@ -20880,9 +20987,8 @@ var Edit = React.createClass({
                   )
                 ),
                 React.createElement('input', { id: 'companyField', type: 'text', className: 'inputField', onKeyUp: this.checkValues, onChange: function (e) {
-                    return _this.setState({ company: e.target.value });
-                  },
-                  placeholder: 'Please Enter Your Information To Accept Mentees' }),
+                    return _this.handleCompanyChange(e);
+                  }, value: mentor.company }),
                 React.createElement(
                   'h6',
                   null,
@@ -20893,9 +20999,8 @@ var Edit = React.createClass({
                   )
                 ),
                 React.createElement('input', { id: 'positionField', type: 'text', className: 'inputField', onKeyUp: this.checkValues, onChange: function (e) {
-                    return _this.setState({ position: e.target.value });
-                  },
-                  placeholder: 'Please Enter Your Information To Accept Mentees' }),
+                    return _this.handlePositionChange(e);
+                  }, value: mentor.position }),
                 React.createElement(
                   'h6',
                   null,
@@ -20906,9 +21011,8 @@ var Edit = React.createClass({
                   )
                 ),
                 React.createElement('input', { id: 'locationField', type: 'text', className: 'inputField', onKeyUp: this.checkValues, onChange: function (e) {
-                    return _this.setState({ location: e.target.value });
-                  },
-                  placeholder: 'Please Enter Your Information To Accept Mentees' }),
+                    return _this.handleLocationChange(e);
+                  }, value: mentor.location, placeholder: 'City, State, Country' }),
                 React.createElement(
                   'h6',
                   null,
@@ -20919,9 +21023,44 @@ var Edit = React.createClass({
                   )
                 ),
                 React.createElement('input', { id: 'expertiseField', type: 'text', className: 'inputField', onKeyUp: this.checkValues, onChange: function (e) {
-                    return _this.setState({ expertise: e.target.value });
-                  },
-                  placeholder: 'Please Enter Your Information To Accept Mentees' })
+                    return _this.handleExpertiseChange(e);
+                  }, value: mentor.expertise }),
+                React.createElement(
+                  'h6',
+                  null,
+                  React.createElement(
+                    'span',
+                    { className: 'edit-headers' },
+                    'Gender:'
+                  )
+                ),
+                React.createElement(
+                  'select',
+                  { id: 'genderField', value: mentor.gender, onChange: function (e) {
+                      return _this.handleGenderChange(e);
+                    } },
+                  React.createElement('option', { value: '' }),
+                  React.createElement(
+                    'option',
+                    { value: 'female' },
+                    'Female'
+                  ),
+                  React.createElement(
+                    'option',
+                    { value: 'male' },
+                    'Male'
+                  ),
+                  React.createElement(
+                    'option',
+                    { value: 'other' },
+                    'Other'
+                  ),
+                  React.createElement(
+                    'option',
+                    { value: 'n/a' },
+                    'I do not wish to disclose.'
+                  )
+                )
               )
             ),
             React.createElement(
@@ -20973,8 +21112,22 @@ var MentorShow = React.createClass({
 
   componentDidMount: function () {
     var id = this.props.id;
+    var skills = this.props.skills;
+    var skillName = skills.forEach(function (skill) {
+
+      if (skill.skill_type == "Technical") {
+        var tableRef = document.getElementById("Technical");
+        $(tableRef).append("<tr><td>" + skill.name + "</td></tr>");
+      } else if (skill.skill_type == "Non-Technical") {
+        var tableRef = document.getElementById("Non-Technical");
+        $(tableRef).append("<tr><td>" + skill.name + "</td></tr>");
+      } else if (skill.skill_type == "Languages & Frameworks") {
+        var tableRef = document.getElementById("Languages & Frameworks");
+        $(tableRef).append("<tr><td>" + skill.name + "</td></tr>");
+      }
+    });
+
     $.getJSON("/api/v1/mentors/" + id, (function (mentor) {
-      console.log(mentor);
       this.setState({ mentor: mentor });
     }).bind(this));
   },
@@ -21006,14 +21159,9 @@ var MentorShow = React.createClass({
             React.createElement(
               "h3",
               { id: "mentor-show-name" },
-              mentor.name
-            ),
-            React.createElement(
-              "p",
-              null,
-              "Last Active: ",
-              mentor.last_active,
-              " "
+              mentor.first_name,
+              " ",
+              mentor.last_name
             )
           ),
           React.createElement(
@@ -21043,7 +21191,7 @@ var MentorShow = React.createClass({
                   React.createElement(
                     "span",
                     { className: "edit-headers" },
-                    "Company:"
+                    "Company: "
                   ),
                   " ",
                   mentor.position,
@@ -21057,7 +21205,7 @@ var MentorShow = React.createClass({
                   React.createElement(
                     "span",
                     { className: "edit-headers" },
-                    "Position:"
+                    "Position: "
                   ),
                   " ",
                   mentor.position,
@@ -21069,7 +21217,7 @@ var MentorShow = React.createClass({
                   React.createElement(
                     "span",
                     { className: "edit-headers" },
-                    "Expertise:"
+                    "Expertise: "
                   ),
                   "  ",
                   mentor.expertise
@@ -21080,7 +21228,7 @@ var MentorShow = React.createClass({
                   React.createElement(
                     "span",
                     { className: "edit-headers" },
-                    "About Me:"
+                    "About Me: "
                   ),
                   " : ",
                   mentor.bio,
@@ -21092,7 +21240,7 @@ var MentorShow = React.createClass({
                   React.createElement(
                     "span",
                     { className: "edit-headers" },
-                    "Email:"
+                    "Email: "
                   ),
                   " ",
                   mentor.email,
@@ -21104,7 +21252,7 @@ var MentorShow = React.createClass({
                   React.createElement(
                     "span",
                     { className: "edit-headers" },
-                    "Slack:"
+                    "Slack: "
                   ),
                   "  ",
                   mentor.slack,
@@ -21116,7 +21264,7 @@ var MentorShow = React.createClass({
                   React.createElement(
                     "span",
                     { className: "edit-headers" },
-                    "Available:"
+                    "Available: "
                   ),
                   "  ",
                   " " + mentor.active,
@@ -21124,6 +21272,71 @@ var MentorShow = React.createClass({
                 )
               )
             )
+          )
+        ),
+        React.createElement("br", null),
+        React.createElement("br", null),
+        React.createElement(
+          "div",
+          { className: "skills-table" },
+          React.createElement(
+            "h6",
+            null,
+            " Skills"
+          ),
+          React.createElement(
+            "table",
+            { id: "Technical", className: "each-table" },
+            React.createElement(
+              "thead",
+              null,
+              React.createElement(
+                "tr",
+                null,
+                React.createElement(
+                  "th",
+                  { className: "table-center" },
+                  "Technical"
+                )
+              )
+            ),
+            React.createElement("tbody", null)
+          ),
+          React.createElement(
+            "table",
+            { id: "Non-Technical", className: "each-table" },
+            React.createElement(
+              "thead",
+              null,
+              React.createElement(
+                "tr",
+                null,
+                React.createElement(
+                  "th",
+                  { className: "table-center" },
+                  "Non-Technical"
+                )
+              )
+            ),
+            React.createElement("tbody", null)
+          ),
+          React.createElement(
+            "table",
+            { id: "Languages & Frameworks", className: "each-table" },
+            React.createElement(
+              "thead",
+              null,
+              React.createElement(
+                "tr",
+                null,
+                React.createElement(
+                  "th",
+                  { className: "table-center" },
+                  "Languages & Frameworks"
+                )
+              )
+            ),
+            React.createElement("tbody", null)
           )
         )
       )
@@ -21212,6 +21425,8 @@ var Body = React.createClass({
 
     $.getJSON('/api/v1/mentors.json', function (response) {
       _this.setState({ mentors: response, allMentors: response });
+    }).fail(function (failure) {
+      console.log(failure);
     });
   },
 
@@ -21222,6 +21437,26 @@ var Body = React.createClass({
       return searchableMentorsInfo.includes(query);
     });
     this.setState({ mentors: mentors });
+  },
+  filterMentorsByGender: function (gender) {
+    if (gender == "All") {
+      return this.setState({ mentors: this.state.allMentors });
+    } else {
+      var mentors = this.state.allMentors.filter(function (mentor) {
+        return mentor.gender === gender;
+      });
+      this.setState({ mentors: mentors });
+    }
+  },
+  filterMentorsByAlphabet: function (letter) {
+    if (letter == "All") {
+      return this.setState({ mentors: this.state.allMentors });
+    } else {
+      var mentors = this.state.allMentors.filter(function (mentor) {
+        return mentor.last_name[0].toUpperCase() === letter.toUpperCase();
+      });
+      this.setState({ mentors: mentors });
+    }
   },
 
   filterMentorsByTimezone: function (timezone) {
@@ -21266,12 +21501,69 @@ var Body = React.createClass({
         React.createElement(
           "div",
           { className: "col s2 pull-s10" },
-          React.createElement(TimezoneFilter, { filterMentorsByTimezone: this.filterMentorsByTimezone })
+          React.createElement(GenderFilter, { filterMentorsByGender: this.filterMentorsByGender })
+        ),
+        React.createElement(
+          "div",
+          { className: "col s2 pull-s10" },
+          React.createElement(LastNameFilter, { filterMentorsByAlphabet: this.filterMentorsByAlphabet })
         ),
         React.createElement(
           "div",
           { className: "col s2 pull-s10" },
           React.createElement(AcceptingStudentsFilter, { filterMentorsByAcceptingStudents: this.filterMentorsByAcceptingStudents })
+        )
+      )
+    );
+  }
+});
+var GenderFilter = React.createClass({
+  displayName: "GenderFilter",
+
+  getInitialState: function () {
+    return { value: "All" };
+  },
+  handleGenderChange: function (event) {
+    this.state = { value: event.target.value };
+    this.props.filterMentorsByGender(event.target.value);
+  },
+
+  render: function () {
+    return React.createElement(
+      "div",
+      null,
+      React.createElement("br", null),
+      React.createElement(
+        "span",
+        { className: "filter-mentors" },
+        "By Gender:"
+      ),
+      React.createElement(
+        "label",
+        null,
+        React.createElement(
+          "select",
+          { name: "gender-select", id: "gender-select", value: this.state.value, onChange: this.handleGenderChange },
+          React.createElement(
+            "option",
+            { value: "All" },
+            "All"
+          ),
+          React.createElement(
+            "option",
+            { value: "Male" },
+            "Male"
+          ),
+          React.createElement(
+            "option",
+            { value: "Female" },
+            "Female"
+          ),
+          React.createElement(
+            "option",
+            { value: "Other" },
+            "Other"
+          )
         )
       )
     );
@@ -21297,6 +21589,173 @@ var MentorIndex = React.createClass({
 
   render: function () {
     return React.createElement("div", null);
+  }
+});
+var LastNameFilter = React.createClass({
+  displayName: "LastNameFilter",
+
+  getInitialState: function () {
+    return { value: "All" };
+  },
+  handleLastNameChange: function (event) {
+    this.state = { value: event.target.value };
+    this.props.filterMentorsByAlphabet(event.target.value);
+  },
+
+  render: function () {
+    return React.createElement(
+      "div",
+      null,
+      React.createElement("br", null),
+      React.createElement(
+        "span",
+        { className: "filter-mentors" },
+        "By Alphabet:"
+      ),
+      React.createElement(
+        "label",
+        null,
+        React.createElement(
+          "select",
+          { value: this.state.value, onChange: this.handleLastNameChange },
+          React.createElement(
+            "option",
+            { value: "All" },
+            "All"
+          ),
+          React.createElement(
+            "option",
+            { value: "A" },
+            "a"
+          ),
+          React.createElement(
+            "option",
+            { value: "B" },
+            "b"
+          ),
+          React.createElement(
+            "option",
+            { value: "C" },
+            "c"
+          ),
+          React.createElement(
+            "option",
+            { value: "D" },
+            "d"
+          ),
+          React.createElement(
+            "option",
+            { value: "E" },
+            "e"
+          ),
+          React.createElement(
+            "option",
+            { value: "F" },
+            "f"
+          ),
+          React.createElement(
+            "option",
+            { value: "G" },
+            "g"
+          ),
+          React.createElement(
+            "option",
+            { value: "H" },
+            "h"
+          ),
+          React.createElement(
+            "option",
+            { value: "I" },
+            "i"
+          ),
+          React.createElement(
+            "option",
+            { value: "J" },
+            "j"
+          ),
+          React.createElement(
+            "option",
+            { value: "K" },
+            "k"
+          ),
+          React.createElement(
+            "option",
+            { value: "L" },
+            "l"
+          ),
+          React.createElement(
+            "option",
+            { value: "M" },
+            "m"
+          ),
+          React.createElement(
+            "option",
+            { value: "N" },
+            "n"
+          ),
+          React.createElement(
+            "option",
+            { value: "O" },
+            "o"
+          ),
+          React.createElement(
+            "option",
+            { value: "P" },
+            "p"
+          ),
+          React.createElement(
+            "option",
+            { value: "Q" },
+            "q"
+          ),
+          React.createElement(
+            "option",
+            { value: "R" },
+            "r"
+          ),
+          React.createElement(
+            "option",
+            { value: "S" },
+            "s"
+          ),
+          React.createElement(
+            "option",
+            { value: "T" },
+            "t"
+          ),
+          React.createElement(
+            "option",
+            { value: "U" },
+            "u"
+          ),
+          React.createElement(
+            "option",
+            { value: "V" },
+            "v"
+          ),
+          React.createElement(
+            "option",
+            { value: "W" },
+            "w"
+          ),
+          React.createElement(
+            "option",
+            { value: "X" },
+            "x"
+          ),
+          React.createElement(
+            "option",
+            { value: "Y" },
+            "y"
+          ),
+          React.createElement(
+            "option",
+            { value: "Z" },
+            "z"
+          )
+        )
+      )
+    );
   }
 });
 var Main = React.createClass({
