@@ -16,6 +16,8 @@ gem "figaro"
 gem "faraday"
 gem 'awesome_print'
 gem 'faker'
+gem 'geokit'
+gem 'timezone'
 
 gem 'omniauth-oauth2'
 gem 'omniauth-census', git: "https://github.com/AELSchauer/omniauth-census", branch: "env"

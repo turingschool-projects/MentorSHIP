@@ -20,5 +20,4 @@ class CensusProfile
   def account_url
     "#{ENV['CENSUS_URL']}/users/#{id}"
   end
-
 end

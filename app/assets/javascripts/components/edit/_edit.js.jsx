@@ -84,7 +84,7 @@ var Edit = React.createClass({
 
   handleExpertiseChange(e) {
     let mentor = this.state.mentor;
-    mentor.expertiseField = e.target.value;
+    mentor.expertise = e.target.value;
     this.setMentorChange(mentor)
   },
 
@@ -144,7 +144,7 @@ var Edit = React.createClass({
                     <h6><span className="edit-headers">Position:</span></h6>
                     <input id="positionField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.handlePositionChange(e) } value={mentor.position} />
                     <h6><span className="edit-headers">Location:</span></h6>
-                    <input id="locationField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.handleLocationChange(e) } value={mentor.location} />
+                    <input id="locationField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.handleLocationChange(e) } value={mentor.location} placeholder="City, State, Country"/>
                     <h6><span className="edit-headers">Expertise:</span></h6>
                     <input id="expertiseField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.handleExpertiseChange(e) } value={mentor.expertise} />
                   </div>
