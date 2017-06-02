@@ -18,7 +18,7 @@ gem 'awesome_print'
 gem 'faker'
 
 gem 'omniauth-oauth2'
-gem 'omniauth-census', git: 'https://github.com/AELSchauer/omniauth-census', branch: 'env'
+gem 'omniauth-census', git: "https://github.com/AELSchauer/omniauth-census", branch: "env"
 
 group :development, :test do
   gem 'thin'
@@ -32,7 +32,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'capybara'
   gem 'launchy'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 2.53.4'
 end
 
 group :development do

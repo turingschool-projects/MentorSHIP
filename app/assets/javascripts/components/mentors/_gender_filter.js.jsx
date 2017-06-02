@@ -15,7 +15,7 @@ var GenderFilter = React.createClass({
           By Gender:
         </span>
         <label>
-          <select value={this.state.value} onChange={this.handleGenderChange}>
+          <select name="gender-select" id="gender-select" value={this.state.value} onChange={this.handleGenderChange}>
             <option value="All">All</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>

@@ -14,8 +14,20 @@ class Mentor < ApplicationRecord
            :bio,
            :census_id,
            :token,
-           #:gender,
+           :account_url,
            :last_active, to: :user
 
+
+  def profile
+    attr_list = [
+      :account_url, :active, :avatar, :bio, :company, :email,
+      :expertise, :first_name, :gender, :last_name, :location,
+      :position, :profile_complete, :slack
+    ]
+
+    attr_list.reduce({}) do |profile, attr|
+      profile.merge!({attr => self.send(attr)})
+    end
+  end
 
 end
