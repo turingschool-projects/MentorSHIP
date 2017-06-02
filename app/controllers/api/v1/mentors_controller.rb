@@ -2,11 +2,11 @@ class Api::V1::MentorsController < Api::V1::BaseController
   skip_before_action :verify_authenticity_token
 
   def index
-    render json: Mentor.all
+    render json: Mentor.where(active: true, profile_complete: true)
   end
 
   def show
-    mentor = Mentor.find_or_create_by(user_id: params[:id])
+    mentor = Mentor.find_or_initialize_by(user_id: params[:id])
     render json: mentor.profile
   end
 
@@ -15,7 +15,6 @@ class Api::V1::MentorsController < Api::V1::BaseController
     user.update(user_params)
     mentor = Mentor.find_or_create_by(user_id: params[:id])
     mentor.update(mentor_params)
-    # mentor.profile_complete = true
   end
 
   private
@@ -25,7 +24,7 @@ class Api::V1::MentorsController < Api::V1::BaseController
   end
 
   def mentor_params
-    params.require(:user).permit(:company, :position, :expertise, :active, :gender, :location)
+    params.require(:user).permit(:company, :position, :expertise, :active, :gender, :location, :profile_complete)
   end
 
   def census_params

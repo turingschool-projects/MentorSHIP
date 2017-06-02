@@ -6,7 +6,6 @@ var MentorShow = React.createClass({
   componentDidMount() {
     let id = this.props.id;
     $.getJSON(`/api/v1/mentors/${id}`, function(mentor){
-      console.log(mentor);
       this.setState({mentor: mentor});
     }.bind(this));
   },
