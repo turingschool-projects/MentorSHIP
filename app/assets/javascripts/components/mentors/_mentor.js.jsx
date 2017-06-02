@@ -3,14 +3,6 @@ var Mentor = React.createClass({
     return { editable: false };
   },
 
-  // changeColor: function() {
-  //   var colorTest = this.state.color == 'white' ? 'red' : 'white';
-    // var buttonInput = this.state.text == 'Favorite' ? 'Unfavorite' : 'Favorite';
-  //     this.setState({color: colorTest, text: buttonInput})
-  // },
-
-
-
   toggleFavorite: function () {
     var id_mentor = this.props.mentor.id;
     $.ajax({
@@ -23,7 +15,6 @@ var Mentor = React.createClass({
 },
 
 toggleUnFavorite: function () {
-  // debugger
   var student_mentor_id = this.props.mentor.student_favorites[0].id;
   $.ajax({
     url: `/api/v1/student_mentors/${student_mentor_id}`,

@@ -1,5 +1,4 @@
 var AllMentors = React.createClass({
-
   render() {
     let mentors = this.props.mentors.map((mentor, index) => {
       return (
