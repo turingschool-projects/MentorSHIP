@@ -75,9 +75,6 @@ var Body = React.createClass({
           <SearchMentors searchMentors={this.searchMentors}/>
         </div>
         <div className= "col s2 pull-s10">
-          <TimezoneFilter filterMentorsByTimezone={this.filterMentorsByTimezone}/>
-        </div>
-        <div className= "col s2 pull-s10">
           <GenderFilter filterMentorsByGender={this.filterMentorsByGender}/>
         </div>
         <div className= "col s2 pull-s10">
