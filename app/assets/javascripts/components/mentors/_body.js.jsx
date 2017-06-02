@@ -16,6 +16,26 @@ var Body = React.createClass({
     });
     this.setState({mentors: mentors})
   },
+  filterMentorsByGender(gender){
+    if (gender == "All") {
+      return this.setState({mentors: this.state.allMentors})
+    } else {
+      let mentors = this.state.allMentors.filter((mentor) => {
+        return mentor.gender === gender
+      })
+      this.setState({mentors: mentors})
+    }
+  },
+  filterMentorsByAlphabet(letter){
+    if (letter == "All") {
+      return this.setState({mentors: this.state.allMentors})
+    } else {
+      let mentors = this.state.allMentors.filter((mentor) => {
+        return mentor.last_name[0].toUpperCase() === letter.toUpperCase();
+      })
+      this.setState({mentors: mentors})
+    }
+  },
 
   filterMentorsByTimezone(timezone){
     if (timezone == "All") {
@@ -51,6 +71,12 @@ var Body = React.createClass({
         </div>
         <div className= "col s2 pull-s10">
           <TimezoneFilter filterMentorsByTimezone={this.filterMentorsByTimezone}/>
+        </div>
+        <div className= "col s2 pull-s10">
+          <GenderFilter filterMentorsByGender={this.filterMentorsByGender}/>
+        </div>
+        <div className= "col s2 pull-s10">
+          <LastNameFilter filterMentorsByAlphabet={this.filterMentorsByAlphabet}/>
         </div>
         <div className= "col s2 pull-s10">
           <AcceptingStudentsFilter filterMentorsByAcceptingStudents={this.filterMentorsByAcceptingStudents}/>
