@@ -5,9 +5,9 @@ require './app/models/timezone.rb'
 class Seed
 
   def start
+    skills
     find_mentors
     create_locations
-    skills
   end
 
   def get_all_census_users
@@ -40,7 +40,7 @@ class Seed
       census_id: user[:id]
     )
     puts "Created user: #{user[:first_name]}!"
-    new_user.create_mentor!(
+    new_mentor = new_user.create_mentor!(
       expertise: "Enter your expertise here",
       location: 'Denver, CO, USA',
       company: "Company",
@@ -49,6 +49,9 @@ class Seed
       active: accepting_mentees.sample
     )
     puts "Created mentor: #{new_user.mentor.id}"
+    10.times do
+      new_mentor.skills << Skill.all.sample
+    end
   end
 
   def skills
