@@ -5,13 +5,12 @@ var Edit = React.createClass({
     var position = document.getElementById('positionField').value;
     var location = document.getElementById('locationField').value;
     var expertise = document.getElementById('expertiseField').value;
+    var gender = document.getElementById('genderField').value;
     if (([bio, company, position, location, expertise].includes("")) === false) {
-      this.buttonStatus();
+      this.handleProfileCompleteChange(true)
+    }else{
+      this.handleProfileCompleteChange(false)
     }
-  },
-
-  buttonStatus(){
-    document.getElementById('acceptingButton').disabled = false;
   },
 
   getInitialState(){
@@ -22,7 +21,6 @@ var Edit = React.createClass({
     $.getJSON(`/api/v1/mentors/${this.props.mentorId}`, function(mentor){
       this.setState({mentor: mentor});
     }.bind(this));
-
   },
 
   handleClick() {
@@ -32,7 +30,10 @@ var Edit = React.createClass({
      type: 'PATCH',
      data: {user: { active: true}},
      success: console.log.bind(this, "yay")
-   });
+    })
+    .fail((failure) => {
+      console.log(failure)
+    })
   },
 
   handleUpdate(updatedInfo){
@@ -41,7 +42,7 @@ var Edit = React.createClass({
     $.ajax({
      url: `/api/v1/mentors/${mentor.id}`,
      type: 'PATCH',
-     data: { user: { bio: updatedInfo.bio, company: updatedInfo.company, position: updatedInfo.position, location: updatedInfo.location, expertise: updatedInfo.expertise } },
+     data: { user: { bio: updatedInfo.bio, company: updatedInfo.company, position: updatedInfo.position, location: updatedInfo.location, expertise: updatedInfo.expertise, gender: updatedInfo.gender, active: updatedInfo.active, profile_complete: updatedInfo.profile_complete } },
      success: function(){ window.location = "/mentors"; }
    });
   },
@@ -53,8 +54,11 @@ var Edit = React.createClass({
     var position = this.state.mentor.position;
     var location = this.state.mentor.location;
     var expertise = this.state.mentor.expertise;
+    var gender = this.state.mentor.gender;
+    var active = this.state.mentor.active;
+    var profile_complete = this.state.mentor.profile_complete;
 
-    var updatedInfo = { bio: bio, company: company, position: position, location: location, expertise: expertise }
+    var updatedInfo = { bio: bio, company: company, position: position, location: location, expertise: expertise, gender: gender, active: active, profile_complete: profile_complete }
     this.handleUpdate(updatedInfo);
   },
 
@@ -88,6 +92,24 @@ var Edit = React.createClass({
     this.setMentorChange(mentor)
   },
 
+  handleGenderChange(e) {
+    let mentor = this.state.mentor;
+    mentor.gender = e.target.value;
+    this.setMentorChange(mentor)
+  },
+
+  handleProfileCompleteChange(status) {
+    let mentor = this.state.mentor;
+    mentor.profile_complete = status;
+    this.setMentorChange(mentor)
+  },
+
+  handleAcceptingStudentsChange(e) {
+    let mentor = this.state.mentor;
+    mentor.active = e.target.checked;
+    this.setMentorChange(mentor)
+  },
+
   setMentorChange(mentor) {
     this.setState({
       mentor,
@@ -106,11 +128,11 @@ var Edit = React.createClass({
                 <img src={mentor.avatar} className='dashboard-pic'/>
                 <form>
                   <p>
-                   <input type="checkbox" id="acceptingButton" disabled="disabled"/>
+                   <input type="checkbox" id="acceptingButton" disabled={!mentor.profile_complete} onChange={ (e) => this.handleAcceptingStudentsChange(e) } checked={mentor.active}/>
                    <label htmlFor="acceptingButton">Accepting Students</label>
                   </p>
                   </form>
-                  <p><em>This won't be checkable until you fill in bio, company, position, and expertise on this form.</em></p>
+                  <p><em>This won't be checkable until you fill in all fields on this form.</em></p>
               </div>
               <div className="col s6">
                 <div className="form-area">
@@ -147,6 +169,14 @@ var Edit = React.createClass({
                     <input id="locationField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.handleLocationChange(e) } value={mentor.location} placeholder="City, State, Country"/>
                     <h6><span className="edit-headers">Expertise:</span></h6>
                     <input id="expertiseField" type='text' className="inputField" onKeyUp={this.checkValues} onChange={ (e) => this.handleExpertiseChange(e) } value={mentor.expertise} />
+                    <h6><span className="edit-headers">Gender:</span></h6>
+                    <select id="genderField" value={mentor.gender} onChange={ (e) => this.handleGenderChange(e) }>
+                      <option value=""></option>
+                      <option value="female">Female</option>
+                      <option value="male">Male</option>
+                      <option value="other">Other</option>
+                      <option value="n/a">I do not wish to disclose.</option>
+                    </select>
                   </div>
                 </div>
                   <div className="edit-submit-button"><button onClick={this.handleEdit}> Submit </button></div>

@@ -19,7 +19,6 @@ class MentorSerializer < ActiveModel::Serializer
 
   def last_active
     object.updated_at.strftime("%A %d %b %Y %l:%M %p")
-    # object.last_active.strftime("%A %d %b %Y %l:%M %p")
   end
 
   def name
