@@ -32,6 +32,11 @@ h1 {
   padding-left: 100px;
 }
 
+td > h6 {
+  padding-top: 0px;
+  margin: 0px;
+}
+
 #header-about {
   text-align: center;
   color: black;
@@ -157,7 +162,6 @@ h6 {
   font-weight: bolder;
   text-shadow: 1px 1px 1px #000;
   padding-left: 10px;
-  padding-top: 100px;
 }
 
 #location-show-header {

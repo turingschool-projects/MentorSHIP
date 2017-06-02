@@ -1,24 +1,25 @@
 class MentorSerializer < ActiveModel::Serializer
   attributes :id,
-             :avatar,
-             :name,
-             :email,
-             :phone,
-             :slack,
-             :location,
-             :timezone_id,
-             :bio,
-             :expertise,
-             :company,
-             :position,
-             :last_active,
-             :first_name,
-             :last_name,
              :active,
-             :timezone
+             :avatar,
+             :bio,
+             :company,
+             :email,
+             :expertise,
+             :first_name,
+             :gender,
+             :last_active,
+             :last_name,
+             :location,
+             :name,
+             :phone,
+             :position,
+             :slack,
+             :timezone_name
 
   def last_active
-    object.last_active.strftime("%A %d %b %Y %l:%M %p")
+    object.updated_at.strftime("%A %d %b %Y %l:%M %p")
+    # object.last_active.strftime("%A %d %b %Y %l:%M %p")
   end
 
   def name
@@ -26,11 +27,8 @@ class MentorSerializer < ActiveModel::Serializer
     last = object.last_name
     "#{first} #{last}"
   end
-  def timezone
-    object.timezone.name
-  end
 
-  def timezone
-    object.timezone.name
+  def gender
+    object[:gender]
   end
 end
