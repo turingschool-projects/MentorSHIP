@@ -6,6 +6,9 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 
+# Capybara.app_host = "https://localhost:3001"
+# Capybara.server_port = 3000
+
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
@@ -21,11 +24,11 @@ end
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
-require 'capybara/poltergeist'
-Capybara.javascript_driver = :poltergeist
-Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, {:js_errors => false})
-end
+# require 'capybara/poltergeist'
+# Capybara.javascript_driver = :poltergeist
+# Capybara.register_driver :poltergeist do |app|
+#     Capybara::Poltergeist::Driver.new(app, {:js_errors => false})
+# end
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

@@ -5,21 +5,14 @@ require './app/models/timezone.rb'
 class Seed
 
   def start
-    create_timezones
     find_mentors
+    create_locations
     skills
   end
 
-  def create_timezones
-    ['Pacific', 'Mountain', 'Central', 'Eastern'].each do |location|
-      Timezone.create!(name: location)
-      puts "Created time zone: #{location}!"
-    end
-  end
-
   def get_all_census_users
-    this = Faraday.get("https://census-app-staging.herokuapp.com/api/v1/users/?access_token=#{ENV['CENSUS_ACCESS_TOKEN']}")
-    response = JSON.parse(this.body, symbolize_names: true)
+    this = Faraday.get("#{ENV['CENSUS_URL']}/api/v1/users/?access_token=#{ENV['CENSUS_ACCESS_TOKEN']}")
+    this.body.empty? ? [] : JSON.parse(this.body, symbolize_names: true)
   end
 
   def find_mentors
@@ -28,8 +21,15 @@ class Seed
     end
   end
 
+  def create_locations
+    Location.create(
+      search_name: 'Denver, CO, USA',
+      full_name: 'Denver, CO, USA',
+      timezone_name: 'America/Denver'
+    )
+  end
+
   def create_user(user)
-    timezone = Timezone.find(rand(1..4))
     genders = ["Male", "Female", "Other"]
     accepting_mentees = [true, false]
     new_user = User.create!(
@@ -41,9 +41,8 @@ class Seed
     )
     puts "Created user: #{user[:first_name]}!"
     new_user.create_mentor!(
-      timezone_id: timezone.id,
       expertise: "Enter your expertise here",
-      location: "location",
+      location: 'Denver, CO, USA',
       company: "Company",
       position: "Position",
       gender: genders.sample,

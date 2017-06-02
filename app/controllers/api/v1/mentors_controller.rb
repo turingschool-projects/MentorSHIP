@@ -9,16 +9,16 @@ class Api::V1::MentorsController < Api::V1::BaseController
   end
 
   def show
-    render json: Mentor.find(params[:id])
+    mentor = Mentor.find_or_initialize_by(user_id: params[:id])
+    render json: mentor.profile
   end
 
   def update
-    CensusService.new(current_user.token).update_census(current_user.census_id, census_params)
     user = User.find(params[:id])
     user.update(user_params)
-    user.mentor.update(mentor_params)
-    user.mentor.profile_complete = true
-    user.save
+    mentor = Mentor.find_or_create_by(user_id: params[:id])
+    mentor.update(mentor_params)
+    # mentor.profile_complete = true
   end
 
   private
@@ -28,11 +28,10 @@ class Api::V1::MentorsController < Api::V1::BaseController
   end
 
   def mentor_params
-    params.require(:user).permit(:company, :position, :location, :expertise, :active, :gender)
+    params.require(:user).permit(:company, :position, :expertise, :active, :gender, :location)
   end
 
   def census_params
     params.require(:user).permit(:first_name, :last_name, :slack, :email)
   end
-
 end

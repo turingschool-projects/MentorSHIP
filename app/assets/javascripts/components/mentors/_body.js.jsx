@@ -5,7 +5,12 @@ var Body = React.createClass({
   },
 
   componentDidMount() {
-    $.getJSON('/api/v1/mentors.json', (response) => { this.setState({ mentors: response, allMentors: response }) });
+    $.getJSON('/api/v1/mentors.json', (response) => {
+      this.setState({ mentors: response, allMentors: response })
+    })
+    .fail( (failure) => {
+      console.log(failure)
+    })
   },
 
   searchMentors(query){
@@ -16,7 +21,6 @@ var Body = React.createClass({
     });
     this.setState({mentors: mentors})
   },
-
   filterMentorsByGender(gender){
     if (gender == "All") {
       return this.setState({mentors: this.state.allMentors})
@@ -27,6 +31,16 @@ var Body = React.createClass({
 
 
 
+      this.setState({mentors: mentors})
+    }
+  },
+  filterMentorsByAlphabet(letter){
+    if (letter == "All") {
+      return this.setState({mentors: this.state.allMentors})
+    } else {
+      let mentors = this.state.allMentors.filter((mentor) => {
+        return mentor.last_name[0].toUpperCase() === letter.toUpperCase();
+      })
       this.setState({mentors: mentors})
     }
   },
@@ -64,10 +78,10 @@ var Body = React.createClass({
           <SearchMentors searchMentors={this.searchMentors}/>
         </div>
         <div className= "col s2 pull-s10">
-          <TimezoneFilter filterMentorsByTimezone={this.filterMentorsByTimezone}/>
+          <GenderFilter filterMentorsByGender={this.filterMentorsByGender}/>
         </div>
         <div className= "col s2 pull-s10">
-          <GenderFilter filterMentorsByGender={this.filterMentorsByGender}/>
+          <LastNameFilter filterMentorsByAlphabet={this.filterMentorsByAlphabet}/>
         </div>
         <div className= "col s2 pull-s10">
           <AcceptingStudentsFilter filterMentorsByAcceptingStudents={this.filterMentorsByAcceptingStudents}/>
