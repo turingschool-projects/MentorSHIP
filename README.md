@@ -3,7 +3,7 @@ This is the Turing MentorSHIP project. It is written in Rails 5.
 
 ![MentorSHIP](http://i.imgur.com/aJ2znTv.jpg)
 
-##Contributers
+## Contributors
 Add yourself to this list if you helped.
 
 * Mark Miranda (1602)
@@ -49,31 +49,31 @@ The easiest way to exapline this is to tell you to go [here](https://github.com/
       addons:
         postgresql: "9.4"
       ```
-    
+
    ### Heroku
 
   During development we mostly ran our our app from the development branch on our staging server on heroku. Its available
-  [here](https://dashboard.heroku.com/apps/turing-mentorship-staging). 
-  
+  [here](https://dashboard.heroku.com/apps/turing-mentorship-staging).
+
   Our production app is here: https://turing-mentorship.herokuapp.com/
-  
-  
+
+
   The main gotchya's on heroku are making sure to
-  
+
   ```
   #in console
-  
+
   $ rake assets:clobber
-  $ rake asssets:precompile 
+  $ rake asssets:precompile
   # then recommit and push
   ```
-  
+
   The other one is make sure your config variables for heroku are set to the same as your as in your application.yml file. And
   set them the same in Travis.  Otherwise travis will fail, heroku requests to census will break and nothing will work and you
   will cry.
-  
+
   Reach out to me (@vidoseaver) via email if you need anything. Peace.
-  
+
 ### Where are the apps?
 
 * Our deployable app: https://turing-mentorship-prod.herokuapp.com/
@@ -94,7 +94,8 @@ To create a new token do the following.  The hacky/easy way is to place a `pry` 
 ### Environment variables needed
 * In the root of the project is an `application.yml.sample` file. This file contains all environment variables we are using in this project. We didn't push keys (for obvious reasons) but wanted to make sure any future teams knew which variables they needed to use.
 
-###CensusService info
+### CensusService info
+
 * We are currently taking in info from the mentor dashboard edit and using it to update both our database and Census' database. At this point our database updates correctly and passes the necessary info for Census to the CensusService.new.update_census method. It doesn't make a connection to the census api yet (too late in the mod to accomplish this). You will have to work with Census to make sure this end point `https://census-app-staging.herokuapp.com/api/v1/users/#{id}, params.to_json` is hooked up before you can submit. We have already posted a PR to Census that will tell them the type of data and structure to expect so building it out shouldn't be too much work.
 
 ## Endpoints
