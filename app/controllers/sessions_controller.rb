@@ -8,10 +8,13 @@ class SessionsController < ApplicationController
     user.save
     session[:user_id] = user.id
     if not_mentor?(census_user_info)
+      Student.find_or_create_by(user_id: user.id)
       redirect_to mentors_path
-    elsif user.mentor.company = nil
+    elsif user.mentor.company == nil
+      Mentor.find_or_create_by(user_id: user.id)
       redirect_to edit_dashboard_path(user)
     else
+      Mentor.find_or_create_by(user_id: user.id)
       redirect_to mentors_path
     end
   end

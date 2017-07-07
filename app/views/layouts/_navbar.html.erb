@@ -5,8 +5,10 @@
      <li><a href="/">Home</a></li>
      <li><a href="/about">How It Works</a></li>
      <% if current_user %>
-     <li><%= link_to "Your Dashboard", edit_dashboard_path(current_user) %></li>
-     <li><%= link_to "Mentor Index", mentors_path %></li>
+       <% if is_eligible? %>
+        <li><%= link_to "Your Dashboard", edit_dashboard_path(current_user) %></li>
+       <% end %>
+       <li><%= link_to "Mentor Index", mentors_path %></li>
       <li><a href='/logout'>Logout</a></li>
      <% else %>
      <li><a href='/auth/census'>Log In With Census</a></li>

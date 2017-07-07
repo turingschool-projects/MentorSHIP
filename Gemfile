@@ -9,6 +9,7 @@ gem 'jquery-ui-rails'
 gem 'rack-cors'
 gem 'react-rails'
 gem "puma"
+gem 'materialize-sass'
 
 gem 'active_model_serializers', '~> 0.10.0'
 gem "responders"
@@ -16,10 +17,11 @@ gem "figaro"
 gem "faraday"
 gem 'awesome_print'
 gem 'faker'
-gem "faraday"
+gem 'geokit'
+gem 'timezone'
 
 gem 'omniauth-oauth2'
-gem 'omniauth-census', git: "https://github.com/NZenitram/census_staging_oauth"
+gem 'omniauth-census', git: "https://github.com/AELSchauer/omniauth-census", branch: "env"
 
 group :development, :test do
   gem 'thin'
@@ -33,7 +35,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'capybara'
   gem 'launchy'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 2.53.4'
 end
 
 group :development do

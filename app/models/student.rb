@@ -1,5 +1,7 @@
 class Student < ApplicationRecord
   belongs_to :user
+  has_many :student_mentors
+  has_many :mentors, through: :student_mentors
 
   delegate :avatar,
            :first_name,
