@@ -20,10 +20,8 @@ var MentorShow = React.createClass({
             <div className="row">
               <div className="col s4">
                 <span>
-                  <img className="mentor-pic-icon" src={mentor.avatar} />
                 </span>
            <h3 id="mentor-show-name">{mentor.name}</h3>
-           <p>Last Active: {mentor.last_active} </p>
          </div>
              <div className="col s6">
                <div className="container">
@@ -33,9 +31,8 @@ var MentorShow = React.createClass({
                  <h6><span className="edit-headers">Position:</span> {mentor.position} </h6>
                  <h6><span className="edit-headers">Expertise:</span>  {mentor.expertise}</h6>
                  <h6><span className="edit-headers">About Me:</span> : {mentor.bio} </h6>
-                 <h6><span className="edit-headers">Email:</span> {mentor.email} </h6>
-                 <h6><span className="edit-headers">Slack:</span>  {mentor.slack} </h6>
                  <h6><span className="edit-headers">Available:</span>  {" " +mentor.active} </h6>
+                 <h6><span className="edit-headers">Timezone:</span>  {mentor.timezone} </h6>
                 </div>
               </div>
            </div>

@@ -1,13 +1,15 @@
 <%= form_for(@mentor) do |f| %>
-  <%= f.text_field :first_name %>
-  <%= f.label :first_name %>
-  <%= f.text_field :last_name %>
-  <%= f.label :last_name %>
-  <%= f.text_field :expertise %>
-  <%= f.label :expertise %>
-  <%= f.text_field :location %>
-  <%= f.label :location %>
-  <%= f.text_field :position %>
-  <%= f.label :position %>
-  <%= f.submit %>
+  <%= f.text_field :first_name, value: "First Name" %>
+  <%= f.text_field :last_name, value: "Last Name" %>
+  <%= f.text_field :slack, value: "Slack Handle" %>
+  <%= f.text_field :expertise, value: "Expertise" %>
+  <%= f.text_field :location, value: "Location" %></br>
+  <%= f.label "Select Timezone" %>
+  <%= f.time_zone_select :timezone %>
+  <%= f.text_field :company, value: "Company" %>
+  <%= f.text_field :position, value: "Position" %>
+  <%= f.text_field :bio, value: "Tell Us About Yourself" %></br>
+  <%= f.label "Upload Image" %>
+  <%= f.file_field :avatar %></br>
+  <%= f.submit "Sign Up" %>
 <% end %>

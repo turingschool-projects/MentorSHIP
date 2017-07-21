@@ -10,8 +10,10 @@ Rails.application.routes.draw do
       resources :mentors, only: [:index, :show, :edit, :update]
     end
   end
+  get '/dashboard/:id', to: 'mentors#show', as: 'dashboard'
 
   resources :mentors, only: [:index, :show, :new, :create]
+
 
   get '/about', to: 'about#index'
 

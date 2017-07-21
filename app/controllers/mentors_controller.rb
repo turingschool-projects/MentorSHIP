@@ -12,12 +12,16 @@ class MentorsController < ApplicationController
 
   def create
     @mentor = Mentor.create(mentor_params)
-    flash.now[:alert] = "you made a mentor"
+    # @mentor.declare_timezone(params[:mentor][:timezone])
+
+    redirect_to dashboard_path(@mentor)
   end
 
   private
 
   def mentor_params
-    binding.pry
+    params.require(:mentor).permit(:id, :first_name, :last_name, :expertise, :location, :position, :bio, :company, :timezone_id)
   end
+
+
 end
