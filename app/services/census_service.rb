@@ -17,8 +17,13 @@ class CensusService
   end
 
   private
-    attr_reader :token, :conn
+    attr_reader :conn
 
 
+    def token
+      Rails.cache.fetch(:census_token) do
+
+      end
+    end
 
 end
