@@ -12,11 +12,12 @@ class Api::V1::MentorsController < Api::V1::BaseController
   def update
     CensusService.new(current_user.token).update_census(current_user.census_id, census_params)
     user = User.find(params[:id])
+    binding.pry
     user.update(user_params)
     user.mentor.update(mentor_params)
     user.mentor.profile_complete = true
-    binding.pry
     user.save
+    binding.pry
   end
 
   private

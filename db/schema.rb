@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170216134656) do
+ActiveRecord::Schema.define(version: 20170719202200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20170216134656) do
     t.datetime "updated_at",                       null: false
     t.boolean  "active",           default: false
     t.boolean  "profile_complete", default: false
+    t.string   "first_name"
+    t.string   "last_name"
     t.index ["timezone_id"], name: "index_mentors_on_timezone_id", using: :btree
     t.index ["user_id"], name: "index_mentors_on_user_id", using: :btree
   end

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :mentors, only: [:index, :show]
+  resources :mentors, only: [:index, :show, :new, :create]
 
   get '/about', to: 'about#index'
 
