@@ -10,7 +10,7 @@ class Api::V1::MentorsController < Api::V1::BaseController
   end
 
   def update
-    CensusService.new(current_user.token).update_census(current_user.census_id, census_params)
+    CensusService.new.update_census(current_user.census_id, census_params)
     user = User.find(params[:id])
     user.update(user_params)
     user.mentor.update(mentor_params)
